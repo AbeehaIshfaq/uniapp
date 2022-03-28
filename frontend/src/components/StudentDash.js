@@ -4,7 +4,6 @@ import Progress from "./Progress";
 const StudentDash = (props) => {
     return (
         <div>
-            <h1>Dashboard</h1>
             <Progress />
         </div>
     );
