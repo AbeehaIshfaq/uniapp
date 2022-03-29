@@ -5,7 +5,7 @@ import { Button } from "@mui/material";
 function App() {
     return (
         <>
-            <Button variant="contained">A button</Button>{" "}
+            <StudentDash />
         </>
     );
 }
