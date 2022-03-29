@@ -3,7 +3,7 @@ import React from "react";
 const StudentDash = (props) => {
     return (
         <div>
-            <h1>Hello There</h1>
+            <h1>Student Home Page</h1>
         </div>
     );
 };
