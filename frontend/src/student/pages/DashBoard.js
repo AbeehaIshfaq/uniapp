@@ -1,10 +1,9 @@
 import React from "react";
-import Progress from "./Progress";
 
 const StudentDash = (props) => {
     return (
         <div>
-            <Progress />
+            <h1>Hello There</h1>
         </div>
     );
 };

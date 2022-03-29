@@ -1,6 +1,5 @@
 import React from "react";
-import StudentDash from "./components/StudentDash";
-import { Button } from "@mui/material";
+import StudentDash from "./student/pages/DashBoard";
 
 function App() {
     return (
