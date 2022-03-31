@@ -1,26 +1,25 @@
 import React from "react";
-import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 import StudentDash from "./student/pages/DashBoard";
 
-function App() {
+const LandingPage = () => {
+    return (
+        <div>
+            <h1>Landing Page</h1>
+        </div>
+    );
+};
+
+const App = () => {
     return (
         <Router>
             <Routes>
-                <Route
-                    path="/"
-                    element={
-                        <>
-                            <h1>Home Page</h1>
-                        </>
-                    }
-                    exact
-                />
+                <Route path="/" element={<LandingPage />} exact />
                 <Route path="/student" element={<StudentDash />} />
-                <Route element={<Navigate replace to="/" />} />
             </Routes>
         </Router>
     );
-}
+};
 
 export default App;
