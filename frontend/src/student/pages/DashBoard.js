@@ -1,7 +1,15 @@
 import React from "react";
 
+import NavBar from "../components/navbar/Navbar";
+
 const StudentDash = ({ props }) => {
-    return <></>;
+    return (
+        <>
+            <header>
+                <NavBar />
+            </header>
+        </>
+    );
 };
 
 export default StudentDash;
