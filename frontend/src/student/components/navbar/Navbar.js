@@ -4,17 +4,17 @@ import NavbarItem from "./NavbarItem";
 
 const NavBar = () => {
     return (
-        <div class="ui menu">
-            <div className="left menu">
-                <NavbarItem name="Dasboard" to="/student" />
-                <NavbarItem name="Application" to="/student/application" />
-                <NavbarItem name="Find Universities" to="/student/findUnis" />
-                <NavbarItem name="My Universities" to="/student/myUnis" />
-            </div>
+        <div className="ui">
+            <div className="ui large secondary pointing menu">
+                <div className="left menu">
+                    <NavbarItem to="/student">Dashboard</NavbarItem>
+                    <NavbarItem to="/student/application">Application</NavbarItem>
+                    <NavbarItem to="/student/findUnis">Find Universities</NavbarItem>
+                    <NavbarItem to="/student/myUnis">My Universities</NavbarItem>
+                </div>
 
-            <div class="right menu">
-                <div class="item">
-                    <div class="ui primary button">Logout</div>
+                <div className="right menu">
+                    <NavbarItem to="/">Logout</NavbarItem>
                 </div>
             </div>
         </div>

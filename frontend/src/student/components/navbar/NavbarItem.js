@@ -2,11 +2,11 @@ import React from "react";
 import { NavLink } from "react-router-dom";
 
 const NavbarItem = (props) => {
-    const { name, to } = props;
+    const { children, to } = props;
 
     return (
-        <NavLink className="item" activeClassName="active" to={to} end>
-            {name}
+        <NavLink className="item" to={to} end>
+            {children}
         </NavLink>
     );
 };
