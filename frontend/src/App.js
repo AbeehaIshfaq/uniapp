@@ -2,7 +2,6 @@ import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 import StudentDash from "./student/pages/DashBoard";
-
 import Navbar from "./student/components/navbar/Navbar";
 
 const LandingPage = () => {

@@ -1,5 +1,6 @@
 import React from "react";
 import { Card, Button } from "semantic-ui-react";
+import { Link } from "react-router-dom";
 
 import UniCard from "./UniCard";
 
@@ -18,7 +19,9 @@ const UnilistCard = () => {
                     <UniCard />
                 </Card.Group>
             </Card.Content>
-            <Button basic>View More</Button>
+            <Button as={Link} basic to="myUnis">
+                View More
+            </Button>
         </Card>
     );
 };
