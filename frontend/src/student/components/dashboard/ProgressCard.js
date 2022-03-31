@@ -1,6 +1,6 @@
 import React from "react";
-
 import { Progress, Card, Button } from "semantic-ui-react";
+import { Link } from "react-router-dom";
 
 const ProgressCard = () => {
     return (
@@ -16,7 +16,9 @@ const ProgressCard = () => {
                 <Progress percent="40" indicating progress label="Extracurricular Info" />
                 <Progress percent="50" indicating progress label="Additional Form" />
             </Card.Content>
-            <Button basic>Fill Application</Button>
+            <Button as={Link} to="/student/application" basic>
+                Fill Application
+            </Button>
         </Card>
     );
 };
