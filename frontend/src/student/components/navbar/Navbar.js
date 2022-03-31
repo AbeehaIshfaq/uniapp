@@ -1,22 +1,23 @@
 import React from "react";
 
+import { Menu } from "semantic-ui-react";
 import NavbarItem from "./NavbarItem";
 
 const NavBar = () => {
     return (
-        <div className="ui">
-            <div className="ui large secondary pointing menu">
-                <div className="left menu">
+        <div>
+            <Menu secondary pointing>
+                <Menu.Menu position="left">
                     <NavbarItem to="/student">Dashboard</NavbarItem>
                     <NavbarItem to="/student/application">Application</NavbarItem>
                     <NavbarItem to="/student/findUnis">Find Universities</NavbarItem>
                     <NavbarItem to="/student/myUnis">My Universities</NavbarItem>
-                </div>
+                </Menu.Menu>
 
-                <div className="right menu">
+                <Menu.Menu position="right">
                     <NavbarItem to="/">Logout</NavbarItem>
-                </div>
-            </div>
+                </Menu.Menu>
+            </Menu>
         </div>
     );
 };

@@ -30,6 +30,8 @@ const App = () => {
                 <Route path="/" element={<LandingPage />} exact />
                 <Route path="/student" element={<StudentDash />} />
                 <Route path="/student/application" element={<Application />} />
+                <Route path="/student/findUnis" element={<Application />} />
+                <Route path="/student/myUnis" element={<Application />} />
             </Routes>
         </Router>
     );
