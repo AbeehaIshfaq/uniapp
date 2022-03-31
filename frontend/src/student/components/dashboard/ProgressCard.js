@@ -15,11 +15,8 @@ const ProgressCard = () => {
                 <Progress percent="60" indicating progress label="Academic Info" />
                 <Progress percent="40" indicating progress label="Extracurricular Info" />
                 <Progress percent="50" indicating progress label="Additional Form" />
-
-                <Segment basic textAlign="center">
-                    <Button basic>Fill Application</Button>
-                </Segment>
             </Card.Content>
+            <Button basic>Fill Application</Button>
         </Card>
     );
 };
