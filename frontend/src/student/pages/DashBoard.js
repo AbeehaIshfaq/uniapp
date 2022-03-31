@@ -23,8 +23,3 @@ const StudentDash = ({ props }) => {
 };
 
 export default StudentDash;
-// <div className="ui container" style={{ marginTop: "1em" }}>
-//     <ProgressCard />
-//     {/* <DeadlineCard /> */}
-//     <UniListCard />
-// </div>
