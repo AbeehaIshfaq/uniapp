@@ -1,6 +1,6 @@
 import React from "react";
 
-import { Progress, Card, Button, Segment } from "semantic-ui-react";
+import { Progress, Card, Button } from "semantic-ui-react";
 
 const ProgressCard = () => {
     return (
