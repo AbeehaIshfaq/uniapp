@@ -1,6 +1,7 @@
 import express from "express";
 
 import Student from "../model/student.js";
+import Form from "../model/form.js";
 
 const router = new express.Router();
 
@@ -15,6 +16,12 @@ router.post("/createStudent", async (req, res) => {
         console.log(err);
         res.send({ error: err });
     }
+});
+
+router.get("/testForm", async (req, res) => {
+    let data = await Form.findById("624ca402bdf773a7a43082fd");
+    console.log(data);
+    res.send({ data });
 });
 
 export default router;

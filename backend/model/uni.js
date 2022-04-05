@@ -26,6 +26,7 @@ const uniSchema = mongoose.Schema({
     phoneNumber: {
         type: "String",
         required: true,
+        unique: true,
     },
     fee: {
         type: Number,
@@ -45,8 +46,15 @@ const uniSchema = mongoose.Schema({
     ],
 });
 
+uniSchema.methods.toJSON = function () {
+    const uni = this;
+    const uniObject = uni.toObject();
 
+    delete uniObject.password;
+
+    return uniObject;
+};
 
 const Uni = mongoose.model("Uni", uniSchema);
 
-export default uniSchema;
+export default Uni;
