@@ -45,4 +45,8 @@ const uniSchema = mongoose.Schema({
     ],
 });
 
+
+
+const Uni = mongoose.model("Uni", uniSchema);
+
 export default uniSchema;

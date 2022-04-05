@@ -2,7 +2,7 @@ import mongoose from "mongoose";
 
 const studentSchema = new mongoose.Schema({
     name: {
-        tyep: String,
+        type: String,
         required: true,
         trim: true,
     },
@@ -20,4 +20,16 @@ const studentSchema = new mongoose.Schema({
     },
 });
 
-export default studentSchema;
+// Delete password field for security reasons
+studentSchema.methods.toJSON = function () {
+    const student = this;
+    const studentObject = student.toObject();
+
+    delete studentObject.password;
+
+    return studentObject;
+};
+
+const Student = mongoose.model("Student", studentSchema);
+
+export default Student;
