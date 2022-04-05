@@ -30,6 +30,12 @@ studentSchema.methods.toJSON = function () {
     return studentObject;
 };
 
+studentSchema.virtual("myForm", {
+    ref: "Form",
+    localField: "_id",
+    foreignField: "owner",
+});
+
 const Student = mongoose.model("Student", studentSchema);
 
 export default Student;
