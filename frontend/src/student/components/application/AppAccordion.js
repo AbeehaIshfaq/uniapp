@@ -26,15 +26,14 @@ export default class AppAccordion extends React.Component {
 
         const renderedItems = items.map(({ title, children }, index) => {
             return (
-                <React.Fragment key={title}>
-                    <AccordionItem
-                        title={title}
-                        children={children}
-                        index={index}
-                        active={activeIndex === index}
-                        onClick={this.clickHandler}
-                    />
-                </React.Fragment>
+                <AccordionItem
+                    key={title}
+                    title={title}
+                    children={children}
+                    index={index}
+                    active={activeIndex === index}
+                    onClick={this.clickHandler}
+                />
             );
         });
 
