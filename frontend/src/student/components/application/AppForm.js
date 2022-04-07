@@ -6,16 +6,6 @@ const maritalStatusOptions = [
     { key: 1, text: "Single", value: "single" },
 ];
 
-const temp = {
-    first: { name: "first", label: "First Name", placeholder: "First Name" },
-    middle: {
-        name: "middle",
-        label: "Middle Name",
-        placeholder: "Middle Name",
-    },
-    last: { name: "last", label: "Last Name", placeholder: "Last Name" },
-};
-
 export default class AppForm extends React.Component {
     state = {
         first: "",
@@ -32,9 +22,6 @@ export default class AppForm extends React.Component {
     };
 
     submitHandler = (e) => {
-        // const { person } = this.state;
-        // let fullName =
-        //     person.first + `${" " + person.middle + " " || " "}` + person.last;
         console.log(this.state);
     };
 
@@ -57,10 +44,9 @@ export default class AppForm extends React.Component {
             <Form onSubmit={this.submitHandler}>
                 <Form.Group widths="equal">
                     <Form.Input
-                        // label="First Name"
-                        // placeholder="First Name"
-                        // name="first"
-                        {...temp.first}
+                        label="First Name"
+                        placeholder="First Name"
+                        name="first"
                         value={this.state.first}
                         onChange={this.changeHandler}
                     />
