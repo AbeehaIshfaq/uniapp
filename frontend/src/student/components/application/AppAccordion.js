@@ -2,9 +2,10 @@ import React from "react";
 import { Accordion } from "semantic-ui-react";
 
 import AccordionItem from "./AccordionItem";
+import AppForm from "./AppForm";
 
 const items = [
-    { title: "Personal Information", children: "Some placeholder text" },
+    { title: "Personal Information", children: <AppForm /> },
     { title: "Family Information", children: "Some placeholder text" },
     { title: "Academic Information", children: "Some placeholder text" },
     { title: "Extracurricular Information", children: "Some placeholder text" },
@@ -27,9 +28,9 @@ export default class AppAccordion extends React.Component {
         const renderedItems = items.map(({ title, children }, index) => {
             return (
                 <AccordionItem
-                    key={title}
+                    key={index}
                     title={title}
-                    children={children}
+                    children={activeIndex === index && children}
                     index={index}
                     active={activeIndex === index}
                     onClick={this.clickHandler}
