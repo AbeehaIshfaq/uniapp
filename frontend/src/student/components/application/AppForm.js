@@ -1,13 +1,6 @@
 import React from "react";
 import { Form, Message } from "semantic-ui-react";
 
-import PersonalInfo from "./PersonalInfo";
-
-const temp = (f) =>
-    new Promise((resolve, reject) => {
-        resolve(setTimeout(f, 3000));
-    });
-
 export default class AppForm extends React.Component {
     constructor(props) {
         super(props);
@@ -16,11 +9,14 @@ export default class AppForm extends React.Component {
     }
 
     submitHandler = async (e) => {
+        e.preventDefault();
         this.setState({ loading: true });
+        const child = this.formRef.current;
         setTimeout(() => {
-            console.log(this.formRef.current.state);
-            this.setState({ loading: false, success: true });
-        }, 3000);
+            console.log(child.state);
+            child.validator();
+            this.setState({ loading: false });
+        }, 500);
     };
 
     render() {
@@ -36,8 +32,12 @@ export default class AppForm extends React.Component {
                 error={error}
             >
                 {clonned}
-                <Message success content="Form Saved Successfully" />
-                <Message error header="An error has occured!" />
+                <Message success header="Form Saved Successfully" />
+                <Message
+                    error
+                    header="An error has occured!"
+                    content="Please try again"
+                />
                 <Form.Button>Save</Form.Button>
             </Form>
         );

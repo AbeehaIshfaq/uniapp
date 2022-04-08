@@ -1,5 +1,13 @@
 import React from "react";
-import { Form } from "semantic-ui-react";
+import { Form, Message } from "semantic-ui-react";
+
+import {
+    validate,
+    Required,
+    Email,
+    PhoneNumber,
+    CNIC,
+} from "../../../shared/util/validate";
 
 const maritalStatusOptions = [
     { key: 0, text: "Married", value: "married" },
@@ -8,26 +16,34 @@ const maritalStatusOptions = [
 
 export default class PersonalInfo extends React.Component {
     state = {
-        first: "",
-        middle: "",
-        last: "",
-        email: "",
-        phoneNumber: "",
-        cnic: "",
-        passport: "",
-        currentAddress: "",
-        permanentAddress: "",
-        gender: "",
-        marritalStatus: "",
+        first: { val: "", error: null, validators: [Required] },
+        middle: { val: "", error: null, validators: [] },
+        last: { val: "", error: null, validators: [Required] },
+        email: { val: "", error: null, validators: [Required, Email] },
+        phoneNumber: {
+            val: "",
+            error: null,
+            validators: [Required, PhoneNumber],
+        },
+        cnic: { val: "", error: null, validators: [Required, CNIC] },
+        currentAddress: { val: "", error: null, validators: [Required] },
+        permanentAddress: { val: "", error: null, validators: [Required] },
+        gender: { val: "", error: null, validators: [Required] },
+        marritalStatus: { val: "", error: null, validators: [Required] },
     };
 
     changeHandler = (e, { value, name }) => {
         const temp = { ...this.state };
-        temp[name] = value;
+        temp[name].val = value;
         this.setState(temp);
     };
 
+    validator = () => {
+        this.setState(validate(this.state));
+    };
+
     render() {
+        const state = this.state;
         return (
             <>
                 <Form.Group widths="equal">
@@ -35,22 +51,27 @@ export default class PersonalInfo extends React.Component {
                         label="First Name"
                         placeholder="First Name"
                         name="first"
-                        value={this.state.first}
+                        value={state.first.val}
                         onChange={this.changeHandler}
+                        className="required"
+                        error={state.first.error}
                     />
                     <Form.Input
                         label="Middle Name"
                         placeholder="Middle Name"
                         name="middle"
-                        value={this.state.middle}
+                        value={state.middle.val}
                         onChange={this.changeHandler}
+                        error={state.middle.error}
                     />
                     <Form.Input
                         label="Last Name"
                         placeholder="Last Name"
-                        value={this.state.last}
+                        value={state.last.val}
                         name="last"
                         onChange={this.changeHandler}
+                        className="required"
+                        error={state.last.error}
                     />
                 </Form.Group>
                 <Form.Group widths="equal">
@@ -58,71 +79,78 @@ export default class PersonalInfo extends React.Component {
                         label="Email"
                         placeholder="Email"
                         name="email"
-                        value={this.state.email}
+                        value={state.email.val}
                         onChange={this.changeHandler}
+                        error={state.email.error}
+                        className="required"
                     />
                     <Form.Input
                         label="Phone Number"
                         placeholder="Phone Number"
                         name="phoneNumber"
-                        value={this.state.phoneNumber}
+                        value={state.phoneNumber.val}
                         onChange={this.changeHandler}
+                        error={state.phoneNumber.error}
+                        className="required"
                     />
-                </Form.Group>
-                <Form.Group widths="equal">
                     <Form.Input
                         label="CNIC"
                         placeholder="CNIC"
                         name="cnic"
-                        value={this.state.cnic}
+                        value={state.cnic.val}
                         onChange={this.changeHandler}
-                    />
-                    <Form.Input
-                        label="Passport"
-                        placeholder="Passport"
-                        name="passport"
-                        value={this.state.passport}
-                        onChange={this.changeHandler}
+                        error={state.cnic.error}
+                        className="required"
                     />
                 </Form.Group>
                 <Form.Input
                     label="Current Address"
                     placeholder="Current Address"
                     name="currentAddress"
-                    value={this.state.currentAddress}
+                    value={state.currentAddress.val}
                     onChange={this.changeHandler}
+                    error={state.currentAddress.error}
+                    className="required"
                 />
                 <Form.Input
                     label="Permanent Address"
                     placeholder="Permanent Address"
                     name="permanentAddress"
-                    value={this.state.permanentAddress}
+                    value={state.permanentAddress.val}
                     onChange={this.changeHandler}
+                    error={state.permanentAddress.error}
+                    className="required"
                 />
-                <Form.Group inline>
-                    <label>Gender</label>
+                <Form.Group grouped>
+                    <Form.Field>
+                        <label>Gender</label>
+                        <Message error header="some error" />
+                    </Form.Field>
                     <Form.Radio
                         label="Male"
                         value="male"
-                        checked={this.state.gender === "male"}
-                        onChange={this.genderChangeHandler}
+                        name="gender"
+                        checked={state.gender.val === "male"}
+                        onChange={this.changeHandler}
                     />
                     <Form.Radio
                         label="Female"
                         value="female"
-                        checked={this.state.gender === "female"}
-                        onChange={this.genderChangeHandler}
+                        name="gender"
+                        checked={state.gender.val === "female"}
+                        onChange={this.changeHandler}
                     />
                     <Form.Input
                         inline
                         placeholder="Other"
+                        name="gender"
                         value={
-                            this.state.gender === "male" ||
-                            this.state.gender === "female"
+                            state.gender.val === "male" ||
+                            state.gender.val === "female"
                                 ? ""
-                                : this.state.gender
+                                : state.gender.val
                         }
-                        onChange={this.genderChangeHandler}
+                        onChange={this.changeHandler}
                     />
                 </Form.Group>
                 <Form.Group>
@@ -131,8 +159,10 @@ export default class PersonalInfo extends React.Component {
                         placeholder="Marital Status"
                         options={maritalStatusOptions}
                         name="maritalStatus"
-                        value={this.state.maritalStatus}
+                        value={state.marritalStatus.val}
                         onChange={this.changeHandler}
+                        className="required"
+                        error={state.marritalStatus.error}
                     />
                 </Form.Group>
             </>
