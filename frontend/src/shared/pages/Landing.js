@@ -4,11 +4,12 @@ import { Container, Grid } from "semantic-ui-react";
 import LandingHeader from "../components/landing/LandingHeader";
 import RouterCard from "../components/landing/RouterCard";
 
+
 const LandingPage = () => {
     const uniMessage =
-        "We are the lead university application platform to provide students all across pakistan a means to easliy manage their college applications";
+        "We are the lead university application platform to provide students all across pakistan a means to easily manage their college applications";
     const studMessage =
-        "Join over X other students looking to apply to all their desired universities wiht a sinlge UNIversal APPlication";
+        "Join over X other students looking to apply to all their desired universities with a single Universal Application";
 
     return (
         <>
