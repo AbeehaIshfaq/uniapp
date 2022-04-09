@@ -1,5 +1,5 @@
 import React from "react";
-import { Form, Message } from "semantic-ui-react";
+import { Form } from "semantic-ui-react";
 
 import {
     validate,
@@ -7,7 +7,7 @@ import {
     Email,
     PhoneNumber,
     CNIC,
-} from "../../../shared/util/validate";
+} from "../../../util/validate";
 
 const maritalStatusOptions = [
     { key: 0, text: "Married", value: "married" },
@@ -29,7 +29,8 @@ export default class PersonalInfo extends React.Component {
         currentAddress: { val: "", error: null, validators: [Required] },
         permanentAddress: { val: "", error: null, validators: [Required] },
         gender: { val: "", error: null, validators: [Required] },
-        marritalStatus: { val: "", error: null, validators: [Required] },
+        maritalStatus: { val: "", error: null, validators: [Required] },
+        dateOfBirth: { val: "", error: null, validators: [Required] },
     };
 
     changeHandler = (e, { value, name }) => {
@@ -124,7 +125,7 @@ export default class PersonalInfo extends React.Component {
                 <Form.Group grouped>
                     <Form.Field>
                         <label>Gender</label>
-                        <Message error header="some error" />
+                        {/* <Message error header="some error" /> */}
                     </Form.Field>
                     <Form.Radio
                         label="Male"
@@ -159,10 +160,21 @@ export default class PersonalInfo extends React.Component {
                         placeholder="Marital Status"
                         options={maritalStatusOptions}
                         name="maritalStatus"
-                        value={state.marritalStatus.val}
+                        value={state.maritalStatus.val}
                         onChange={this.changeHandler}
                         className="required"
-                        error={state.marritalStatus.error}
+                        error={state.maritalStatus.error}
+                    />
+                </Form.Group>
+                <Form.Group>
+                    <Form.Input
+                        label="Date of Birth"
+                        type="date"
+                        name="dateOfBirth"
+                        value={state.dateOfBirth.val}
+                        onChange={this.changeHandler}
+                        error={state.dateOfBirth.error}
+                        className="required"
                     />
                 </Form.Group>
             </>
