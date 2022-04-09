@@ -1,10 +1,19 @@
 import React from "react";
-import { Form, Segment, Button } from "semantic-ui-react";
+import { Form, Segment } from "semantic-ui-react";
+
+import AuthContext from "../../../shared/context/AuthContext";
 
 class Login extends React.Component {
+    static contextType = AuthContext;
+
+    submitHandler = (e) => {
+        let value = this.context;
+        value.login("student");
+    };
+
     render() {
         return (
-            <Form size="large">
+            <Form size="large" onSubmit={this.submitHandler}>
                 <Segment stacked>
                     <Form.Input
                         fluid
@@ -20,9 +29,9 @@ class Login extends React.Component {
                         type="password"
                     />
 
-                    <Button primary fluid size="large">
+                    <Form.Button primary fluid size="large">
                         Login
-                    </Button>
+                    </Form.Button>
                 </Segment>
             </Form>
         );
