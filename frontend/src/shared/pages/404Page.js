@@ -10,9 +10,7 @@ const Page404 = () => {
                     <Icon name="bomb" />
                     404
                 </Header>
-                <Header.Subheader as="h3" s>
-                    Page not Found!
-                </Header.Subheader>
+                <Header.Subheader as="h3">Page not Found!</Header.Subheader>
                 <Button as={Link} to="/" secondary basic>
                     Back to Home
                 </Button>
