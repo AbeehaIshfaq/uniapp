@@ -5,6 +5,7 @@ import StudentDash from "./student/pages/DashBoard";
 import ApplicationPage from "./student/pages/Application";
 import Navbar from "./student/components/navbar/Navbar";
 import LandingPage from "./shared/pages/Landing";
+import StudentAuth from "./student/pages/Auth";
 import Page404 from "./shared/pages/404Page";
 
 const TempComponent = () => {
@@ -22,6 +23,7 @@ const App = () => {
                 <Route path="*" element={<Page404 />} />
                 <Route path="/" element={<LandingPage />} exact />
                 <Route path="/student" element={<StudentDash />} />
+                <Route path="/student/auth" element={<StudentAuth />} />
                 <Route
                     path="/student/application"
                     element={<ApplicationPage />}
