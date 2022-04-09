@@ -25,7 +25,7 @@ const personalInfoSchema = mongoose.Schema({
         default: "",
     },
     dateOfBirth: {
-        type: Date,
+        type: String,
         default: "",
     },
     gender: {
@@ -56,6 +56,23 @@ const personalInfoSchema = mongoose.Schema({
         default: "",
     },
 });
+
+personalInfoSchema.methods.toJSON = function () {
+    const info = this;
+    const infoObject = info.toObject();
+    const [first, middle, last] = infoObject.name.split(" ");
+    infoObject.first = first;
+    if (last) {
+        infoObject.middle = middle;
+        infoObject.last = last;
+    } else {
+        infoObject.last = middle;
+        infoObject.middle = "";
+    }
+    delete infoObject.name;
+
+    return infoObject;
+};
 
 const familyInfoSchema = mongoose.Schema({
     name: {

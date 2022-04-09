@@ -31,6 +31,7 @@ router.get("/testForm", async (req, res) => {
 });
 
 router.patch("/application/personalInfo", async (req, res) => {
+    console.log("PATCH /student/application/personalInfo");
     const user = {
         _id: "6250d009a387676f62558fc1",
         name: "Mahd Iftikhar",
@@ -60,6 +61,17 @@ router.patch("/application/personalInfo", async (req, res) => {
     }
 });
 
-router.get("/application/personalInfo", async (req, res) => {});
+router.get("/application/personalInfo", async (req, res) => {
+    console.log("GET /student/application/personalInfo");
+
+    const userId = "6250d009a387676f62558fc1";
+    try {
+        const form = await Form.findOne({ owner: userId });
+        res.send(form.personalInfo.toJSON());
+    } catch (err) {
+        console.log(err);
+        res.status(404).send(err);
+    }
+});
 
 export default router;

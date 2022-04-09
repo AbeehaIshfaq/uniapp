@@ -1,5 +1,7 @@
+import { getDialogContentTextUtilityClass } from "@mui/material";
 import React from "react";
 import { Form, Message } from "semantic-ui-react";
+import server from "../../../server/server";
 
 export default class AppForm extends React.Component {
     constructor(props) {
@@ -12,16 +14,51 @@ export default class AppForm extends React.Component {
         e.preventDefault();
         this.setState({ loading: true });
         const child = this.formRef.current;
-        setTimeout(() => {
-            console.log(child.state);
-            child.validator();
-            this.setState({ loading: false });
-        }, 500);
+
+        const data = {};
+        Object.entries(child.state).forEach(
+            ([key, value]) => (data[key] = value.val)
+        );
+
+        try {
+            const response = await server.patch(
+                "/student/application/personalInfo",
+                data
+            );
+            this.setState({ success: true, loading: false });
+        } catch (err) {
+            console.log(err);
+            this.setState({ error: true, loading: false });
+        }
+    };
+
+    getData = async () => {
+        let data;
+        try {
+            const response = await server.get(
+                "/student/application/personalInfo"
+            );
+            data = response.data;
+        } catch (err) {
+            this.setState({ loading: false, error: true });
+            console.log(err);
+        }
+
+        const child = this.formRef.current;
+
+        Object.keys(child.state).forEach((key) =>
+            child.setState((oldState) => {
+                oldState[key].val = data[key];
+                return oldState;
+            })
+        );
+
+        this.setState({ loading: false });
     };
 
     componentDidMount() {
         this.setState({ loading: true });
-        this.setState({ loading: false });
+        this.getData();
     }
 
     render() {
