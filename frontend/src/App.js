@@ -3,6 +3,9 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 import StudentDash from "./student/pages/DashBoard";
 import ApplicationPage from "./student/pages/Application";
+import ApplicationPageUni from "./uni/pages/Application";
+import UniDash from "./uni/pages/DashBoard";
+import SetDeadline from "./uni/pages/setdeadline";
 import Navbar from "./student/components/navbar/Navbar";
 import LandingPage from "./shared/pages/Landing";
 import Page404 from "./shared/pages/404Page";
@@ -28,6 +31,17 @@ const App = () => {
                 />
                 <Route path="/student/findUnis" element={<TempComponent />} />
                 <Route path="/student/myUnis" element={<TempComponent />} />
+                <Route path="/uni" element={<UniDash />} />
+
+                <Route
+                    path="/uni/application"
+                    element={<ApplicationPageUni />}
+                />
+                <Route
+                    path="/uni/setdeadline"
+                    element={<SetDeadline />}
+                />
+
             </Routes>
         </Router>
     );
