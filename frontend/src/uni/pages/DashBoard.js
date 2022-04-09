@@ -1,5 +1,4 @@
 import React from "react";
-
 import { Container } from "semantic-ui-react";
 import NavBar from "../components/navbar/Navbar";
 import ProgressCard from "../components/dashboard/ProgressCard";
