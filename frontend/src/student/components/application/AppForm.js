@@ -20,10 +20,7 @@ export default class AppForm extends React.Component {
         );
 
         try {
-            const response = await server.patch(
-                "/student/application/personalInfo",
-                data
-            );
+            await server.patch("/student/application/personalInfo", data);
             this.setState({ success: true, loading: false });
         } catch (err) {
             console.log(err);
