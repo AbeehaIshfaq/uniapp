@@ -1,24 +1,25 @@
-// src/auth/auth0-provider-with-history.js
+// src/auth/auth0-provider-with navigate.js
 
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import { Auth0Provider } from "@auth0/auth0-react";
 
 const Auth0ProviderWithHistory = ({ children }) => {
-    const history = useNavigate();
+    const navigate = useNavigate();
     const domain = process.env.REACT_APP_AUTH0_DOMAIN;
     const clientId = process.env.REACT_APP_AUTH0_CLIENT_ID;
     const audience = process.env.REACT_APP_AUTH0_AUDIENCE;
+    const callback = process.env.REACT_APP_AUTH0_CALLBACK_URL;
 
     const onRedirectCallback = (appState) => {
-        history.push(appState?.returnTo || window.location.pathname);
+        navigate.push(appState?.returnTo || window.location.pathname);
     };
 
     return (
         <Auth0Provider
             domain={domain}
             clientId={clientId}
-            redirectUri={window.location.origin}
+            redirectUri={"http://localhost:3000/student"}
             onRedirectCallback={onRedirectCallback}
             audience={audience}
         >

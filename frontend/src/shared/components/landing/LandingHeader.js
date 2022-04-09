@@ -8,6 +8,7 @@ const LandingHeader = (props) => {
     // const fixed = false;
     const { loginWithRedirect } = useAuth0();
     const { logout } = useAuth0();
+    const { isAuthenticated } = useAuth0();
     return (
         <Segment basic style={{ padding: "60px 10%", border: "0" }} attached>
             <Menu secondary>

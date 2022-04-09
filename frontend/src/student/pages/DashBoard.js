@@ -5,20 +5,24 @@ import NavBar from "../components/navbar/Navbar";
 import ProgressCard from "../components/dashboard/ProgressCard";
 // import DeadlineCard from "../components/dashboard/DeadlineCard";
 import UniListCard from "../components/dashboard/UnilistCard";
+import { useAuth0 } from "@auth0/auth0-react";
 
 const StudentDash = (props) => {
+    const { user, isAuthenticated, isLoading } = useAuth0();
     return (
-        <>
-            <header>
-                <NavBar />
-            </header>
-            <main>
-                <Container style={{ padding: "20px" }}>
-                    <ProgressCard />
-                    <UniListCard />
-                </Container>
-            </main>
-        </>
+        isAuthenticated && (
+            <>
+                <header>
+                    <NavBar />
+                </header>
+                <main>
+                    <Container style={{ padding: "20px" }}>
+                        <ProgressCard />
+                        <UniListCard />
+                    </Container>
+                </main>
+            </>
+        )
     );
 };
 
