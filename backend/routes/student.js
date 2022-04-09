@@ -14,7 +14,7 @@ router.post("/createStudent", async (req, res) => {
         res.send({ message: "successfully saved", data: student });
     } catch (err) {
         console.log(err);
-        res.send({ error: err });
+        res.status(400).send("Error Occurrred");
     }
 });
 

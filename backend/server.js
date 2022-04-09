@@ -11,7 +11,7 @@ const port = process.env.PORT;
 
 app.use(express.json());
 
-app.use("/student", StudentRouter);
+app.use(StudentRouter);
 app.use("/uni", UniRouter);
 
 app.listen(port, () => {
