@@ -19,6 +19,11 @@ export default class AppForm extends React.Component {
         }, 500);
     };
 
+    componentDidMount() {
+        this.setState({ loading: true });
+        this.setState({ loading: false });
+    }
+
     render() {
         const { success, error, loading } = this.state;
         const { children } = this.props;

@@ -7,7 +7,7 @@ import {
     Email,
     PhoneNumber,
     CNIC,
-} from "../../../shared/util/validate";
+} from "../../../util/validate";
 
 const maritalStatusOptions = [
     { key: 0, text: "Married", value: "married" },
@@ -30,6 +30,7 @@ export default class PersonalInfo extends React.Component {
         permanentAddress: { val: "", error: null, validators: [Required] },
         gender: { val: "", error: null, validators: [Required] },
         marritalStatus: { val: "", error: null, validators: [Required] },
+        dateOfBirth: { val: "", error: null, validators: [Required] },
     };
 
     changeHandler = (e, { value, name }) => {
@@ -163,6 +164,16 @@ export default class PersonalInfo extends React.Component {
                         onChange={this.changeHandler}
                         className="required"
                         error={state.marritalStatus.error}
+                    />
+                </Form.Group>
+                <Form.Group>
+                    <Form.Input
+                        label="Date of Birth"
+                        type="date"
+                        value={state.dateOfBirth.val}
+                        onChange={this.changeHandler}
+                        error={state.dateOfBirth.error}
+                        className="required"
                     />
                 </Form.Group>
             </>
