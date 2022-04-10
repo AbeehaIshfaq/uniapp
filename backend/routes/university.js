@@ -20,4 +20,6 @@ router.post("/createUni", async (req, res) => {
     }
 });
 
+router.get("/viewForm", async (req, res) => {});
+
 export default router;
