@@ -41,6 +41,11 @@ export default class PersonalInfo extends React.Component {
 
     validator = () => {
         this.setState(validate(this.state));
+        let error = false;
+        Object.values(this.state).forEach((values) => {
+            if (values.error) error = true;
+        });
+        return error;
     };
 
     render() {
