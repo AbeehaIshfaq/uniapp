@@ -1,6 +1,6 @@
 import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-
+import UploadDoc from "./student/pages/UploadDoc";
 import StudentDash from "./student/pages/DashBoard";
 import ApplicationPage from "./student/pages/Application";
 import ApplicationPageUni from "./uni/pages/Application";
@@ -32,7 +32,6 @@ const App = () => {
                 <Route path="/student/findUnis" element={<TempComponent />} />
                 <Route path="/student/myUnis" element={<TempComponent />} />
                 <Route path="/uni" element={<UniDash />} />
-
                 <Route
                     path="/uni/application"
                     element={<ApplicationPageUni />}
@@ -40,6 +39,10 @@ const App = () => {
                 <Route
                     path="/uni/setdeadline"
                     element={<SetDeadline />}
+                />
+                <Route
+                    path="/student/upload_documents"
+                    element={<UploadDoc/>}
                 />
 
             </Routes>
