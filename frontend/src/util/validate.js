@@ -26,6 +26,24 @@ class CNIC {
     }
 }
 
+const MinLength = (length) => {
+    return class Min {
+        static validate(value) {
+            if (value.length > length) return null;
+            return `Password needs to be greater than ${length} characters`;
+        }
+    };
+};
+
+const Match = (valid, name) => {
+    return class Match {
+        static validate(value) {
+            if (value === valid) return null;
+            return `${name} do not match`;
+        }
+    };
+};
+
 const validate = (state) => {
     for (let key in state) {
         let error = null;
@@ -41,4 +59,4 @@ const validate = (state) => {
     return state;
 };
 
-export { Required, CNIC, PhoneNumber, Email, validate };
+export { Required, CNIC, PhoneNumber, Email, MinLength, Match, validate };

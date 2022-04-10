@@ -4,7 +4,6 @@ import { Container, Grid } from "semantic-ui-react";
 import LandingHeader from "../components/landing/LandingHeader";
 import RouterCard from "../components/landing/RouterCard";
 
-
 const LandingPage = () => {
     const uniMessage =
         "We are the lead university application platform to provide students all across pakistan a means to easily manage their college applications";
@@ -21,7 +20,7 @@ const LandingPage = () => {
                             <Grid.Column width="5">
                                 <RouterCard
                                     title="For Students"
-                                    to="student/signup"
+                                    to="student/auth"
                                     buttonText="Sign up and Apply"
                                     paragraph={studMessage}
                                 />
@@ -29,7 +28,7 @@ const LandingPage = () => {
                             <Grid.Column width="5">
                                 <RouterCard
                                     title="For Universities"
-                                    to="uni/signup"
+                                    to="uni/auth"
                                     buttonText="Register Now"
                                     paragraph={uniMessage}
                                     basic

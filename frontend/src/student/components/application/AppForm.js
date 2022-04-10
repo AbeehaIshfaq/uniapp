@@ -14,6 +14,11 @@ export default class AppForm extends React.Component {
         this.setState({ loading: true });
         const child = this.formRef.current;
 
+        if (child.validator()) {
+            this.setState({ loading: false });
+            return;
+        }
+
         const data = {};
         Object.entries(child.state).forEach(
             ([key, value]) => (data[key] = value.val)
