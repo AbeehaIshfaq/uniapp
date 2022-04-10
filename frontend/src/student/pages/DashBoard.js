@@ -15,7 +15,7 @@ const StudentDash = (props) => {
                 <NavBar />
             </header>
             <main>
-            <Grid columns={2} style={{ padding: "40px" }} align="center">
+            <Grid columns={2} style={{ padding: "60px" }} align="center">
     <Grid.Row>
       <Grid.Column>
       < ProgressCard  />
