@@ -30,7 +30,7 @@ class Login extends React.Component {
         console.log();
         this.setState({ loading: true });
         if (this.validator()) {
-            this.setState({ loading: true });
+            this.setState({ loading: false });
             return;
         }
     };
