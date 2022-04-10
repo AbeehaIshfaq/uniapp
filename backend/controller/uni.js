@@ -31,3 +31,34 @@ export async function postLogin(req, res) {
         res.status(404).send();
     }
 }
+
+export async function postLogout(req, res) {
+    console.log("POST uni/logout");
+    try {
+        req.user.tokens = req.user.tokens.filter(
+            (token) => token.token !== req.token
+        );
+        await req.user.save();
+        res.send();
+    } catch (err) {
+        res.status(500).send();
+    }
+}
+
+export async function postLogoutAll(req, res) {
+    console.log("POST uni/logoutAll");
+    try {
+        req.user.tokens = [];
+        await req.user.save();
+        res.send();
+    } catch (err) {
+        res.status(500).send();
+    }
+}
+
+// export async function viewForm(req,res) {
+//     console.log("GET uni/viewForm")
+//     try {
+
+//     }
+// }

@@ -7,7 +7,12 @@ import auth from "../middleware/studentAuth.js";
 import Form from "../model/form.js";
 
 import { patchPersonalInfo, getPersonalInfo } from "../controller/form.js";
-import { postSignup, postLogin } from "../controller/uni.js";
+import {
+    postSignup,
+    postLogin,
+    postLogout,
+    postLogoutAll,
+} from "../controller/uni.js";
 
 const router = new express.Router();
 
@@ -31,9 +36,9 @@ router.post("/signup", postSignup);
 
 router.post("/login", postLogin);
 
-// router.post("/logout", auth, postLogout);
+router.post("/logout", auth, postLogout);
 
-// router.post("/logoutAll", auth, postLogoutAll);
+router.post("/logoutAll", auth, postLogoutAll);
 
 router.get("/viewForm", async (req, res) => {});
 
