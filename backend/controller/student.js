@@ -30,7 +30,7 @@ export async function postLogin(req, res) {
         res.send({ student, token });
     } catch (err) {
         console.log(err);
-        res.status(400).send();
+        res.status(404).send();
     }
 }
 

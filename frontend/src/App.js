@@ -7,6 +7,7 @@ import {
 } from "react-router-dom";
 
 import AuthContext from "./shared/context/AuthContext";
+import server from "./server/server";
 
 import StudentDash from "./student/pages/DashBoard";
 import ApplicationPage from "./student/pages/Application";
@@ -24,15 +25,36 @@ const TempComponent = () => {
 };
 
 class App extends React.Component {
-    state = { loggedIn: null };
+    state = { loggedIn: null, token: null, userId: null };
 
-    login = (value) => {
-        this.setState({ loggedIn: value });
+    login = (value, token, userId) => {
+        localStorage.setItem(
+            "userData",
+            JSON.stringify({ userId, token, loggedIn: value })
+        );
+        this.setState({ loggedIn: value, token: token, userId: userId });
     };
 
-    logout = () => {
-        this.setState({ loggedIn: null });
+    logout = async () => {
+        this.setState({ loggedIn: null, token: null, userId: null });
+        try {
+            await server.post("/student/logout");
+            localStorage.removeItem("userData");
+        } catch (err) {
+            console.log(err);
+        }
     };
+
+    componentDidMount() {
+        const userData = JSON.parse(localStorage.getItem("userData"));
+        if (userData) {
+            this.setState({
+                loggedIn: userData.loggedIn,
+                token: userData.token,
+                userId: userData.userId,
+            });
+        }
+    }
 
     render() {
         const { loggedIn } = this.state;
@@ -73,6 +95,8 @@ class App extends React.Component {
             <AuthContext.Provider
                 value={{
                     loggedIn: this.state.loggedIn,
+                    token: this.state.token,
+                    userId: this.state.userId,
                     login: this.login,
                     logout: this.logout,
                 }}

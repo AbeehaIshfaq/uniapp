@@ -1,8 +1,8 @@
 import React from "react";
-import { Form, Segment } from "semantic-ui-react";
+import { Form, Segment, Message } from "semantic-ui-react";
 
 import AuthContext from "../../../shared/context/AuthContext";
-
+import server from "../../../server/server";
 import { validate, Required } from "../../../util/validate";
 
 class Login extends React.Component {
@@ -15,16 +15,31 @@ class Login extends React.Component {
         error: false,
     };
 
-    submitHandler = (e) => {
+    submitHandler = async (e) => {
         this.setState({ loading: true });
-        let value = this.context;
+        let auth = this.context;
 
         if (this.validator()) {
             this.setState({ loading: false });
             return;
         }
 
-        value.login("student");
+        const data = {
+            email: this.state.email.val,
+            password: this.state.password.val,
+        };
+
+        let res;
+        try {
+            res = await server.post("/student/login", data);
+            this.setState({ loading: false });
+            auth.login("student", res.data.token, res.data.student._id);
+        } catch (err) {
+            this.setState({
+                loading: false,
+                error: "Credentials do not match",
+            });
+        }
     };
 
     changeHandler = (e, { value, name }) => {
@@ -49,8 +64,17 @@ class Login extends React.Component {
 
     render() {
         return (
-            <Form size="large" onSubmit={this.submitHandler}>
+            <Form
+                size="large"
+                onSubmit={this.submitHandler}
+                error={!!this.state.error}
+            >
                 <Segment stacked>
+                    <Message
+                        error
+                        header={this.state.error}
+                        content="Please try again"
+                    />
                     <Form.Input
                         fluid
                         icon="user"

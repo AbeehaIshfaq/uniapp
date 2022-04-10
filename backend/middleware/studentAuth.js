@@ -3,6 +3,8 @@ import jwt from "jsonwebtoken";
 import Student from "../model/student.js";
 
 const studAuth = async (req, res, next) => {
+    if (req.method === "OPTIONS") next();
+
     try {
         const token = req.header("Authorization").replace("Bearer ", "");
         const decoded = jwt.verify(token, "afterlife-avenged-sevenfold");
