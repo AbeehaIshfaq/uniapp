@@ -15,7 +15,7 @@ const StudentDash = (props) => {
                 <NavBar />
             </header>
             <main>
-            <Grid columns={2} style={{ padding: "40px" }} Align="center">
+            <Grid columns={2} style={{ padding: "40px" }} align="center">
     <Grid.Row>
       <Grid.Column>
       < ProgressCard  />
@@ -24,15 +24,8 @@ const StudentDash = (props) => {
       < Calend  /> 
       </Grid.Column>
     </Grid.Row>
-    </Grid>
-
-                <Container style={{ padding: "20px" }}>
-                    < ProgressCard  />
-                </Container>
-                <Container Align='right' style={{ padding: "20px" }}>
-                    < Calend  /> 
-                </Container>              
-                 <Container style={{ padding: "20px" }}>
+    </Grid>            
+                 <Container style={{ padding: "20px" }} align="center">
                     <UniListCard />
                 </Container>
             </main>
