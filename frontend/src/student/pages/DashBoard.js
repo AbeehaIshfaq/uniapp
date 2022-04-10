@@ -6,6 +6,7 @@ import ProgressCard from "../components/dashboard/ProgressCard";
 // import DeadlineCard from "../components/dashboard/DeadlineCard";
 import UniListCard from "../components/dashboard/UnilistCard";
 import Calend from '../components/calendar/calend';
+import { Grid, Image } from 'semantic-ui-react'
 
 const StudentDash = (props) => {
     return (
@@ -14,6 +15,17 @@ const StudentDash = (props) => {
                 <NavBar />
             </header>
             <main>
+            <Grid columns={2} style={{ padding: "40px" }} Align="center">
+    <Grid.Row>
+      <Grid.Column>
+      < ProgressCard  />
+      </Grid.Column>
+      <Grid.Column>
+      < Calend  /> 
+      </Grid.Column>
+    </Grid.Row>
+    </Grid>
+
                 <Container style={{ padding: "20px" }}>
                     < ProgressCard  />
                 </Container>

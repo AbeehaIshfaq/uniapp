@@ -17,6 +17,7 @@ import SetDeadline from "./uni/pages/setdeadline";
 import Navbar from "./student/components/navbar/Navbar";
 import LandingPage from "./shared/pages/Landing";
 import StudentAuth from "./student/pages/Auth";
+import UploadDoc  from "./student/pages/UploadDoc";
 import Page404 from "./shared/pages/404Page";
 
 const TempComponent = () => {
@@ -70,17 +71,19 @@ class App extends React.Component {
                     <Route path="/" element={<LandingPage />} />
                     <Route path="/student/auth" element={<StudentAuth />} />
                     <Route path="/uni" element={<UniDash />} />
-                <Route
-                    path="/uni/application"
-                    element={<ApplicationPageUni />}
-                />
-                <Route
-                    path="/uni/setdeadline"
-                    element={<SetDeadline />}
-                />
-                 <Route path="/student/upload_documents"
-                    element={<UploadDoc/>}
-                />
+                    <Route
+                        path="/uni/application"
+                        element={<ApplicationPageUni />}
+                    />
+                    <Route
+                        path="/uni/setdeadline"
+                        element={<SetDeadline />}
+                    />
+                    <Route path="/student/upload_documents"
+                        element={<UploadDoc/>}
+                    />
+                    <Route path="/student" element={<StudentDash />} />
+
                 </>
             );
         } else if (loggedIn === "student") {
@@ -88,7 +91,6 @@ class App extends React.Component {
                 <>
                     <Route path="*" element={<Page404 />} />
                     <Route path="/" element={<Navigate to="/student" />} />
-                    <Route path="/student" element={<StudentDash />} />
                     <Route
                         path="/student/auth"
                         element={<Navigate to="/student" />}
