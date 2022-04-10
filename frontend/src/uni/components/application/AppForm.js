@@ -76,7 +76,7 @@ export default class AppForm extends React.Component {
                     header="An error has occured!"
                     content="Please try again"
                 />
-                <Form.Button>Save</Form.Button>
+                <Form.Button color="blue">Save</Form.Button>
             </Form>
         );
     }

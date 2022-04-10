@@ -83,7 +83,10 @@ class App extends React.Component {
                         element={<UploadDoc/>}
                     />
                     <Route path="/student" element={<StudentDash />} />
-
+                    <Route
+                        path="/student/application"
+                        element={<ApplicationPage />}
+                    />
                 </>
             );
         } else if (loggedIn === "student") {
@@ -95,10 +98,7 @@ class App extends React.Component {
                         path="/student/auth"
                         element={<Navigate to="/student" />}
                     />
-                    <Route
-                        path="/student/application"
-                        element={<ApplicationPage />}
-                    />
+
                     <Route
                         path="/student/findUnis"
                         element={<TempComponent />}
