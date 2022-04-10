@@ -45,7 +45,7 @@ export default class AppForm extends React.Component {
 
             Object.keys(child.state).forEach((key) =>
                 child.setState((oldState) => {
-                    oldState[key].val = data[key];
+                    oldState[key].val = data[key] || "";
                     return oldState;
                 })
             );

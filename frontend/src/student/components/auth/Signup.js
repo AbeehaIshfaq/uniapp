@@ -1,5 +1,6 @@
 import React from "react";
 import { Form, Segment, Button } from "semantic-ui-react";
+
 import {
     Required,
     Email,
@@ -7,8 +8,12 @@ import {
     Match,
     validate,
 } from "../../../util/validate";
+import server from "../../../server/server";
+import AuthContext from "../../../shared/context/AuthContext";
 
 class Login extends React.Component {
+    static contextType = AuthContext;
+
     state = {
         email: { val: "", error: null, validators: [Required, Email] },
         name: { val: "", error: null, validators: [Required] },
@@ -25,13 +30,28 @@ class Login extends React.Component {
         loading: false,
     };
 
-    submitHandler = (e) => {
+    submitHandler = async (e) => {
         e.preventDefault();
-        console.log();
+        const auth = this.context;
+
         this.setState({ loading: true });
         if (this.validator()) {
             this.setState({ loading: false });
             return;
+        }
+
+        const data = {
+            email: this.state.email.val,
+            name: this.state.email.val,
+            password: this.state.password.val,
+        };
+
+        try {
+            const res = await server.post("/student/signup", data);
+            this.setState({ loading: false });
+            auth.login("student", res.data.token, res.data.student._id);
+        } catch (err) {
+            console.log(err);
         }
     };
 

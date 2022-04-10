@@ -7,6 +7,7 @@ export async function postSignup(req, res) {
     let student = new Student(req.body);
     let form = new Form({
         owner: student._id,
+        personalInfo: { name: student.name, email: student.email },
     });
     try {
         await student.save();
@@ -14,10 +15,9 @@ export async function postSignup(req, res) {
 
         const token = await student.generateAuthToken();
         student = student.toJSON();
-        res.send({ data: student, token });
+        res.send({ student, token });
     } catch (err) {
-        console.log(err);
-        res.send({ error: err });
+        res.status(400).send({ error: err });
     }
 }
 
