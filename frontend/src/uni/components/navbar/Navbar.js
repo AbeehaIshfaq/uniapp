@@ -1,23 +1,40 @@
-import React from "react";
+import React, { Component } from 'react'
+import { Menu } from 'semantic-ui-react'
+import { Link } from "react-router-dom";
 
-import { Menu } from "semantic-ui-react";
-import NavbarItem from "./NavbarItem";
-
-const NavBar = () => {
-    return (
-        <div>
-            <Menu secondary pointing>
-                <Menu.Menu position="left">
-                    <NavbarItem to="/uni">Dashboard</NavbarItem>
-                    <NavbarItem to="/uni/application">Application</NavbarItem>
-                </Menu.Menu>
-
-                <Menu.Menu position="right">
-                    <NavbarItem to="/">Logout</NavbarItem>
-                </Menu.Menu>
-            </Menu>
-        </div>
-    );
-};
-
-export default NavBar;
+const colors = ['red','blue']
+export default class MenuExampleInverted extends Component {
+    state = { activeItem: 'home' }
+  
+    handleItemClick = (e, { name }) => this.setState({ activeItem: name })
+  
+    render() {
+        const { color } = this.props
+      const { activeItem } = this.state
+  
+      return (
+        <Menu color={'blue'} inverted position="left" widths={5}>
+          <Menu.Item
+            as={Link} to="/uni" basic
+            name='Dashboard'
+            active={activeItem === 'Dashboard'}
+            onClick={this.handleItemClick}
+          />
+          <Menu.Item
+            as={Link} to="/uni/application" basic
+            name='Application'
+            active={activeItem === 'Application'}
+            onClick={this.handleItemClick}
+          />
+          <Menu.Item
+            position="right"
+            as={Link} to="/" basic
+            name='Log Out'
+            active={activeItem === 'Log Out'}
+            onClick={this.handleItemClick}
+          />
+        </Menu>
+      )
+    }
+  }
+  
