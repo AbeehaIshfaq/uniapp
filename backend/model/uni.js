@@ -56,11 +56,21 @@ const uniSchema = mongoose.Schema({
     ],
 });
 
+// uniSchema.methods.toJSON = function () {
+//     const uni = this;
+//     const uniObject = uni.toObject();
+
+//     delete uniObject.password;
+
+//     return uniObject;
+// };
+
 uniSchema.methods.toJSON = function () {
     const uni = this;
     const uniObject = uni.toObject();
 
     delete uniObject.password;
+    delete uniObject.tokens;
 
     return uniObject;
 };
@@ -74,6 +84,14 @@ uniSchema.methods.generateAuthToken = async function () {
     uni.tokens = uni.tokens.concat({ token });
     await uni.save();
     return token;
+};
+
+uniSchema.statics.findByCredentials = async (email, password) => {
+    const uni = await Uni.findOne({ email });
+    if (!uni) throw new Error("Unable to login");
+    const isMatch = await bcrypt.compare(password, uni.password);
+    if (!isMatch) throw new Error("Unable to login");
+    return uni;
 };
 
 uniSchema.virtual("myForm", {

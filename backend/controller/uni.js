@@ -12,5 +12,22 @@ export async function postSignup(req, res) {
         await form.save();
 
         const token = await uni.generateAuthToken();
-    } catch (e) {}
+        uni = uni.toJSON();
+        res.send({ uni, token });
+    } catch (err) {
+        res.status(400).send({ error: err });
+    }
+}
+
+export async function postLogin(req, res) {
+    console.log("POST uni/login");
+    const { email, password } = req.body;
+    try {
+        const uni = await Uni.findByCredentials(email, password);
+        const token = await uni.generateAuthToken();
+        res.send({ uni, token });
+    } catch (err) {
+        console.log(err);
+        res.status(404).send();
+    }
 }
