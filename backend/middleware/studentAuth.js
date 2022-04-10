@@ -17,7 +17,7 @@ const studAuth = async (req, res, next) => {
         if (!student) throw new Error();
 
         req.token = token;
-        req.user = student;
+        req.student = student;
         next();
     } catch (err) {
         res.status(401).send({ error: "Please authenticate" });

@@ -1,5 +1,6 @@
 import Student from "../model/student.js";
 import Form from "../model/form.js";
+import Uni from "../model/uni.js";
 
 export async function postSignup(req, res) {
     console.log("POST student/signup");
@@ -37,10 +38,10 @@ export async function postLogin(req, res) {
 export async function postLogout(req, res) {
     console.log("POST student/logout");
     try {
-        req.user.tokens = req.user.tokens.filter(
+        req.student.tokens = req.student.tokens.filter(
             (token) => token.token !== req.token
         );
-        await req.user.save();
+        await req.student.save();
         res.send();
     } catch (err) {
         res.status(500).send();
@@ -50,10 +51,36 @@ export async function postLogout(req, res) {
 export async function postLogoutAll(req, res) {
     console.log("POST student/logoutAll");
     try {
-        req.user.tokens = [];
-        await req.user.save();
+        req.student.tokens = [];
+        await req.student.save();
         res.send();
     } catch (err) {
         res.status(500).send();
+    }
+}
+
+export async function getMyUnis(req, res) {
+    console.log("GET student/myUnis");
+
+    const limit = 12;
+    const skip = req.query.skip ? req.query.skip * limit : 0;
+
+    const uniIdList = req.student.uniList.map((uni) => uni.uni);
+
+    try {
+        // const unis = await Promise.all(uniListPromise);
+        const uniList = await Uni.find({
+            _id: {
+                $in: uniIdList,
+            },
+        })
+            .skip(skip)
+            .limit(limit);
+
+        console.log(uniList);
+        res.send(uniList);
+    } catch (err) {
+        console.log(err);
+        res.status(404).send(err);
     }
 }

@@ -31,17 +31,17 @@ const uniSchema = mongoose.Schema({
     fee: {
         type: Number,
     },
-    Ranking: {
+    ranking: {
         type: String,
     },
-    Address: {
+    address: {
         type: String,
     },
-    ProgramsOffered: [
+    programsOffered: [
         {
-            program: {
-                type: String,
-            },
+            type: String,
+            required: true,
+            trim: true,
         },
     ],
 });
