@@ -68,7 +68,6 @@ export async function getMyUnis(req, res) {
     const uniIdList = req.student.uniList.map((uni) => uni.uni);
 
     try {
-        // const unis = await Promise.all(uniListPromise);
         const uniList = await Uni.find({
             _id: {
                 $in: uniIdList,

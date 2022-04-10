@@ -6,7 +6,7 @@ import server from "../../../server/server";
 export default class AppForm extends React.Component {
     constructor(props) {
         super(props);
-        this.state = { success: false, error: false, loading: false };
+        this.state = { success: false, error: null, loading: false };
         this.formRef = React.createRef();
     }
 
@@ -30,7 +30,7 @@ export default class AppForm extends React.Component {
             this.setState({ success: true, loading: false });
         } catch (err) {
             console.log(err);
-            this.setState({ error: true, loading: false });
+            this.setState({ error: err, loading: false });
         }
     };
 
@@ -52,8 +52,8 @@ export default class AppForm extends React.Component {
 
             this.setState({ loading: false });
         } catch (err) {
-            console.log(err.response);
-            this.setState({ loading: false, error: true });
+            console.log(err.response.data);
+            this.setState({ loading: false, error: err });
         }
     };
 
@@ -65,21 +65,20 @@ export default class AppForm extends React.Component {
     render() {
         const { success, error, loading } = this.state;
         const { children } = this.props;
-
         const clonned = React.cloneElement(children, { ref: this.formRef });
         return (
             <Form
                 onSubmit={this.submitHandler}
                 loading={loading}
                 success={success}
-                error={error}
+                error={!!error}
             >
                 {clonned}
                 <Message success header="Form Saved Successfully" />
                 <Message
                     error
                     header="An error has occured!"
-                    content="Please try again"
+                    content={error && error.toString()}
                 />
                 <Form.Button>Save</Form.Button>
             </Form>
