@@ -24,25 +24,6 @@ const TempComponent = () => {
     );
 };
 
-<<<<<<< HEAD
-const App = ({ history }) => {
-    return (
-        <Router>
-            <Routes>
-                <Route path="*" element={<Page404 />} />
-                <Route path="/" element={<LandingPage />} exact />
-                <Route path="/student" element={<StudentDash />} />
-                <Route
-                    path="/student/application"
-                    element={<ApplicationPage />}
-                />
-                <Route path="/student/findUnis" element={<TempComponent />} />
-                <Route path="/student/myUnis" element={<TempComponent />} />
-            </Routes>
-        </Router>
-    );
-};
-=======
 class App extends React.Component {
     state = { loggedIn: null, token: null, userId: null };
 
@@ -127,6 +108,5 @@ class App extends React.Component {
         );
     }
 }
->>>>>>> 644eef57ed3958304c7d0e64fb1186a5264d6547
 
 export default App;
