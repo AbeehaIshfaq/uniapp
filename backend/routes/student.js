@@ -1,29 +1,35 @@
 import express from "express";
 
-import Student from "../model/student.js";
+import auth from "../middleware/studentAuth.js";
+
 import Form from "../model/form.js";
 
 import { patchPersonalInfo, getPersonalInfo } from "../controller/form.js";
+import {
+    postSignup,
+    postLogin,
+    postLogout,
+    postLogoutAll,
+} from "../controller/student.js";
 
 const router = new express.Router();
 
-router.post("/createStudent", async (req, res) => {
-    console.log("New Student Creation");
-    const data = req.body;
-    let student = new Student({ ...data });
-    let form = new Form({
-        owner: student._id,
-        // personalInfo: { name: student.name, email: student.email },
-    });
-    try {
-        await student.save();
-        await form.save();
-        student = student.toJSON();
-        res.send({ message: "successfully saved", data: student });
-    } catch (err) {
-        console.log(err);
-        res.send({ error: err });
-    }
+router.post("/signup", postSignup);
+
+router.post("/login", postLogin);
+
+router.post("/logout", auth, postLogout);
+
+router.post("/logoutAll", auth, postLogoutAll);
+
+router.patch("/application/personalInfo", auth, patchPersonalInfo);
+
+router.get("/application/personalInfo", auth, getPersonalInfo);
+
+router.get("/student", auth, async (req, res) => {
+    console.log(req.token);
+    console.log(req.user);
+    res.send(req.user);
 });
 
 router.get("/testForm", async (req, res) => {
@@ -31,9 +37,5 @@ router.get("/testForm", async (req, res) => {
     console.log(data);
     res.send({ data });
 });
-
-router.patch("/application/personalInfo", patchPersonalInfo);
-
-router.get("/application/personalInfo", getPersonalInfo);
 
 export default router;

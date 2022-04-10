@@ -18,12 +18,12 @@ const LandingHeader = (props) => {
                 </Menu.Menu>
                 <Menu.Menu position="right">
                     <Menu.Item>
-                        <Button as={Link} to="/student/login" basic secondary>
+                        <Button as={Link} to="/student/auth" basic secondary>
                             Login
                         </Button>
                     </Menu.Item>
                     <Menu.Item>
-                        <Button as={Link} to="student/signup" basic secondary>
+                        <Button as={Link} to="student/auth" basic secondary>
                             Sign up
                         </Button>
                     </Menu.Item>

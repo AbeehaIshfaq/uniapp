@@ -1,5 +1,6 @@
 import React from "react";
 import { Form, Message } from "semantic-ui-react";
+
 import server from "../../../server/server";
 
 export default class AppForm extends React.Component {
@@ -13,6 +14,11 @@ export default class AppForm extends React.Component {
         e.preventDefault();
         this.setState({ loading: true });
         const child = this.formRef.current;
+
+        if (child.validator()) {
+            this.setState({ loading: false });
+            return;
+        }
 
         const data = {};
         Object.entries(child.state).forEach(
@@ -35,21 +41,20 @@ export default class AppForm extends React.Component {
                 "/student/application/personalInfo"
             );
             data = response.data;
+            const child = this.formRef.current;
+
+            Object.keys(child.state).forEach((key) =>
+                child.setState((oldState) => {
+                    oldState[key].val = data[key] || "";
+                    return oldState;
+                })
+            );
+
+            this.setState({ loading: false });
         } catch (err) {
+            console.log(err.response);
             this.setState({ loading: false, error: true });
-            console.log(err);
         }
-
-        const child = this.formRef.current;
-
-        Object.keys(child.state).forEach((key) =>
-            child.setState((oldState) => {
-                oldState[key].val = data[key];
-                return oldState;
-            })
-        );
-
-        this.setState({ loading: false });
     };
 
     componentDidMount() {

@@ -7,4 +7,15 @@ const server = axios.create({
     },
 });
 
+server.interceptors.request.use(
+    (config) => {
+        const userData = JSON.parse(localStorage.getItem("userData"));
+        if (userData) {
+            config.headers["Authorization"] = `Bearer ${userData.token}`;
+        }
+        return config;
+    },
+    (error) => Promise.reject(error)
+);
+
 export default server;

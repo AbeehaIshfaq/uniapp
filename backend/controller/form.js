@@ -2,13 +2,8 @@ import Form from "../model/form.js";
 
 export async function patchPersonalInfo(req, res) {
     console.log("PATCH /student/application/personalInfo");
-    const user = {
-        _id: "6250d009a387676f62558fc1",
-        name: "Mahd Iftikhar",
-        email: "mahd.iftikhar@gmail.com",
-        password: "password",
-    };
 
+    const user = req.user;
     const body = req.body;
     const name =
         body.first + (body.middle ? ` ${body.middle} ` : " ") + body.last;
@@ -34,10 +29,10 @@ export async function patchPersonalInfo(req, res) {
 export async function getPersonalInfo(req, res) {
     console.log("GET /student/application/personalInfo");
 
-    const userId = "6250d009a387676f62558fc1";
+    const user = req.user;
     try {
-        const form = await Form.findOne({ owner: userId });
-        res.send(form.personalInfo.toJSON());
+        const form = await Form.findOne({ owner: user._id });
+        res.send(form.personalInfo);
     } catch (err) {
         console.log(err);
         res.status(404).send(err);
