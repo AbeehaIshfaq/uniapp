@@ -22,9 +22,9 @@ router.post("/logout", auth, postLogout);
 
 router.post("/logoutAll", auth, postLogoutAll);
 
-router.patch("/application/personalInfo", patchPersonalInfo);
+router.patch("/application/personalInfo", auth, patchPersonalInfo);
 
-router.get("/application/personalInfo", getPersonalInfo);
+router.get("/application/personalInfo", auth, getPersonalInfo);
 
 router.get("/student", auth, async (req, res) => {
     console.log(req.token);
