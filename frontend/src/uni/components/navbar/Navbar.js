@@ -1,18 +1,18 @@
 import React, { Component } from 'react'
 import { Menu } from 'semantic-ui-react'
 import { Link } from "react-router-dom";
+import { Image } from 'semantic-ui-react'
 
-const colors = ['red','blue']
 export default class MenuExampleInverted extends Component {
     state = { activeItem: 'home' }
   
     handleItemClick = (e, { name }) => this.setState({ activeItem: name })
   
     render() {
-        const { color } = this.props
       const { activeItem } = this.state
   
       return (
+        
         <Menu color={'blue'} inverted position="left" widths={5}>
           <Menu.Item
             as={Link} to="/uni" basic
@@ -34,6 +34,7 @@ export default class MenuExampleInverted extends Component {
             onClick={this.handleItemClick}
           />
         </Menu>
+        
       )
     }
   }

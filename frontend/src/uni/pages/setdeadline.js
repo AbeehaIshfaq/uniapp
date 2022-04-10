@@ -1,7 +1,7 @@
 import React from 'react';
 import NavBar from "../components/navbar/Navbar";
 import TextField from '@material-ui/core/TextField';
-
+import Calend from '../components/calendar/calend';
 const App = () => {
   
   return (
@@ -25,7 +25,10 @@ const App = () => {
           shrink: true,
         }}
       />
+      <Calend />
+
     </div>
+    
   );
 }
   

@@ -11,6 +11,7 @@
     "@testing-library/react": "^12.1.4",
     "@testing-library/user-event": "^13.5.0",
     "axios": "^0.26.1",
+    "moment": "^2.29.2",
     "react": "^17.0.2",
     "react-calendar": "^3.7.0",
     "react-dater": "^1.6.0",

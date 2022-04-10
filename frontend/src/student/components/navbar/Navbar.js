@@ -6,18 +6,21 @@ import NavbarItem from "./NavbarItem";
 const NavBar = () => {
     return (
         <div>
-            <Menu secondary pointing>
-                <Menu.Menu position="left">
-                    <NavbarItem to="/student">Dashboard</NavbarItem>
+            <Menu color={'blue'} inverted secondary pointing>
+                <Menu.Menu position="left" color={'blue'}>
+                    <NavbarItem color={'blue'} to="/student">Dashboard</NavbarItem>
                     <NavbarItem to="/student/application">Application</NavbarItem>
                     <NavbarItem to="/student/findUnis">Find Universities</NavbarItem>
                     <NavbarItem to="/student/myUnis">My Universities</NavbarItem>
-                </Menu.Menu>
+                    <NavbarItem to="/student/upload_documents">Upload Documents</NavbarItem>
 
-                <Menu.Menu position="right">
+                </Menu.Menu >
+
+                <Menu.Menu position="right" color={'blue'}>
                     <NavbarItem to="/">Logout</NavbarItem>
                 </Menu.Menu>
-            </Menu>
+                
+            </Menu >
         </div>
     );
 };
