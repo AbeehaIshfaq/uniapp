@@ -3,7 +3,7 @@ import { Card, Button } from "semantic-ui-react";
 import { Link } from "react-router-dom";
 
 const RouterCard = (props) => {
-    const { title, to, paragraph, buttonText, basic } = props;
+    const { title, to, paragraph, buttonText, basic, inverted } = props;
 
     return (
         <Card style={{ boxShadow: "none" }}>
@@ -14,7 +14,13 @@ const RouterCard = (props) => {
                 <Card.Description>{paragraph}</Card.Description>
             </Card.Content>
             <Card.Content>
-                <Button basic={basic} color="blue" as={Link} to={to}>
+                <Button
+                    basic={basic}
+                    inverted={inverted}
+                    color="blue"
+                    as={Link}
+                    to={to}
+                >
                     {buttonText}
                 </Button>
             </Card.Content>

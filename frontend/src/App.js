@@ -9,17 +9,20 @@ import {
 import AuthContext from "./shared/context/AuthContext";
 import server from "./server/server";
 
+import LandingPage from "./shared/pages/Landing";
+import Page404 from "./shared/pages/404Page";
+
 import StudentDash from "./student/pages/DashBoard";
 import StudentApplication from "./student/pages/Application";
-import Navbar from "./student/components/navbar/Navbar";
-import LandingPage from "./shared/pages/Landing";
 import StudentAuth from "./student/pages/Auth";
+import Navbar from "./student/components/navbar/Navbar";
 import StudentMyUnis from "./student/pages/MyUnis";
+
 import ApplicationPageUni from "./uni/pages/Application";
+import UniAuth from "./uni/pages/Auth";
 import UniDash from "./uni/pages/DashBoard";
 import SetDeadline from "./uni/pages/setdeadline";
 import UploadDoc from "./student/pages/UploadDoc";
-import Page404 from "./shared/pages/404Page";
 
 const TempComponent = () => {
     return (
@@ -71,6 +74,7 @@ class App extends React.PureComponent {
                     <Route path="*" element={<Navigate to="/" />} />
                     <Route path="/" element={<LandingPage />} />
                     <Route path="/student/auth" element={<StudentAuth />} />
+                    <Route path="/uni/auth" element={<UniAuth />} />
                     <Route path="/uni" element={<UniDash />} />
                     <Route
                         path="/uni/application"
