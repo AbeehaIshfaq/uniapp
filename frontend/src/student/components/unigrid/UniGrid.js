@@ -4,16 +4,16 @@ import { Card } from "semantic-ui-react";
 import UniCard from "./UniCard";
 
 export default class UniGrid extends React.Component {
-    state = { unis: this.props.unis, loading: false };
+    state = { uniList: this.props.unis, loading: false };
 
     removeUni = (uniId) => {
         // ! Implement this into the backend as well
-        const newUnis = [...this.state.unis].filter(({ _id }) => _id !== uniId);
+        const newUnis = [...this.state.uniList].filter(({ _id }) => _id !== uniId);
         this.setState({ unis: newUnis });
     };
 
     render() {
-        const { unis } = this.state;
+        const { uniList: unis } = this.state;
         return (
             <>
                 <Card.Group centered doubling stackable>

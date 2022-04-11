@@ -11,7 +11,7 @@ class UniCard extends React.Component {
 
     render() {
         const { uni } = this.props;
-        let { name, email, deadline, phoneNumber } = uni;
+        let { name, email, deadline, phoneNumber, isAdded } = uni;
         const { loading } = this.state;
 
         let date = new Date(deadline);
@@ -64,17 +64,31 @@ class UniCard extends React.Component {
                                 <Icon name="right arrow" />
                             </Button.Content>
                         </Button>
-                        <Button
-                            loading={loading}
-                            negative
-                            animated="fade"
-                            onClick={this.clickHandler}
-                        >
-                            <Button.Content visible>Remove</Button.Content>
-                            <Button.Content hidden>
-                                <Icon name="remove" />
-                            </Button.Content>
-                        </Button>
+                        {isAdded ? (
+                            <Button
+                                loading={loading}
+                                negative
+                                animated="fade"
+                                onClick={this.clickHandler}
+                            >
+                                <Button.Content visible>Remove</Button.Content>
+                                <Button.Content hidden>
+                                    <Icon name="remove" />
+                                </Button.Content>
+                            </Button>
+                        ) : (
+                            <Button
+                                loading={loading}
+                                positive
+                                animated="fade"
+                                onClick={this.clickHandler}
+                            >
+                                <Button.Content visible>Add</Button.Content>
+                                <Button.Content hidden>
+                                    <Icon name="add" />
+                                </Button.Content>
+                            </Button>
+                        )}
                     </Card.Content>
                 </Card>
             </>

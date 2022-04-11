@@ -7,8 +7,12 @@ import Navbar from "../components/navbar/Navbar";
 import UniGrid from "../components/unigrid/UniGrid";
 
 export default class MyUnis extends React.Component {
-    state = { pageNo: 1, loading: false, totalPages: 0, uniList: [] };
-    limit = 12;
+    constructor(props) {
+        super(props);
+        this.state = { pageNo: 1, loading: false, totalPages: 0, uniList: [] };
+        this.limit = 12;
+        this.ref = React.createRef();
+    }
 
     async componentDidMount() {
         const skip = 0;
@@ -29,6 +33,7 @@ export default class MyUnis extends React.Component {
                 `/student/myUnis?limit=${this.limit}&skip=${skip}`
             );
             this.setState({ uniList: data.uniList, pageNo: activePage });
+            this.ref.current.setState({ uniList: data.uniList });
         } catch (err) {
             console.log(err);
         }
@@ -42,8 +47,10 @@ export default class MyUnis extends React.Component {
                     <Navbar />
                 </header>
                 <Container style={{ padding: "20px" }}>
-                    <Segment>
-                        {uniList[0] && <UniGrid unis={uniList} />}
+                    <Segment raised>
+                        {uniList[0] && (
+                            <UniGrid unis={uniList} ref={this.ref} />
+                        )}
                     </Segment>
                     {totalPages > 1 && (
                         <Container textAlign="center">
