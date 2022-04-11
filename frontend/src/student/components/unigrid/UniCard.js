@@ -1,6 +1,5 @@
 import React from "react";
 import { Card, Item, Button, Icon } from "semantic-ui-react";
-import { Link } from "react-router-dom";
 
 class UniCard extends React.Component {
     state = { loading: false };
