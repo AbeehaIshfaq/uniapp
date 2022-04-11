@@ -5,6 +5,7 @@ import server from "../../server/server";
 
 import Navbar from "../components/navbar/Navbar";
 import UniGrid from "../components/unigrid/UniGrid";
+import NoUni from "../components/unigrid/NoUni";
 
 export default class MyUnis extends React.Component {
     constructor(props) {
@@ -48,8 +49,10 @@ export default class MyUnis extends React.Component {
                 </header>
                 <Container style={{ padding: "20px" }}>
                     <Segment raised>
-                        {uniList[0] && (
+                        {uniList.length > 0 ? (
                             <UniGrid unis={uniList} ref={this.ref} />
+                        ) : (
+                            <NoUni />
                         )}
                     </Segment>
                     {totalPages > 1 && (
