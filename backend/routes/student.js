@@ -31,6 +31,8 @@ router.get("/application/personalInfo", auth, getPersonalInfo);
 
 router.post("/uniListLength", auth, getUniListLength);
 
+router.get("/myUnis", auth, getMyUnis);
+
 router.post("/addAllUnis", auth, async (req, res) => {
     console.log("POST /addAllUnis");
 
@@ -47,8 +49,6 @@ router.post("/addAllUnis", auth, async (req, res) => {
         res.status(404).send(err);
     }
 });
-
-router.get("/myUnis", auth, getMyUnis);
 
 router.get("/student", auth, async (req, res) => {
     console.log(req.token);

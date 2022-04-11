@@ -64,7 +64,7 @@ export async function getMyUnis(req, res) {
     const skip = req.query.skip ? req.query.skip * limit : 0;
 
     console.log(`GET student/myUnis/`, `skip=${skip}`, `limit=${limit}`);
-
+    console.log(req.student);
     const uniIdList = req.student.uniList.map((uni) => uni.uni);
     const totalPages = Math.ceil(req.student.uniList.length / limit);
     try {
