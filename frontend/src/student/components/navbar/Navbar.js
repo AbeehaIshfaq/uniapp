@@ -28,8 +28,10 @@ class NavBar extends React.Component {
                         <NavbarItem to="/student/myUnis">
                             My Universities
                         </NavbarItem>
+                        <NavbarItem to="/student/upload_documents">
+                            Upload Documents
+                        </NavbarItem>
                     </Menu.Menu>
-
                     <Menu.Menu position="right">
                         <Menu.Item onClick={this.logoutHandler}>
                             Logout

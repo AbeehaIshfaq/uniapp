@@ -16,7 +16,7 @@ const items = [
 ];
 
 export default class AppAccordion extends React.Component {
-    state = { activeIndex: 0 };
+    state = { activeIndex: -1 };
 
     clickHandler = (e, props) => {
         const { index } = props;

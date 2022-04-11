@@ -15,6 +15,10 @@ import Navbar from "./student/components/navbar/Navbar";
 import LandingPage from "./shared/pages/Landing";
 import StudentAuth from "./student/pages/Auth";
 import StudentMyUnis from "./student/pages/MyUnis";
+import ApplicationPageUni from "./uni/pages/Application";
+import UniDash from "./uni/pages/DashBoard";
+import SetDeadline from "./uni/pages/setdeadline";
+import UploadDoc from "./student/pages/UploadDoc";
 import Page404 from "./shared/pages/404Page";
 
 const TempComponent = () => {
@@ -67,14 +71,20 @@ class App extends React.PureComponent {
                     <Route path="*" element={<Navigate to="/" />} />
                     <Route path="/" element={<LandingPage />} />
                     <Route path="/student/auth" element={<StudentAuth />} />
+                    <Route path="/uni" element={<UniDash />} />
+                    <Route
+                        path="/uni/application"
+                        element={<ApplicationPageUni />}
+                    />
+                    <Route path="/uni/setdeadline" element={<SetDeadline />} />
                 </>
             );
         } else if (loggedIn === "student") {
             routes = (
                 <>
                     <Route path="*" element={<Page404 />} />
-                    <Route path="/" element={<Navigate to="/student" />} />
                     <Route path="/student" element={<StudentDash />} />
+                    <Route path="/" element={<Navigate to="/student" />} />
                     <Route
                         path="/student/auth"
                         element={<Navigate to="/student" />}
@@ -83,11 +93,16 @@ class App extends React.PureComponent {
                         path="/student/application"
                         element={<StudentApplication />}
                     />
+
                     <Route
                         path="/student/findUnis"
                         element={<TempComponent />}
                     />
                     <Route path="/student/myUnis" element={<StudentMyUnis />} />
+                    <Route
+                        path="/student/upload_documents"
+                        element={<UploadDoc />}
+                    />
                 </>
             );
         }
