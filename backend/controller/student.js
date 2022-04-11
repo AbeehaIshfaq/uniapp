@@ -62,11 +62,11 @@ export async function postLogoutAll(req, res) {
 export async function getMyUnis(req, res) {
     console.log("GET student/myUnis");
 
-    const limit = 12;
+    const limit = req.query.limit || 10;
     const skip = req.query.skip ? req.query.skip * limit : 0;
 
     const uniIdList = req.student.uniList.map((uni) => uni.uni);
-
+    const totalPages = Math.ceil(req.student.uniList.length / limit);
     try {
         const uniList = await Uni.find({
             _id: {
@@ -77,9 +77,18 @@ export async function getMyUnis(req, res) {
             .limit(limit);
 
         console.log(uniList);
-        res.send(uniList);
+        res.send({ uniList, totalPages });
     } catch (err) {
         console.log(err);
         res.status(404).send(err);
+    }
+}
+
+export async function getUniListLength(req, res) {
+    console.log("GET student/uniListLength");
+    try {
+        res.send({ length: req.student.uniList.length });
+    } catch (err) {
+        console.log(err);
     }
 }

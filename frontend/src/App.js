@@ -10,10 +10,11 @@ import AuthContext from "./shared/context/AuthContext";
 import server from "./server/server";
 
 import StudentDash from "./student/pages/DashBoard";
-import ApplicationPage from "./student/pages/Application";
+import StudentApplication from "./student/pages/Application";
 import Navbar from "./student/components/navbar/Navbar";
 import LandingPage from "./shared/pages/Landing";
 import StudentAuth from "./student/pages/Auth";
+import StudentMyUnis from "./student/pages/MyUnis";
 import Page404 from "./shared/pages/404Page";
 
 const TempComponent = () => {
@@ -24,7 +25,7 @@ const TempComponent = () => {
     );
 };
 
-class App extends React.Component {
+class App extends React.PureComponent {
     state = { loggedIn: null, token: null, userId: null };
 
     login = (value, token, userId) => {
@@ -80,13 +81,13 @@ class App extends React.Component {
                     />
                     <Route
                         path="/student/application"
-                        element={<ApplicationPage />}
+                        element={<StudentApplication />}
                     />
                     <Route
                         path="/student/findUnis"
                         element={<TempComponent />}
                     />
-                    <Route path="/student/myUnis" element={<TempComponent />} />
+                    <Route path="/student/myUnis" element={<StudentMyUnis />} />
                 </>
             );
         }
