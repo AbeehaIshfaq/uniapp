@@ -82,7 +82,7 @@ class App extends React.PureComponent {
                         element={<ApplicationPageUni />}
                     />
                     <Route path="/uni/setdeadline" element={<SetDeadline />} />
-                    <Route path="/uni/uniInfo" element={<UniInfo />} />
+                    <Route path="/uni/auth/signup2" element={<UniInfo />} />
                 </>
             );
         } else if (loggedIn === "student") {

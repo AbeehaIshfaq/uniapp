@@ -48,8 +48,6 @@ export default class UniInfo extends React.Component {
         });
     };
 
-    componentDidMount = () => {};
-
     changeHandler = (e, { value, name }) => {
         this.setState({ value });
     };
@@ -111,15 +109,6 @@ export default class UniInfo extends React.Component {
                                 onAdd={this.addProgram}
                                 onRemove={this.removeProgram}
                             />
-                            {/* {this.state.programsOffered.val.map(
-                                (program, i) => {
-                                    return (
-                                        <React.Fragment key={i}>
-                                            {program}
-                                        </React.Fragment>
-                                    );
-                                }
-                            )} */}
                             <Button
                                 animated
                                 primary

@@ -27,17 +27,17 @@ export async function postLogin(req, res) {
         const token = await uni.generateAuthToken();
         res.send({ uni, token });
     } catch (err) {
-        res.send(err);
+        res.status(401).send({ error: err.message });
     }
 }
 
 export async function postLogout(req, res) {
     console.log("POST uni/logout");
     try {
-        req.user.tokens = req.user.tokens.filter(
+        req.uni.tokens = req.uni.tokens.filter(
             (token) => token.token !== req.token
         );
-        await req.user.save();
+        await req.uni.save();
         res.send();
     } catch (err) {
         res.status(500).send();
@@ -47,8 +47,8 @@ export async function postLogout(req, res) {
 export async function postLogoutAll(req, res) {
     console.log("POST uni/logoutAll");
     try {
-        req.user.tokens = [];
-        await req.user.save();
+        req.uni.tokens = [];
+        await req.uni.save();
         res.send();
     } catch (err) {
         res.status(500).send();

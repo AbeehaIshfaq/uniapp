@@ -33,7 +33,7 @@ export default class InputList extends React.Component {
     };
 
     render() {
-        const { className, label, onAdd } = this.props;
+        const { className, label, onAdd, error } = this.props;
 
         const items = this.state.list.map((item, i) => (
             <React.Fragment key={i}>
@@ -56,7 +56,7 @@ export default class InputList extends React.Component {
         ));
 
         return (
-            <Form.Field className={className}>
+            <Form.Field className={className} error={!!error}>
                 <label>{label}</label>
                 <Input
                     onChange={this.changeHandler}

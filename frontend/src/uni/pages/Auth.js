@@ -1,9 +1,8 @@
 import React from "react";
-import { Grid, Menu } from "semantic-ui-react";
+import { Grid, Menu, Container } from "semantic-ui-react";
 
 import Login from "../components/auth/Login";
 import Signup from "../components/auth/Signup";
-
 
 class Auth extends React.Component {
     state = { activeItem: "login" };
@@ -33,7 +32,9 @@ class Auth extends React.Component {
                             onClick={this.clickHandler}
                         />
                     </Menu>
-                    {activeItem === "login" ? <Login /> : <Signup />}
+                    <Container textAlign="left">
+                        {activeItem === "login" ? <Login /> : <Signup />}
+                    </Container>
                 </Grid.Column>
             </Grid>
         );

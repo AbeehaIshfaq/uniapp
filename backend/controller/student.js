@@ -39,7 +39,7 @@ export async function postLogout(req, res) {
     console.log("POST student/logout");
     try {
         req.student.tokens = req.student.tokens.filter(
-            (token) => token.token !== req.token
+            (token) => token.token !== req.student.token
         );
         await req.student.save();
         res.send();
