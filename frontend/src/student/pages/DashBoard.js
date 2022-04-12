@@ -5,35 +5,32 @@ import NavBar from "../components/navbar/Navbar";
 import ProgressCard from "../components/dashboard/ProgressCard";
 // import DeadlineCard from "../components/dashboard/DeadlineCard";
 import UniListCard from "../components/dashboard/UnilistCard";
+<<<<<<< HEAD
 import Calend from '../components/calendar/calend';
 import { Grid, Image } from 'semantic-ui-react'
+=======
+import Calend from "../components/calendar/calend";
+import { Grid } from "semantic-ui-react";
+>>>>>>> bab80a85a29e47c4d41feae574cc5e2daee75580
 
 const StudentDash = (props) => {
-    const { user, isAuthenticated, isLoading } = useAuth0();
     return (
         <>
             <header>
                 <NavBar />
             </header>
             <main>
-            <Grid columns={2} style={{ padding: "40px" }} Align="center">
-    <Grid.Row>
-      <Grid.Column>
-      < ProgressCard  />
-      </Grid.Column>
-      <Grid.Column>
-      < Calend  /> 
-      </Grid.Column>
-    </Grid.Row>
-    </Grid>
-
-                <Container style={{ padding: "20px" }}>
-                    < ProgressCard  />
-                </Container>
-                <Container Align='right' style={{ padding: "20px" }}>
-                    < Calend  /> 
-                </Container>              
-                 <Container style={{ padding: "20px" }}>
+                <Grid columns={2} style={{ padding: "60px" }} align="center">
+                    <Grid.Row>
+                        <Grid.Column>
+                            <ProgressCard />
+                        </Grid.Column>
+                        <Grid.Column>
+                            <Calend />
+                        </Grid.Column>
+                    </Grid.Row>
+                </Grid>
+                <Container style={{ padding: "20px" }} align="center">
                     <UniListCard />
                 </Container>
             </main>

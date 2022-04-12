@@ -2,7 +2,7 @@ import express from "express";
 import cors from "cors";
 
 import StudentRouter from "./routes/student.js";
-import UniRouter from "./routes/university.js";
+import UniRouter from "./routes/uni.js";
 import "./db/mongoose.js";
 
 const app = express();

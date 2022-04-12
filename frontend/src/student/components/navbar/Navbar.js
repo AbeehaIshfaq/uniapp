@@ -4,7 +4,6 @@ import { Menu } from "semantic-ui-react";
 import AuthContext from "../../../shared/context/AuthContext";
 
 import NavbarItem from "./NavbarItem";
-import { useAuth0 } from "@auth0/auth0-react";
 
 class NavBar extends React.Component {
     static contextType = AuthContext;
@@ -29,8 +28,10 @@ class NavBar extends React.Component {
                         <NavbarItem to="/student/myUnis">
                             My Universities
                         </NavbarItem>
+                        <NavbarItem to="/student/upload_documents">
+                            Upload Documents
+                        </NavbarItem>
                     </Menu.Menu>
-
                     <Menu.Menu position="right">
                         <Menu.Item onClick={this.logoutHandler}>
                             Logout

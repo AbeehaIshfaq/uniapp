@@ -28,6 +28,15 @@ const studentSchema = new mongoose.Schema({
             },
         },
     ],
+    uniList: [
+        {
+            uni: {
+                type: mongoose.Schema.Types.ObjectId,
+                required: true,
+                ref: "Uni",
+            },
+        },
+    ],
 });
 
 // Delete password field for security reasons
@@ -37,6 +46,7 @@ studentSchema.methods.toJSON = function () {
 
     delete studentObject.password;
     delete studentObject.tokens;
+    delete studentObject.uniList;
 
     return studentObject;
 };

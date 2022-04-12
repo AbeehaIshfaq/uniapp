@@ -33,17 +33,17 @@ const uniSchema = mongoose.Schema({
     fee: {
         type: Number,
     },
-    Ranking: {
+    ranking: {
         type: String,
     },
-    Address: {
+    city: {
         type: String,
     },
-    ProgramsOffered: [
+    programsOffered: [
         {
-            program: {
-                type: String,
-            },
+            type: String,
+            required: true,
+            trim: true,
         },
     ],
     tokens: [
@@ -85,6 +85,15 @@ uniSchema.methods.generateAuthToken = async function () {
     await uni.save();
     return token;
 };
+
+uniSchema.pre("save", async function (next) {
+    const uni = this;
+
+    if (uni.isModified("password")) {
+        uni.password = await bcrypt.hash(uni.password, 8);
+    }
+    next();
+});
 
 uniSchema.statics.findByCredentials = async (email, password) => {
     const uni = await Uni.findOne({ email });

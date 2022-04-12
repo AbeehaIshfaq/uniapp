@@ -26,6 +26,14 @@ class CNIC {
     }
 }
 
+class Positive {
+    static validate(value) {
+        const number = +value;
+        if (number >= 0) return null;
+        return "Can not enter a Negative Number";
+    }
+}
+
 const MinLength = (length) => {
     return class Min {
         static validate(value) {
@@ -59,4 +67,13 @@ const validate = (state) => {
     return state;
 };
 
-export { Required, CNIC, PhoneNumber, Email, MinLength, Match, validate };
+export {
+    Required,
+    CNIC,
+    PhoneNumber,
+    Email,
+    Positive,
+    MinLength,
+    Match,
+    validate,
+};

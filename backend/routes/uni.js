@@ -1,12 +1,6 @@
 import express from "express";
 
-import Uni from "../model/uni.js";
-
-import auth from "../middleware/studentAuth.js";
-
-import Form from "../model/form.js";
-
-import { patchPersonalInfo, getPersonalInfo } from "../controller/form.js";
+import auth from "../middleware/uniAuth.js";
 import {
     postSignup,
     postLogin,

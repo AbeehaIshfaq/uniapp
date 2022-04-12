@@ -9,16 +9,21 @@ import {
 import AuthContext from "./shared/context/AuthContext";
 import server from "./server/server";
 
-import StudentDash from "./student/pages/DashBoard";
-import ApplicationPage from "./student/pages/Application";
-import ApplicationPageUni from "./uni/pages/Application";
-import UniDash from "./uni/pages/DashBoard";
-import SetDeadline from "./uni/pages/setdeadline";
-import Navbar from "./student/components/navbar/Navbar";
 import LandingPage from "./shared/pages/Landing";
-import StudentAuth from "./student/pages/Auth";
-import UploadDoc  from "./student/pages/UploadDoc";
 import Page404 from "./shared/pages/404Page";
+
+import StudentDash from "./student/pages/DashBoard";
+import StudentApplication from "./student/pages/Application";
+import StudentAuth from "./student/pages/Auth";
+import Navbar from "./student/components/navbar/Navbar";
+import StudentMyUnis from "./student/pages/MyUnis";
+
+import ApplicationPageUni from "./uni/pages/Application";
+import UniAuth from "./uni/pages/Auth";
+import UniDash from "./uni/pages/DashBoard";
+import UniInfo from "./uni/pages/UniInfo";
+import SetDeadline from "./uni/pages/setdeadline";
+import UploadDoc from "./student/pages/UploadDoc";
 
 const TempComponent = () => {
     return (
@@ -28,7 +33,7 @@ const TempComponent = () => {
     );
 };
 
-class App extends React.Component {
+class App extends React.PureComponent {
     state = { loggedIn: null, token: null, userId: null };
 
     login = (value, token, userId) => {
@@ -40,9 +45,9 @@ class App extends React.Component {
     };
 
     logout = async () => {
-        this.setState({ loggedIn: null, token: null, userId: null });
         try {
-            await server.post("/student/logout");
+            await server.post(`/${this.state.loggedIn}/logout`);
+            this.setState({ loggedIn: null, token: null, userId: null });
             localStorage.removeItem("userData");
         } catch (err) {
             console.log(err);
@@ -67,23 +72,12 @@ class App extends React.Component {
         if (!loggedIn) {
             routes = (
                 <>
-                    <Route path="*" element={<Navigate to="/" />} />
+                    <Route path="*" element={<Page404 />} />
                     <Route path="/" element={<LandingPage />} />
+                    <Route path="/student" element={<Navigate to="/" />} />
+                    <Route path="/uni" element={<Navigate to="/" />} />
                     <Route path="/student/auth" element={<StudentAuth />} />
-                    <Route path="/uni" element={<UniDash />} />
-                    <Route
-                        path="/uni/application"
-                        element={<ApplicationPageUni />}
-                    />
-                    <Route
-                        path="/uni/setdeadline"
-                        element={<SetDeadline />}
-                    />
-                    <Route path="/student/upload_documents"
-                        element={<UploadDoc/>}
-                    />
-                    <Route path="/student" element={<StudentDash />} />
-
+                    <Route path="/uni/auth" element={<UniAuth />} />
                 </>
             );
         } else if (loggedIn === "student") {
@@ -91,19 +85,40 @@ class App extends React.Component {
                 <>
                     <Route path="*" element={<Page404 />} />
                     <Route path="/" element={<Navigate to="/student" />} />
+                    <Route path="/student" element={<StudentDash />} />
                     <Route
                         path="/student/auth"
                         element={<Navigate to="/student" />}
                     />
                     <Route
                         path="/student/application"
-                        element={<ApplicationPage />}
+                        element={<StudentApplication />}
                     />
+
                     <Route
                         path="/student/findUnis"
                         element={<TempComponent />}
                     />
-                    <Route path="/student/myUnis" element={<TempComponent />} />
+                    <Route path="/student/myUnis" element={<StudentMyUnis />} />
+                    <Route
+                        path="/student/upload_documents"
+                        element={<UploadDoc />}
+                    />
+                </>
+            );
+        } else if (loggedIn === "uni") {
+            routes = (
+                <>
+                    <Route path="*" element={<Page404 />} />
+                    <Route path="/" element={<Navigate to="/uni" />} />
+                    <Route path="/uni" element={<UniDash />} />
+                    <Route path="/uni/auth" element={<Navigate to="/uni" />} />
+                    <Route
+                        path="/uni/application"
+                        element={<ApplicationPageUni />}
+                    />
+                    <Route path="/uni/setdeadline" element={<SetDeadline />} />
+                    <Route path="/uni/auth/signup2" element={<UniInfo />} />
                 </>
             );
         }
@@ -125,7 +140,5 @@ class App extends React.Component {
         );
     }
 }
-
-
 
 export default App;

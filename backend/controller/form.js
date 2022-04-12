@@ -3,7 +3,7 @@ import Form from "../model/form.js";
 export async function patchPersonalInfo(req, res) {
     console.log("PATCH /student/application/personalInfo");
 
-    const user = req.user;
+    const student = req.student;
     const body = req.body;
     const name =
         body.first + (body.middle ? ` ${body.middle} ` : " ") + body.last;
@@ -11,8 +11,8 @@ export async function patchPersonalInfo(req, res) {
     body.name = name;
 
     try {
-        let form = await Form.findOne({ owner: user._id });
-        !form && (form = new Form({ owner: user._id }));
+        let form = await Form.findOne({ owner: student._id });
+        !form && (form = new Form({ owner: student._id }));
 
         form.personalInfo = { ...body };
         form.save();
@@ -29,9 +29,9 @@ export async function patchPersonalInfo(req, res) {
 export async function getPersonalInfo(req, res) {
     console.log("GET /student/application/personalInfo");
 
-    const user = req.user;
+    const student = req.student;
     try {
-        const form = await Form.findOne({ owner: user._id });
+        const form = await Form.findOne({ owner: student._id });
         res.send(form.personalInfo);
     } catch (err) {
         console.log(err);

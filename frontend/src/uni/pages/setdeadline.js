@@ -2,33 +2,35 @@ import React from 'react';
 import NavBar from "../components/navbar/Navbar";
 import TextField from '@material-ui/core/TextField';
 import Calend from '../components/calendar/calend';
+import { Form, Message } from "semantic-ui-react";
+import { Progress, Card, Button } from "semantic-ui-react";
+import { Container } from "semantic-ui-react";
+
 const App = () => {
   
   return (
-   
-    <div style={{
-        margin: '100',
-        display: 'block',
-        //width: '200'
-      }}>
-         <header>
-    <NavBar />
-</header>
-<main></main>
-      <h1>Set the deadline for your application</h1>
-      <TextField
-        id="date"
-        label="Choose the day"
-        type="date"
-        defaultValue="2017-05-24"
-        InputLabelProps={{
-          shrink: true,
-        }}
-      />
-      <Calend />
+    <>
+               <header>
+                <NavBar />
+            </header>
+            <h1 align= "center"> Set the deadline for your application </h1>
 
-    </div>
-    
+            <main>
+                <Container align='center'>
+                <h1>  </h1>
+                <div style={{align:'center',  justifyContent:'center', alignItems:'center', height: '50vh'}}>
+
+                <Calend />
+                <Button color='blue'>Set Deadline</Button>
+
+                
+                </div>
+                </Container>
+            </main>
+
+
+      </>
+
   );
 }
   
