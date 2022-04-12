@@ -46,11 +46,9 @@ router.post("/resetPassword/:id/:token", async (req, res) => {
     if (!student) res.status(404).send("Error");
 
     try {
-        const oldPass = student.password;
         student.password = req.body.password;
         await student.save();
-        console.log(oldPass, student.password);
-        res.send(student.password);
+        res.send("Password changed");
     } catch (err) {
         res.status(404).send("error!!!");
     }
