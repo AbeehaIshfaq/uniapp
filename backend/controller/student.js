@@ -2,6 +2,7 @@ import Student from "../model/student.js";
 import Form from "../model/form.js";
 import Uni from "../model/uni.js";
 import nodemailer from "nodemailer";
+import jwt from "jsonwebtoken";
 
 export async function postSignup(req, res) {
     console.log("POST student/signup");
@@ -116,11 +117,25 @@ export async function forgetPassword(req, res) {
             },
         });
 
+        const payload = {
+            email: student.email,
+            id: student._id,
+        };
+
+        const token = jwt.sign(
+            payload,
+            "afterlife-avenged-sevenfold" + student.password,
+            {
+                expiresIn: "30m",
+            }
+        );
+        const link = `http://localhost:5000/api/student/resetPassword/${student._id}/${token}`;
+
         let info = await transporter.sendMail({
             from: "blooddreamer70@gmail.com",
-            to: "23100083@lums.edu.pk",
+            to: "23100170@lums.edu.pk",
             subject: "Checking if email is sending",
-            text: "It seems to be working",
+            text: link,
         });
 
         // console.log(info);
@@ -129,3 +144,22 @@ export async function forgetPassword(req, res) {
         res.send({ error: err });
     }
 }
+
+export async function resetPassword(req, res) {
+    console.log("PATCH ");
+    const { id, token } = req.params;
+    const student = await Student.findOne({ id });
+
+    if (!student) res.status(404).send({ error: err });
+
+    try {
+        const payload = jwt.verify(
+            token,
+            "afterlife-avenged-sevenfold" + student.password
+        );
+    } catch (err) {
+        res.status(404).send({ error: err });
+    }
+}
+
+export async function updatePassword(req, res) {}

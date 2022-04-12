@@ -14,7 +14,9 @@ import {
     getMyUnis,
     getUniListLength,
     forgetPassword,
+    resetPassword,
 } from "../controller/student.js";
+import Student from "../model/student.js";
 
 const router = new express.Router();
 
@@ -35,6 +37,24 @@ router.post("/uniListLength", auth, getUniListLength);
 router.get("/myUnis", auth, getMyUnis);
 
 router.get("/forgetPassword", forgetPassword);
+
+router.get("/resetPassword/:id/:token", resetPassword);
+
+router.post("/resetPassword/:id/:token", async (req, res) => {
+    const { id, token } = req.params;
+    const student = await Student.findOne({ id });
+    if (!student) res.status(404).send("Error");
+
+    try {
+        const oldPass = student.password;
+        student.password = req.body.password;
+        await student.save();
+        console.log(oldPass, student.password);
+        res.send(student.password);
+    } catch (err) {
+        res.status(404).send("error!!!");
+    }
+});
 
 router.post("/addAllUnis", auth, async (req, res) => {
     console.log("POST /addAllUnis");
