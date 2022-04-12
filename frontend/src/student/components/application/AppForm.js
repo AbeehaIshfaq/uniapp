@@ -31,6 +31,13 @@ export default class AppForm extends React.Component {
             console.log(err);
             this.setState({ error: err, loading: false });
         }
+        try {
+            await server.patch("/student/application/FamilyInfo", data);
+            this.setState({ success: true, loading: false });
+        } catch (err) {
+            console.log(err);
+            this.setState({ error: err, loading: false });
+        }
     };
 
     getData = async () => {
@@ -39,6 +46,27 @@ export default class AppForm extends React.Component {
             const response = await server.get(
                 "/student/application/personalInfo"
             );
+        
+            data = response.data;
+            const child = this.formRef.current;
+
+            Object.keys(child.state).forEach((key) =>
+                child.setState((oldState) => {
+                    oldState[key].val = data[key] || "";
+                    return oldState;
+                })
+            );
+
+            this.setState({ loading: false });
+        } catch (err) {
+            console.log(err.response.data);
+            this.setState({ loading: false, error: err });
+        }
+        try {
+            const response = await server.get(
+                "/student/application/FamilyInfo"
+            );
+        
             data = response.data;
             const child = this.formRef.current;
 

@@ -3,119 +3,24 @@ import { Accordion } from "semantic-ui-react";
 
 import AccordionItem from "./AccordionItem";
 import PersonalInfo from "./PersonalInfo";
+import FamilyInfo from "./FamilyInfo";
 import AppForm from "./AppForm";
-
-
-const FamilyComponent = () => {
-    return (
-        <form>
-            <fieldset>
-                <label>
-                    <p>Father's Name</p>
-                    <input name="father's name" />
-                    <p>Mother's Name</p>
-                    <input name="mother's name" />
-                    <p>Father's CNIC</p>
-                    <input name="number of siblings" />
-                    <p>Mother's CNIC</p>'
-                    <input name="number of siblings" />
-                    <p>Number of Siblings</p>
-                    <input name="number of siblings" />
-                </label>
-            </fieldset>
-
-            <button type="submit">Submit</button>
-        </form>
-    );
-};
-
-
-const AcademicComponent = () => {
-    return (
-        <form>
-            <fieldset>
-                <label>
-                    <p>Date of graduation</p>
-                    <input name="Date of graduation" />
-                    <p>Subject Name and Grade</p>
-                    <input name="Subject" /> <input name="Grades" /> <br></br>
-                    <input name="Subject" /> <input name="Grades" /> <br></br>
-                    <input name="Subject" /> <input name="Grades" /> <br></br>
-                    <input name="Subject" /> <input name="Grades" /> <br></br>
-                    <input name="Subject" /> <input name="Grades" /> <br></br>
-                    <input name="Subject" /> <input name="Grades" /> <br></br>
-                    <input name="Subject" /> <input name="Grades" /> <br></br>
-                    <input name="Subject" /> <input name="Grades" /> <br></br>
-                    <input name="Subject" /> <input name="Grades" /> <br></br>
-                    <input name="Subject" /> <input name="Grades" /> <br></br>
-                    <input name="Subject" /> <input name="Grades" /> <br></br>
-                </label>
-            </fieldset>
-
-            <button type="submit">Submit</button>
-        </form>
-    );
-};
-
-
-
-const ExtracurricularComponent = () => {
-    return (
-        <form>
-            <fieldset>
-                <label>
-                    <p>Activity Name and Description</p>
-                    <input name="Activity Name" /> <input name="Description" /> <br></br>
-                    <input name="Activity Name" /> <input name="Description" /> <br></br>
-                    <input name="Activity Name" /> <input name="Description" /> <br></br>
-                    <input name="Activity Name" /> <input name="Description" /> <br></br>
-                    <input name="Activity Name" /> <input name="Description" /> <br></br>
-                    <input name="Activity Name" /> <input name="Description" /> <br></br>
-                    <input name="Activity Name" /> <input name="Description" /> <br></br>
-                    <input name="Activity Name" /> <input name="Description" /> <br></br>
-                    <input name="Activity Name" /> <input name="Description" /> <br></br>
-                    <input name="Activity Name" /> <input name="Description" /> <br></br>
-                    <input name="Activity Name" /> <input name="Description" /> <br></br>
-                </label>
-            </fieldset>
-
-            <button type="submit">Submit</button>
-        </form>
-    );
-};
-
-
-
-
+import AcademicInfo from "./AcademicInfo";
 
 const items = [
     {
         title: "Personal Information",
         children: <AppForm children={<PersonalInfo />} />,
     },
-    { title: "Family Information", children: <FamilyComponent /> },
-    { title: "Academic Information", children: <AcademicComponent /> },
-    { title: "Extracurricular Information", children: <ExtracurricularComponent/> },
+    { title: "Family Information",
+    children: <AppForm children={<FamilyInfo />} />,
+},
+
+    { title: "Academic Information", 
+    children: <AppForm children={<AcademicInfo />} />,
+},
+  
 ];
-
-
-
-
-
-// const familyInfo =
-// [
-// <form onSubmit={handleSubmit}>
-//     <fieldset>
-//         <label>
-//             <p>Name</p>
-//             <input name="name" />
-//         </label>
-//     </fieldset>
-//     <button type="submit">Submit</button>
-// </form>
-
-// ]
-
 
 export default class AppAccordion extends React.Component {
     state = { activeIndex: -1 };

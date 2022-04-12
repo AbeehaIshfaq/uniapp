@@ -41,6 +41,11 @@ export default class PersonalInfo extends React.Component {
 
     validator = () => {
         this.setState(validate(this.state));
+        let error = false;
+        Object.values(this.state).forEach((values) => {
+            if (values.error) error = true;
+        });
+        return error;
     };
 
     render() {
@@ -53,26 +58,29 @@ export default class PersonalInfo extends React.Component {
                         placeholder="First Name"
                         name="first"
                         value={state.first.val}
-                        onChange={this.changeHandler}
                         className="required"
                         error={state.first.error}
+                        setvalue="" 
+
                     />
                     <Form.Input
                         label="Middle Name"
                         placeholder="Middle Name"
                         name="middle"
                         value={state.middle.val}
-                        onChange={this.changeHandler}
                         error={state.middle.error}
+                        setvalue="" 
+
                     />
                     <Form.Input
                         label="Last Name"
                         placeholder="Last Name"
                         value={state.last.val}
                         name="last"
-                        onChange={this.changeHandler}
                         className="required"
                         error={state.last.error}
+                        setvalue="" 
+
                     />
                 </Form.Group>
                 <Form.Group widths="equal">
@@ -81,27 +89,30 @@ export default class PersonalInfo extends React.Component {
                         placeholder="Email"
                         name="email"
                         value={state.email.val}
-                        onChange={this.changeHandler}
                         error={state.email.error}
                         className="required"
+                        setvalue="" 
+
                     />
                     <Form.Input
                         label="Phone Number"
                         placeholder="Phone Number"
                         name="phoneNumber"
                         value={state.phoneNumber.val}
-                        onChange={this.changeHandler}
                         error={state.phoneNumber.error}
                         className="required"
+                        setvalue="" 
+
                     />
                     <Form.Input
                         label="CNIC"
                         placeholder="CNIC"
                         name="cnic"
                         value={state.cnic.val}
-                        onChange={this.changeHandler}
                         error={state.cnic.error}
                         className="required"
+                        setvalue="" 
+
                     />
                 </Form.Group>
                 <Form.Input
@@ -109,18 +120,20 @@ export default class PersonalInfo extends React.Component {
                     placeholder="Current Address"
                     name="currentAddress"
                     value={state.currentAddress.val}
-                    onChange={this.changeHandler}
                     error={state.currentAddress.error}
                     className="required"
+                    setvalue="" 
+
                 />
                 <Form.Input
                     label="Permanent Address"
                     placeholder="Permanent Address"
                     name="permanentAddress"
                     value={state.permanentAddress.val}
-                    onChange={this.changeHandler}
                     error={state.permanentAddress.error}
                     className="required"
+                    setvalue="" 
+
                 />
                 <Form.Group grouped>
                     <Form.Field>
@@ -132,14 +145,16 @@ export default class PersonalInfo extends React.Component {
                         value="male"
                         name="gender"
                         checked={state.gender.val === "male"}
-                        onChange={this.changeHandler}
+                        setvalue="" 
+
                     />
                     <Form.Radio
                         label="Female"
                         value="female"
                         name="gender"
                         checked={state.gender.val === "female"}
-                        onChange={this.changeHandler}
+                        setvalue="" 
+
                     />
                     <Form.Input
                         inline
@@ -151,9 +166,12 @@ export default class PersonalInfo extends React.Component {
                                 ? ""
                                 : state.gender.val
                         }
-                        onChange={this.changeHandler}
+                        setvalue="" 
+
                     />
                 </Form.Group>
+
+                
                 <Form.Group>
                     <Form.Select
                         label="Marital Status"
@@ -161,9 +179,9 @@ export default class PersonalInfo extends React.Component {
                         options={maritalStatusOptions}
                         name="maritalStatus"
                         value={state.maritalStatus.val}
-                        onChange={this.changeHandler}
                         className="required"
                         error={state.maritalStatus.error}
+                        setvalue="" 
                     />
                 </Form.Group>
                 <Form.Group>
@@ -172,9 +190,10 @@ export default class PersonalInfo extends React.Component {
                         type="date"
                         name="dateOfBirth"
                         value={state.dateOfBirth.val}
-                        onChange={this.changeHandler}
                         error={state.dateOfBirth.error}
                         className="required"
+                        setvalue="" 
+
                     />
                 </Form.Group>
             </>

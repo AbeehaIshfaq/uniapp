@@ -55,7 +55,11 @@ const UploadDoc = (props) => {
           </List.Content>
           <List.Content>Character Certificate</List.Content>
         </List.Item>
+        <h1>    </h1>
+
+<Button color='blue'>Submit</Button>  
       </List>
+   
       
 
 

@@ -1,11 +1,12 @@
 import React from "react";
 import { Form, Message } from "semantic-ui-react";
+
 import server from "../../../server/server";
 
 export default class AppForm extends React.Component {
     constructor(props) {
         super(props);
-        this.state = { success: false, error: false, loading: false };
+        this.state = { success: false, error: null, loading: false };
         this.formRef = React.createRef();
     }
 
@@ -13,6 +14,11 @@ export default class AppForm extends React.Component {
         e.preventDefault();
         this.setState({ loading: true });
         const child = this.formRef.current;
+
+        if (child.validator()) {
+            this.setState({ loading: false });
+            return;
+        }
 
         const data = {};
         Object.entries(child.state).forEach(
@@ -24,7 +30,14 @@ export default class AppForm extends React.Component {
             this.setState({ success: true, loading: false });
         } catch (err) {
             console.log(err);
-            this.setState({ error: true, loading: false });
+            this.setState({ error: err, loading: false });
+        }
+        try {
+            await server.patch("/student/application/FamilyInfo", data);
+            this.setState({ success: true, loading: false });
+        } catch (err) {
+            console.log(err);
+            this.setState({ error: err, loading: false });
         }
     };
 
@@ -34,49 +47,64 @@ export default class AppForm extends React.Component {
             const response = await server.get(
                 "/student/application/personalInfo"
             );
+        
             data = response.data;
+            const child = this.formRef.current;
+
+            Object.keys(child.state).forEach((key) =>
+                child.setState((oldState) => {
+                    oldState[key].val = data[key] || "";
+                    return oldState;
+                })
+            );
+
+            this.setState({ loading: false });
         } catch (err) {
-            this.setState({ loading: false, error: true });
-            console.log(err);
+            console.log(err.response.data);
+            this.setState({ loading: false, error: err });
         }
+        try {
+            const response = await server.get(
+                "/student/application/FamilyInfo"
+            );
+        
+            data = response.data;
+            const child = this.formRef.current;
 
-        const child = this.formRef.current;
+            Object.keys(child.state).forEach((key) =>
+                child.setState((oldState) => {
+                    oldState[key].val = data[key] || "";
+                    return oldState;
+                })
+            );
 
-        Object.keys(child.state).forEach((key) =>
-            child.setState((oldState) => {
-                oldState[key].val = data[key];
-                return oldState;
-            })
-        );
-
-        this.setState({ loading: false });
+            this.setState({ loading: false });
+        } catch (err) {
+            console.log(err.response.data);
+            this.setState({ loading: false, error: err });
+        }
     };
 
-    componentDidMount() {
-        this.setState({ loading: true });
-        this.getData();
-    }
 
     render() {
         const { success, error, loading } = this.state;
         const { children } = this.props;
-
         const clonned = React.cloneElement(children, { ref: this.formRef });
         return (
             <Form
                 onSubmit={this.submitHandler}
                 loading={loading}
                 success={success}
-                error={error}
+                error={!!error}
             >
                 {clonned}
                 <Message success header="Form Saved Successfully" />
                 <Message
                     error
                     header="An error has occured!"
-                    content="Please try again"
+                    content={error && error.toString()}
                 />
-                <Form.Button color="blue">Save</Form.Button>
+                <Form.Button>Save</Form.Button>
             </Form>
         );
     }
