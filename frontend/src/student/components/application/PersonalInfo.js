@@ -159,8 +159,6 @@ export default class PersonalInfo extends React.Component {
                         onChange={this.changeHandler}
                     />
                 </Form.Group>
-
-                
                 <Form.Group>
                     <Form.Select
                         label="Marital Status"
