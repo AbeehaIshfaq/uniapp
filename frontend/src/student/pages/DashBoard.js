@@ -5,13 +5,8 @@ import NavBar from "../components/navbar/Navbar";
 import ProgressCard from "../components/dashboard/ProgressCard";
 // import DeadlineCard from "../components/dashboard/DeadlineCard";
 import UniListCard from "../components/dashboard/UnilistCard";
-<<<<<<< HEAD
-import Calend from '../components/calendar/calend';
-import { Grid, Image } from 'semantic-ui-react'
-=======
 import Calend from "../components/calendar/calend";
 import { Grid } from "semantic-ui-react";
->>>>>>> bab80a85a29e47c4d41feae574cc5e2daee75580
 
 const StudentDash = (props) => {
     return (
