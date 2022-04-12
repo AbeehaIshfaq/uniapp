@@ -5,24 +5,39 @@ import NavBar from "../components/navbar/Navbar";
 import ProgressCard from "../components/dashboard/ProgressCard";
 // import DeadlineCard from "../components/dashboard/DeadlineCard";
 import UniListCard from "../components/dashboard/UnilistCard";
-import { useAuth0 } from "@auth0/auth0-react";
+import Calend from '../components/calendar/calend';
+import { Grid, Image } from 'semantic-ui-react'
 
 const StudentDash = (props) => {
     const { user, isAuthenticated, isLoading } = useAuth0();
     return (
-        isAuthenticated && (
-            <>
-                <header>
-                    <NavBar />
-                </header>
-                <main>
-                    <Container style={{ padding: "20px" }}>
-                        <ProgressCard />
-                        <UniListCard />
-                    </Container>
-                </main>
-            </>
-        )
+        <>
+            <header>
+                <NavBar />
+            </header>
+            <main>
+            <Grid columns={2} style={{ padding: "40px" }} Align="center">
+    <Grid.Row>
+      <Grid.Column>
+      < ProgressCard  />
+      </Grid.Column>
+      <Grid.Column>
+      < Calend  /> 
+      </Grid.Column>
+    </Grid.Row>
+    </Grid>
+
+                <Container style={{ padding: "20px" }}>
+                    < ProgressCard  />
+                </Container>
+                <Container Align='right' style={{ padding: "20px" }}>
+                    < Calend  /> 
+                </Container>              
+                 <Container style={{ padding: "20px" }}>
+                    <UniListCard />
+                </Container>
+            </main>
+        </>
     );
 };
 
