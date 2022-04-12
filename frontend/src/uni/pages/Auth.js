@@ -2,11 +2,8 @@ import React from "react";
 import { Grid, Menu } from "semantic-ui-react";
 
 import Login from "../components/auth/Login";
-// import Signup from "../components/auth/Signup";
+import Signup from "../components/auth/Signup";
 
-const Signup = () => {
-    return <h1>Signup</h1>;
-};
 
 class Auth extends React.Component {
     state = { activeItem: "login" };

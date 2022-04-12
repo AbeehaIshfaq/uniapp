@@ -27,8 +27,7 @@ export async function postLogin(req, res) {
         const token = await uni.generateAuthToken();
         res.send({ uni, token });
     } catch (err) {
-        console.log(err);
-        res.status(404).send();
+        res.send(err);
     }
 }
 

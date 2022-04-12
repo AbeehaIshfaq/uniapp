@@ -36,8 +36,6 @@ router.get("/myUnis", auth, getMyUnis);
 router.post("/addAllUnis", auth, async (req, res) => {
     console.log("POST /addAllUnis");
 
-    console.log(req.student.name);
-
     try {
         const unis = await Uni.find({});
         req.student.uniList = unis.map((value) => ({

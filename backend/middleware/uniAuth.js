@@ -17,7 +17,7 @@ const uniAuth = async (req, res, next) => {
         if (!uni) throw new Error();
 
         req.token = token;
-        req.user = uni;
+        req.uni = uni;
         next();
     } catch (err) {
         res.status(401).send({ error: "Please authenticate" });

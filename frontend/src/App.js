@@ -21,6 +21,7 @@ import StudentMyUnis from "./student/pages/MyUnis";
 import ApplicationPageUni from "./uni/pages/Application";
 import UniAuth from "./uni/pages/Auth";
 import UniDash from "./uni/pages/DashBoard";
+import UniInfo from "./uni/pages/UniInfo";
 import SetDeadline from "./uni/pages/setdeadline";
 import UploadDoc from "./student/pages/UploadDoc";
 
@@ -81,6 +82,7 @@ class App extends React.PureComponent {
                         element={<ApplicationPageUni />}
                     />
                     <Route path="/uni/setdeadline" element={<SetDeadline />} />
+                    <Route path="/uni/uniInfo" element={<UniInfo />} />
                 </>
             );
         } else if (loggedIn === "student") {

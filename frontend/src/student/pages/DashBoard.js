@@ -6,7 +6,7 @@ import ProgressCard from "../components/dashboard/ProgressCard";
 // import DeadlineCard from "../components/dashboard/DeadlineCard";
 import UniListCard from "../components/dashboard/UnilistCard";
 import Calend from "../components/calendar/calend";
-import { Grid, Image } from "semantic-ui-react";
+import { Grid } from "semantic-ui-react";
 
 const StudentDash = (props) => {
     return (
