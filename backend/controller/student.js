@@ -1,6 +1,7 @@
 import Student from "../model/student.js";
 import Form from "../model/form.js";
 import Uni from "../model/uni.js";
+import nodemailer from "nodemailer";
 
 export async function postSignup(req, res) {
     console.log("POST student/signup");
@@ -95,5 +96,36 @@ export async function getUniListLength(req, res) {
         res.send({ length: req.student.uniList.length });
     } catch (err) {
         console.log(err);
+    }
+}
+
+export async function forgetPassword(req, res) {
+    console.log("GET student/forgetPassword");
+    const { email } = req.body;
+    try {
+        const student = await Student.findOne({ email });
+        if (!student) res.status(404).send({ error: "User not found" });
+
+        let transporter = nodemailer.createTransport({
+            host: "smtp.gmail.com",
+            // port: 587,
+            secure: false,
+            auth: {
+                user: "blooddreamer70@gmail.com",
+                pass: "xxx",
+            },
+        });
+
+        let info = await transporter.sendMail({
+            from: "blooddreamer70@gmail.com",
+            to: "23100083@lums.edu.pk",
+            subject: "Checking if email is sending",
+            text: "It seems to be working",
+        });
+
+        // console.log(info);
+        res.send(student);
+    } catch (err) {
+        res.send({ error: err });
     }
 }

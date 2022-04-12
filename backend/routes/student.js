@@ -13,6 +13,7 @@ import {
     postLogoutAll,
     getMyUnis,
     getUniListLength,
+    forgetPassword,
 } from "../controller/student.js";
 
 const router = new express.Router();
@@ -32,6 +33,8 @@ router.get("/application/personalInfo", auth, getPersonalInfo);
 router.post("/uniListLength", auth, getUniListLength);
 
 router.get("/myUnis", auth, getMyUnis);
+
+router.get("/forgetPassword", forgetPassword);
 
 router.post("/addAllUnis", auth, async (req, res) => {
     console.log("POST /addAllUnis");
