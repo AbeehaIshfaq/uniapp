@@ -45,9 +45,9 @@ class App extends React.PureComponent {
     };
 
     logout = async () => {
-        this.setState({ loggedIn: null, token: null, userId: null });
         try {
-            await server.post("/student/logout");
+            await server.post(`/${this.state.loggedIn}/logout`);
+            this.setState({ loggedIn: null, token: null, userId: null });
             localStorage.removeItem("userData");
         } catch (err) {
             console.log(err);
@@ -72,25 +72,20 @@ class App extends React.PureComponent {
         if (!loggedIn) {
             routes = (
                 <>
-                    <Route path="*" element={<Navigate to="/" />} />
+                    <Route path="*" element={<Page404 />} />
                     <Route path="/" element={<LandingPage />} />
+                    <Route path="/student" element={<Navigate to="/" />} />
+                    <Route path="/uni" element={<Navigate to="/" />} />
                     <Route path="/student/auth" element={<StudentAuth />} />
                     <Route path="/uni/auth" element={<UniAuth />} />
-                    <Route path="/uni" element={<UniDash />} />
-                    <Route
-                        path="/uni/application"
-                        element={<ApplicationPageUni />}
-                    />
-                    <Route path="/uni/setdeadline" element={<SetDeadline />} />
-                    <Route path="/uni/auth/signup2" element={<UniInfo />} />
                 </>
             );
         } else if (loggedIn === "student") {
             routes = (
                 <>
                     <Route path="*" element={<Page404 />} />
-                    <Route path="/student" element={<StudentDash />} />
                     <Route path="/" element={<Navigate to="/student" />} />
+                    <Route path="/student" element={<StudentDash />} />
                     <Route
                         path="/student/auth"
                         element={<Navigate to="/student" />}
@@ -109,6 +104,21 @@ class App extends React.PureComponent {
                         path="/student/upload_documents"
                         element={<UploadDoc />}
                     />
+                </>
+            );
+        } else if (loggedIn === "uni") {
+            routes = (
+                <>
+                    <Route path="*" element={<Page404 />} />
+                    <Route path="/" element={<Navigate to="/uni" />} />
+                    <Route path="/uni" element={<UniDash />} />
+                    <Route path="/uni/auth" element={<Navigate to="/uni" />} />
+                    <Route
+                        path="/uni/application"
+                        element={<ApplicationPageUni />}
+                    />
+                    <Route path="/uni/setdeadline" element={<SetDeadline />} />
+                    <Route path="/uni/auth/signup2" element={<UniInfo />} />
                 </>
             );
         }

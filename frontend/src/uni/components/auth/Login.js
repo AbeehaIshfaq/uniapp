@@ -33,7 +33,7 @@ class Login extends React.Component {
         try {
             res = await server.post("/uni/login", data);
             this.setState({ loading: false });
-            auth.login("student", res.data.token, res.data.student._id);
+            auth.login("uni", res.data.token, res.data.uni._id);
         } catch (err) {
             this.setState({
                 loading: false,
