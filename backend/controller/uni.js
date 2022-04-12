@@ -77,7 +77,7 @@ export async function forgetPassword(req, res) {
             secure: false,
             auth: {
                 user: "blooddreamer70@gmail.com",
-                pass: "1123-B421-qPbP-8pSi",
+                pass: "xxx",
             },
         });
 
