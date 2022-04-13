@@ -18,10 +18,10 @@ const personalInfoSchema = mongoose.Schema({
     phoneNumber: {
         type: String,
         trim: true,
-        match: [
-            /((\+92)?(0092)?(92)?(0)?)(3)([0-9]{9})/,
-            "Phone number is invalid",
-        ],
+        // match: [
+        //     /((\+92)?(0092)?(92)?(0)?)(3)([0-9]{9})/,
+        //     "Phone number is invalid",
+        // ],
         default: "",
     },
     dateOfBirth: {
@@ -88,16 +88,16 @@ const familyInfoSchema = mongoose.Schema({
     cnic: {
         type: String,
         trim: true,
-        match: [/\d\d\d\d\d-?\d\d\d\d\d\d\d-?\d/, "CNIC is invalid"],
+       // match: [/\d\d\d\d\d-?\d\d\d\d\d\d\d-?\d/, "CNIC is invalid"],
         default: "",
     },
     phoneNumber: {
         type: String,
         trim: true,
-        match: [
-            /((\+92)?(0092)?(92)?(0)?)(3)([0-9]{9})/,
-            "Phone number is invalid",
-        ],
+        // match: [
+        //     /((\+92)?(0092)?(92)?(0)?)(3)([0-9]{9})/,
+        //     "Phone number is invalid",
+        // ],
         default: "",
     },
     email: {
@@ -164,7 +164,7 @@ const formSchema = mongoose.Schema({
     },
     personalInfo: personalInfoSchema,
     familyInfo: familyInfoSchema,
-    academicInfo: academicInfoSchema,
+    //academicInfo: academicInfoSchema,
     exrtaCurrInfo: [extraCurrInfoSchema],
 });
 

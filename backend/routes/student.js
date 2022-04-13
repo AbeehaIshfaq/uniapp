@@ -30,11 +30,11 @@ router.post("/logoutAll", auth, postLogoutAll);
 
 router.patch("/application/personalInfo", auth, patchPersonalInfo);
 
-router.patch("/application/FamilyInfo", auth, patchFamilyInfo);
+router.patch("/application/familyInfo", auth, patchFamilyInfo);
 
 router.get("/application/personalInfo", auth, getPersonalInfo);
 
-router.get("/application/FamilyInfo", auth, getFamilyInfo);
+router.get("/application/familyInfo", auth, getFamilyInfo);
 
 router.post("/uniListLength", auth, getUniListLength);
 
@@ -43,7 +43,7 @@ router.get("/myUnis", auth, getMyUnis);
 router.get("/uniList", auth, getUniList);
 
 router.post("/addAllUnis", auth, async (req, res) => {
-  console.log("POST /addAllUnis");
+  //console.log("POST /addAllUnis");
 
   try {
     const unis = await Uni.find({});
@@ -58,14 +58,14 @@ router.post("/addAllUnis", auth, async (req, res) => {
 });
 
 router.get("/student", auth, async (req, res) => {
-  console.log(req.token);
-  console.log(req.user);
+  // console.log(req.token);
+  // console.log(req.user);
   res.send(req.user);
 });
 
 router.get("/testForm", async (req, res) => {
   let data = await Form.findById("624ca402bdf773a7a43082fd");
-  console.log(data);
+ // console.log(data);
   res.send({ data });
 });
 
