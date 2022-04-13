@@ -6,6 +6,8 @@ import Form from "../model/form.js";
 import Uni from "../model/uni.js";
 
 import { patchPersonalInfo, getPersonalInfo } from "../controller/form.js";
+import { patchFamilyInfo, getFamilyInfo } from "../controller/form.js";
+
 import {
   postSignup,
   postLogin,
@@ -28,7 +30,11 @@ router.post("/logoutAll", auth, postLogoutAll);
 
 router.patch("/application/personalInfo", auth, patchPersonalInfo);
 
+router.patch("/application/FamilyInfo", auth, patchFamilyInfo);
+
 router.get("/application/personalInfo", auth, getPersonalInfo);
+
+router.get("/application/FamilyInfo", auth, getFamilyInfo);
 
 router.post("/uniListLength", auth, getUniListLength);
 

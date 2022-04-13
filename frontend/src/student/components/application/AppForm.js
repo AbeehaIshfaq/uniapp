@@ -33,13 +33,7 @@ export default class AppForm extends React.Component {
             console.log(err);
             this.setState({ error: err, loading: false });
         }
-        try {
-            await server.patch("/student/application/FamilyInfo", data);
-            this.setState({ success: true, loading: false });
-        } catch (err) {
-            console.log(err);
-            this.setState({ error: err, loading: false });
-        }
+
     };
 
     getData = async () => {
