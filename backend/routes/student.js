@@ -34,7 +34,7 @@ router.post("/uniListLength", auth, getUniListLength);
 
 router.get("/myUnis", auth, getMyUnis);
 
-router.get("uniList", auth, getUniList);
+router.get("/uniList", auth, getUniList);
 
 router.post("/addAllUnis", auth, async (req, res) => {
   console.log("POST /addAllUnis");
