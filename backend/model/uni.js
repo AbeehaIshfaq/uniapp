@@ -137,6 +137,15 @@ let temp1 = new Uni({
   tokens: [{ token: "efefwwsffefweff" }],
 });
 
+// try {
+//   Uni.remove({ name: "LUMSU" }, function (err) {
+//     console.log(err);
+//   });
+//   Uni.remove({ name: "UET" }, function (err) {
+//     console.log(err);
+//   });
+// } catch {}
+
 try {
   temp.save(function (err, tempo) {
     console.log(err);
