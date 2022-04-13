@@ -104,14 +104,13 @@ export async function getUniList(req, res) {
   const totalPages1 = Math.ceil(req.student.uniList.length / limit);
 
   try {
-    // Uni.insert({})
     const uniList = await Uni.find().skip(skip).limit(limit);
     console.log("unilist:", uniList);
     const sendList1 = [];
     uniList.forEach((uni) => {
       let temp = uni.toJSON();
       temp.isAdded = true;
-      sendList.push(temp);
+      sendList1.push(temp);
     });
     res.send({ uniList: sendList1, totalPages1 });
   } catch (err) {

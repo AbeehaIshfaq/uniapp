@@ -4,7 +4,7 @@ import { Container, Pagination, Icon, Segment } from "semantic-ui-react";
 import server from "../../server/server";
 
 import Navbar from "../components/navbar/Navbar";
-import UniGrid from "../components/unigrid/UniGrid";
+import UniGrid from "../components/unigrid/findUniGrid";
 import NoUni from "../components/unigrid/NoUni";
 
 export default class findUnis extends React.Component {
