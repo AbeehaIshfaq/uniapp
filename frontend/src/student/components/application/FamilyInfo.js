@@ -9,15 +9,9 @@ import {
     CNIC,
 } from "../../../util/validate";
 
-const relationOptions = [
-    { key: 0, text: "Married", value: "married" },
-    { key: 1, text: "Single", value: "single" },
-];
-
-export default class PersonalInfo extends React.Component {
+export default class FamilyInfo extends React.Component {
     state = {
         first: { val: "", error: null, validators: [Required] },
-        middle: { val: "", error: null, validators: [] },
         last: { val: "", error: null, validators: [Required] },
         email: { val: "", error: null, validators: [Required, Email] },
         phoneNumber: {
@@ -26,9 +20,6 @@ export default class PersonalInfo extends React.Component {
             validators: [Required, PhoneNumber],
         },
         cnic: { val: "", error: null, validators: [Required, CNIC] },
-        currentAddress: { val: "", error: null, validators: [Required] },
-        permanentAddress: { val: "", error: null, validators: [Required] },
-        gender: { val: "", error: null, validators: [Required] },
         relation: { val: "", error: null, validators: [Required] },
         occupation: { val: "", error: null, validators: [Required] },
     };
@@ -43,8 +34,10 @@ export default class PersonalInfo extends React.Component {
         this.setState(validate(this.state));
         let error = false;
         Object.values(this.state).forEach((values) => {
+            console.log(values);
             if (values.error) error = true;
         });
+
         return error;
     };
 
@@ -109,18 +102,16 @@ export default class PersonalInfo extends React.Component {
                         error={state.cnic.error}
                         className="required"
                     />
-                <Form.Input
-                    label="Relation"
-                    placeholder="Relation"
-                    name="relation"
-                    value={state.relation.val}
-                    onChange={this.changeHandler}
-                    error={state.relation.error}
-                    className="required"
-                />
+                    <Form.Input
+                        label="Relation"
+                        placeholder="Relation"
+                        name="relation"
+                        value={state.relation.val}
+                        onChange={this.changeHandler}
+                        error={state.relation.error}
+                        className="required"
+                    />
                 </Form.Group>
-      
- 
             </>
         );
     }

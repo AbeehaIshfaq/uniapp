@@ -13,31 +13,25 @@ export default class AppForm extends React.Component {
     submitHandler = async (e) => {
         e.preventDefault();
         const { title } = this.props;
-        console.log(title,"title")
+
         this.setState({ loading: true });
         const child = this.formRef.current; // something is wrong here
-        console.log(this.formRef,"formref")
-        console.log(child,"child");
 
         if (child.validator()) {
             this.setState({ loading: false });
-            console.log(child.validator(),"validator")
             return;
         }
         const data = {};
         Object.entries(child.state).forEach(
             ([key, value]) => (data[key] = value.val)
         );
-        console.log(title,"before patch")
         try {
             await server.patch(`/student/application/${title}`, data);
-            console.log(title,"after patch")
             this.setState({ success: true, loading: false });
         } catch (err) {
             console.log(err);
             this.setState({ error: err, loading: false });
         }
-
     };
 
     getData = async () => {

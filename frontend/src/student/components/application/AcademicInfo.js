@@ -9,7 +9,6 @@ import {
     CNIC,
 } from "../../../util/validate";
 
-
 const EducationTypesOptions = [
     { key: 0, text: "FSc", value: "FSc" },
     { key: 1, text: "A-levels", value: "A-levels" },
@@ -19,7 +18,7 @@ const StatusOptions = [
     { key: 1, text: "Uncomplete", value: "Uncomplete" },
 ];
 
-export default class PersonalInfo extends React.Component {
+export default class AcademicInfo extends React.Component {
     state = {
         first: { val: "", error: null, validators: [Required] },
         middle: { val: "", error: null, validators: [] },
@@ -41,8 +40,7 @@ export default class PersonalInfo extends React.Component {
         School: { val: "", error: null, validators: [Required] },
         OverallPercentage: { val: "", error: null, validators: [Required] },
         startDate: { val: "", error: null, validators: [Required] },
-        endDate: { val: "", error: null, validators: [Required] }
-
+        endDate: { val: "", error: null, validators: [Required] },
     };
 
     changeHandler = (e, { value, name }) => {
@@ -64,7 +62,7 @@ export default class PersonalInfo extends React.Component {
         const state = this.state;
         return (
             <>
-                    <Form.Group>
+                <Form.Group>
                     <Form.Select
                         label="Education Type"
                         placeholder="Education Type"
@@ -129,9 +127,8 @@ export default class PersonalInfo extends React.Component {
                         className="required"
                         error={state.OverallPercentage.error}
                     />
-
                 </Form.Group>
-       </>
+            </>
         );
     }
 }
