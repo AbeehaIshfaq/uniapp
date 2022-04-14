@@ -34,11 +34,9 @@ export async function patchFamilyInfo(req, res) {
     const name =
         body.first + (body.middle ? ` ${body.middle} ` : " ") + body.last;
     body.name = name;
-
     try {
         let form = await Form.findOne({ owner: student._id });
         !form && (form = new Form({ owner: student._id }));
-
         form.familyInfo = { ...body };
         form.save();
         res.send({
