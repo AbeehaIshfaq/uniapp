@@ -5,6 +5,8 @@ import Uni from "../model/uni.js";
 
 import { patchPersonalInfo, getPersonalInfo } from "../controller/form.js";
 import { patchFamilyInfo, getFamilyInfo } from "../controller/form.js";
+import { patchAcademicInfo, getAcademicInfo } from "../controller/form.js";
+
 
 import {
   postSignup,
@@ -30,9 +32,13 @@ router.patch("/application/personalInfo", auth, patchPersonalInfo);
 
 router.patch("/application/familyInfo", auth, patchFamilyInfo);
 
+router.patch("/application/academicInfo", auth, patchAcademicInfo);
+
 router.get("/application/personalInfo", auth, getPersonalInfo);
 
 router.get("/application/familyInfo", auth, getFamilyInfo);
+
+router.get("/application/academicInfo", auth, getAcademicInfo);
 
 router.post("/uniListLength", auth, getUniListLength);
 

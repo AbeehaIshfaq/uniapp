@@ -19,7 +19,7 @@ const items = [
 
     {
         title: "Academic Information",
-        children: <AppForm children={<AcademicInfo />} title="Academic Info" />,
+        children: <AppForm children={<AcademicInfo />} title="academicInfo" />,
     },
 ];
 

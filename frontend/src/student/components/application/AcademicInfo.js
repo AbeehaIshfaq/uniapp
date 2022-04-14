@@ -9,7 +9,7 @@ import {
     CNIC,
 } from "../../../util/validate";
 
-const EducationTypesOptions = [
+const EducationTypeOptions = [
     { key: 0, text: "FSc", value: "FSc" },
     { key: 1, text: "A-levels", value: "A-levels" },
 ];
@@ -20,22 +20,7 @@ const StatusOptions = [
 
 export default class AcademicInfo extends React.Component {
     state = {
-        first: { val: "", error: null, validators: [Required] },
-        middle: { val: "", error: null, validators: [] },
-        last: { val: "", error: null, validators: [Required] },
-        email: { val: "", error: null, validators: [Required, Email] },
-        phoneNumber: {
-            val: "",
-            error: null,
-            validators: [Required, PhoneNumber],
-        },
-        cnic: { val: "", error: null, validators: [Required, CNIC] },
-        permanentAddress: { val: "", error: null, validators: [Required] },
-        gender: { val: "", error: null, validators: [Required] },
-        relation: { val: "", error: null, validators: [Required] },
-        occupation: { val: "", error: null, validators: [Required] },
-
-        EducationTypes: { val: "", error: null, validators: [Required] },
+        EducationType: { val: "", error: null, validators: [Required] },
         Status: { val: "", error: null, validators: [Required] },
         School: { val: "", error: null, validators: [Required] },
         OverallPercentage: { val: "", error: null, validators: [Required] },
@@ -65,13 +50,13 @@ export default class AcademicInfo extends React.Component {
                 <Form.Group>
                     <Form.Select
                         label="Education Type"
-                        placeholder="Education Type"
-                        options={EducationTypesOptions}
-                        name="EducationTypes"
-                        value={state.EducationTypes.val}
+                        placeholder="EducationType"
+                        options={EducationTypeOptions}
+                        name="EducationType"
+                        value={state.EducationType.val}
                         onChange={this.changeHandler}
                         className="required"
-                        error={state.EducationTypes.error}
+                        error={state.EducationType.error}
                     />
                 </Form.Group>
                 <Form.Group>
@@ -111,7 +96,7 @@ export default class AcademicInfo extends React.Component {
                 <Form.Group widths="equal">
                     <Form.Input
                         label="School/College Name"
-                        placeholder="School/College Name"
+                        placeholder="School"
                         name="School"
                         value={state.School.val}
                         onChange={this.changeHandler}

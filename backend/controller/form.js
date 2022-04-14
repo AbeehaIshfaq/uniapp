@@ -48,6 +48,28 @@ export async function patchFamilyInfo(req, res) {
         res.send({ error: "Something went wrong" });
     }
 }
+export async function patchAcademicInfo(req, res) {
+    console.log("PATCH /student/application/academicInfo");
+    const student = req.student;
+    const body = req.body;
+    console.log(body,"body");
+    // const name =
+    //     body.first + (body.middle ? ` ${body.middle} ` : " ") + body.last;
+    // body.name = name;
+    try {
+        let form = await Form.findOne({ owner: student._id });
+        !form && (form = new Form({ owner: student._id }));
+        form.academicInfo = { ...body };
+        form.save();
+        res.send({
+            message: "Data saved successfully",
+            data: form.academicInfo,
+        });
+    } catch (err) {
+        console.log(err);
+        res.send({ error: "Something went wrong" });
+    }
+}
 
 export async function getPersonalInfo(req, res) {
     console.log("GET /student/application/personalInfo");
@@ -67,6 +89,18 @@ export async function getFamilyInfo(req, res) {
     try {
         const form = await Form.findOne({ owner: student._id });
         res.send(form.familyInfo);
+    } catch (err) {
+        console.log(err);
+        res.status(404).send(err);
+    }
+}
+export async function getAcademicInfo(req, res) {
+    console.log("GET /student/application/academicInfo");
+
+    const student = req.student;
+    try {
+        const form = await Form.findOne({ owner: student._id });
+        res.send(form.academicInfo);
     } catch (err) {
         console.log(err);
         res.status(404).send(err);
