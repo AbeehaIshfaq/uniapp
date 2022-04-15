@@ -5,7 +5,7 @@ import server from "../../server/server";
 
 import Navbar from "../components/navbar/Navbar";
 import UniGrid from "../components/unigrid/findUniGrid";
-import NoUni from "../components/unigrid/NoUni";
+import NoUni from "../components/unigrid/findUniEmpty";
 
 export default class findUnis extends React.Component {
   constructor(props) {
