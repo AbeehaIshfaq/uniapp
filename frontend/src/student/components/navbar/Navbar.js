@@ -1,5 +1,6 @@
 import React from "react";
 import { Menu } from "semantic-ui-react";
+import withRouter from "../../../router/withRouter";
 
 import AuthContext from "../../../shared/context/AuthContext";
 
@@ -11,6 +12,7 @@ class NavBar extends React.Component {
     logoutHandler = () => {
         const auth = this.context;
         auth.logout();
+        this.props.navigate("/");
     };
 
     render() {
@@ -43,4 +45,4 @@ class NavBar extends React.Component {
     }
 }
 
-export default NavBar;
+export default withRouter(NavBar);
