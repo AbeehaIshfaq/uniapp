@@ -3,67 +3,71 @@ import { Card, Item, Button, Icon } from "semantic-ui-react";
 import { Link } from "react-router-dom";
 
 class UniCard extends React.Component {
-  state = { loading: false };
+    state = { loading: false };
 
-  clickHandler = (e) => {
-    this.setState({ loading: true });
-    this.props.remove(this.props.uni._id);
-  };
+    clickHandler = (e) => {
+        this.setState({ loading: true });
+        this.props.remove(this.props.uni._id);
+    };
 
-  render() {
-    const { uni } = this.props;
-    let { name, email, deadline, phoneNumber, isAdded } = uni;
-    const { loading } = this.state;
+    render() {
+        const { uni } = this.props;
+        let { name, email, deadline, phoneNumber, isAdded } = uni;
+        const { loading } = this.state;
 
-    let date = new Date(deadline);
-    deadline = `${date.getDate()}/${date.getMonth()}/${date.getFullYear()}`;
-    return (
-      <>
-        {/* <p> name, email</p> */}
-        <Card>
-          <Card.Content
-            textAlign="center"
-            style={{ backgroundColor: "lightgrey" }}
-          >
-            <Card.Header as="h3" content={name} />
-            <Card.Meta>{uni.address}</Card.Meta>
-          </Card.Content>
-          <Card.Content>
-            <Item.Group>
-              <Item>
-                <Item.Content>
-                  <Item.Header style={{ fontSize: "medium" }}>
-                    Application Deadline
-                  </Item.Header>
-                  <Item.Description>{deadline}</Item.Description>
-                </Item.Content>
-              </Item>
+        let date = new Date(deadline);
+        deadline = `${date.getDate()}/${date.getMonth()}/${date.getFullYear()}`;
+        return (
+            <>
+                {/* <p> name, email</p> */}
+                <Card>
+                    <Card.Content
+                        textAlign="center"
+                        style={{ backgroundColor: "lightgrey" }}
+                    >
+                        <Card.Header as="h3" content={name} />
+                        <Card.Meta>{uni.address}</Card.Meta>
+                    </Card.Content>
+                    <Card.Content>
+                        <Item.Group>
+                            <Item>
+                                <Item.Content>
+                                    <Item.Header style={{ fontSize: "medium" }}>
+                                        Application Deadline
+                                    </Item.Header>
+                                    <Item.Description>
+                                        {deadline}
+                                    </Item.Description>
+                                </Item.Content>
+                            </Item>
 
-              <Item>
-                <Item.Content verticalAlign="middle">
-                  <Item.Header style={{ fontSize: "medium" }}>
-                    Contact Information
-                  </Item.Header>
-                  <Item.Description>{email}</Item.Description>
-                  <Item.Description>{phoneNumber}</Item.Description>
-                </Item.Content>
-              </Item>
-            </Item.Group>
-          </Card.Content>
-          <Card.Content textAlign="center">
-            <Button
-              as={Link}
-              to={`/viewUniversity/${uni._id}`}
-              primary
-              animated
-            >
-              <Button.Content visible>Visit Page</Button.Content>
-              <Button.Content hidden>
-                <Icon name="right arrow" />
-              </Button.Content>
-            </Button>
+                            <Item>
+                                <Item.Content verticalAlign="middle">
+                                    <Item.Header style={{ fontSize: "medium" }}>
+                                        Contact Information
+                                    </Item.Header>
+                                    <Item.Description>{email}</Item.Description>
+                                    <Item.Description>
+                                        {phoneNumber}
+                                    </Item.Description>
+                                </Item.Content>
+                            </Item>
+                        </Item.Group>
+                    </Card.Content>
+                    <Card.Content textAlign="center">
+                        <Button
+                            as={Link}
+                            to={`/viewUniversity/${uni._id}`}
+                            primary
+                            animated
+                        >
+                            <Button.Content visible>Visit Page</Button.Content>
+                            <Button.Content hidden>
+                                <Icon name="right arrow" />
+                            </Button.Content>
+                        </Button>
 
-            {/* {isAdded ? (
+                        {/* {isAdded ? (
               <Button
                 loading={loading}
                 negative
@@ -88,11 +92,11 @@ class UniCard extends React.Component {
                 </Button.Content>
               </Button>
             )} */}
-          </Card.Content>
-        </Card>
-      </>
-    );
-  }
+                    </Card.Content>
+                </Card>
+            </>
+        );
+    }
 }
 
 export default UniCard;

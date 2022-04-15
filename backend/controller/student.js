@@ -64,7 +64,7 @@ export async function getMyUnis(req, res) {
     const skip = req.query.skip ? req.query.skip * limit : 0;
 
     console.log(`GET student/myUnis/`, `skip=${skip}`, `limit=${limit}`);
-    console.log(req.student);
+
     const uniIdList = req.student.uniList.map((uni) => uni.uni);
     const totalPages = Math.ceil(req.student.uniList.length / limit);
     try {
@@ -79,7 +79,7 @@ export async function getMyUnis(req, res) {
         const sendList = [];
         uniList.forEach((uni) => {
             let temp = uni.toJSON();
-            temp.isAdded = true;
+            temp.isAdded = req.student.uniList.includes(uni._id) ? true : false;
             sendList.push(temp);
         });
         res.send({ uniList: sendList, totalPages });
@@ -101,11 +101,16 @@ export async function getUniListLength(req, res) {
 export async function getUniList(req, res) {
     const limit = req.query.limit || 12;
     const skip = req.query.skip ? req.query.skip * limit : 0;
-    const totalPages = Math.ceil(req.student.uniList.length / limit);
+
+    const uniCount = await Uni.countDocuments();
+    const totalPages = Math.ceil(uniCount / limit);
+
+    console.log(uniCount, totalPages);
 
     try {
         const uniList = await Uni.find().skip(skip).limit(limit);
-        console.log("unilist:", uniList);
+        console.log(uniList.length);
+
         const sendList1 = [];
         uniList.forEach((uni) => {
             let temp = uni.toJSON();
