@@ -15,7 +15,6 @@ import Page404 from "./shared/pages/404Page";
 import StudentDash from "./student/pages/DashBoard";
 import StudentApplication from "./student/pages/Application";
 import StudentAuth from "./student/pages/Auth";
-import Navbar from "./student/components/navbar/Navbar";
 import StudentMyUnis from "./student/pages/MyUnis";
 import StudentfindUnis from "./student/pages/searchUni";
 
