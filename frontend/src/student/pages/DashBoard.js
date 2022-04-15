@@ -7,6 +7,7 @@ import ProgressCard from "../components/dashboard/ProgressCard";
 import UniListCard from "../components/dashboard/UnilistCard";
 import Calend from "../components/calendar/calend";
 import { Grid } from "semantic-ui-react";
+import MyUnis from "./MyUnisforDash";
 
 const StudentDash = (props) => {
     return (
@@ -26,7 +27,7 @@ const StudentDash = (props) => {
                     </Grid.Row>
                 </Grid>
                 <Container style={{ padding: "20px" }} align="center">
-                    <UniListCard />
+                    <MyUnis />
                 </Container>
             </main>
         </>
