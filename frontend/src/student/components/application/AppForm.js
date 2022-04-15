@@ -12,21 +12,21 @@ export default class AppForm extends React.Component {
 
     submitHandler = async (e) => {
         e.preventDefault();
+        const { title } = this.props;
+
         this.setState({ loading: true });
-        const child = this.formRef.current;
+        const child = this.formRef.current; // something is wrong here
 
         if (child.validator()) {
             this.setState({ loading: false });
             return;
         }
-
         const data = {};
         Object.entries(child.state).forEach(
             ([key, value]) => (data[key] = value.val)
         );
-
         try {
-            await server.patch("/student/application/personalInfo", data);
+            await server.patch(`/student/application/${title}`, data);
             this.setState({ success: true, loading: false });
         } catch (err) {
             console.log(err);
@@ -36,11 +36,13 @@ export default class AppForm extends React.Component {
 
     getData = async () => {
         let data;
+        const { title } = this.props;
+        console.log(title,"title")
         try {
-            const response = await server.get(
-                "/student/application/personalInfo"
-            );
+         const response = await server.get(`/student/application/${title}`);
+
             data = response.data;
+
             const child = this.formRef.current;
 
             Object.keys(child.state).forEach((key) =>
@@ -66,6 +68,7 @@ export default class AppForm extends React.Component {
         const { success, error, loading } = this.state;
         const { children } = this.props;
         const clonned = React.cloneElement(children, { ref: this.formRef });
+
         return (
             <Form
                 onSubmit={this.submitHandler}

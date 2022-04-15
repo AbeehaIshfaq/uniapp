@@ -3,20 +3,28 @@ import { Accordion } from "semantic-ui-react";
 
 import AccordionItem from "./AccordionItem";
 import PersonalInfo from "./PersonalInfo";
+import FamilyInfo from "./FamilyInfo";
 import AppForm from "./AppForm";
+import AcademicInfo from "./AcademicInfo";
 
 const items = [
     {
         title: "Personal Information",
-        children: <AppForm children={<PersonalInfo />} />,
+        children: <AppForm children={<PersonalInfo />} title="personalInfo" />,
     },
-    { title: "Family Information", children: "Some placeholder text" },
-    { title: "Academic Information", children: "Some placeholder text" },
-    { title: "Extracurricular Information", children: "Some placeholder text" },
+    {
+        title: "Family Information",
+        children: <AppForm children={<FamilyInfo />} title="familyInfo" />,
+    },
+
+    {
+        title: "Academic Information",
+        children: <AppForm children={<AcademicInfo />} title="academicInfo" />,
+    },
 ];
 
 export default class AppAccordion extends React.Component {
-    state = { activeIndex: 0 };
+    state = { activeIndex: -1 };
 
     clickHandler = (e, props) => {
         const { index } = props;

@@ -29,9 +29,8 @@ const LandingPage = () => {
                                 <RouterCard
                                     title="For Universities"
                                     to="uni/auth"
-                                    buttonText="Register Now"
+                                    buttonText="Register or Login"
                                     paragraph={uniMessage}
-                                    basic
                                 />
                             </Grid.Column>
                         </Grid.Row>

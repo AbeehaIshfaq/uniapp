@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 
 const ProgressCard = () => {
     return (
-        <Card>
+        <Card align="left" width={10}>
             <Card.Content>
                 <Card.Header>Application Progress</Card.Header>
             </Card.Content>
