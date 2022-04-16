@@ -117,13 +117,17 @@ function checkSimilarity(inp, name) {
 }
 
 function filtersfunc(inp, uni) {
-  let [loc, rank, prog, feeMin, feeMax] = inp;
+  let [loc, rank, prog, feeMin, feeMax, month, year] = inp;
   let flag = true;
+  // console.log("month:", );
+  // console.log("year:", );
 
   if (loc.toLowerCase() != uni.city.toLowerCase() && loc != "") flag = false;
   if (rank != uni.ranking && rank != "") flag = false;
   if (feeMax != "" && uni.fee > parseInt(feeMax)) flag = false;
   if (feeMin != "" && uni.fee < parseInt(feeMin)) flag = false;
+  if (month != "Select" && month != uni.deadline.getMonth()) flag = false;
+  if (year != "Select" && year != uni.deadline.getFullYear()) flag = false;
 
   let loopFlag = false;
   if (prog != "") {
@@ -160,8 +164,7 @@ export async function getUniList(req, res) {
       console.log(inputs.split(","));
       // search conditions
       if (num === 1) {
-        // let inps = strToLst(inputs);
-        console.log("inps:", typeof inputs);
+        // console.log("inps:", typeof inputs);
         console.log(inputs.split(","));
         if (filtersfunc(inputs.split(","), uni)) {
           sendList1.push(temp);
