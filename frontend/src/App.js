@@ -18,6 +18,7 @@ import StudentAuth from "./student/pages/Auth";
 import Navbar from "./student/components/navbar/Navbar";
 import StudentMyUnis from "./student/pages/MyUnis";
 import StudentfindUnis from "./student/pages/searchUni";
+import Unipage from "./student/pages/Unipage";
 
 import ApplicationPageUni from "./uni/pages/Application";
 import UniAuth from "./uni/pages/Auth";
@@ -89,6 +90,7 @@ class App extends React.PureComponent {
           <Route path="/student" element={<StudentDash />} />
           <Route path="/student/auth" element={<Navigate to="/student" />} />
           <Route path="/student/application" element={<StudentApplication />} />
+          <Route path="/student/viewpage" element={<Unipage />} />
 
           <Route path="/student/findUnis" element={<StudentfindUnis />} />
           <Route path="/student/myUnis" element={<StudentMyUnis />} />
