@@ -116,13 +116,38 @@ function checkSimilarity(inp, name) {
   return true;
 }
 
+function filtersfunc(inp, uni) {
+  let [loc, rank, prog, feeMin, feeMax] = inp;
+  let flag = true;
+
+  if (loc.toLowerCase() != uni.city.toLowerCase() && loc != "") flag = false;
+  if (rank != uni.ranking && rank != "") flag = false;
+  if (feeMax != "" && uni.fee > parseInt(feeMax)) flag = false;
+  if (feeMin != "" && uni.fee < parseInt(feeMin)) flag = false;
+
+  let loopFlag = false;
+  if (prog != "") {
+    for (let i = 0; i < uni.programsOffered.length; i++) {
+      loopFlag = loopFlag || checkSimilarity(prog, uni.programsOffered[i]);
+    }
+  } else {
+    loopFlag = true;
+  }
+  console.log(flag, loopFlag);
+
+  return flag && loopFlag;
+}
+
 export async function getUniList(req, res) {
-  console.log("here");
+  // console.log("here");
   const limit = req.query.limit || 12;
   const skip = req.query.skip ? req.query.skip * limit : 0;
   const totalPages = Math.ceil(req.student.uniList.length / limit);
 
   const inputs = req.query.input;
+  const num = parseInt(req.query.nums);
+  // const num = 0;
+  console.log("num:", num);
 
   try {
     const uniList = await Uni.find().skip(skip).limit(limit);
@@ -133,8 +158,16 @@ export async function getUniList(req, res) {
       // temp.isAdded = true;
 
       // search conditions
-      if (checkSimilarity(inputs, uni.name)) {
-        sendList1.push(temp);
+      if (num === 1) {
+        // let inps = strToLst(inputs);
+        console.log(inputs.split(","));
+        if (filtersfunc(inputs.split(","), uni)) {
+          sendList1.push(temp);
+        }
+      } else if (num === 0) {
+        if (checkSimilarity(inputs, uni.name)) {
+          sendList1.push(temp);
+        }
       }
     });
     console.log("sendList:", sendList1);

@@ -73,7 +73,7 @@ export default class findUnis extends React.Component {
     this.limit = 12;
     this.ref = React.createRef();
 
-    this.temp = 0;
+    // this.temp = 0;
 
     this.Submithandler = this.Submithandler.bind(this);
   }
@@ -94,7 +94,9 @@ export default class findUnis extends React.Component {
     const skip = activePage - 1;
     try {
       const { data } = await server.get(
-        `/student/uniList?limit=${this.limit}&skip=${skip}&inp=${this.inp}`
+        `/student/uniList?limit=${this.limit}&skip=${skip}&inp=${
+          this.inp
+        }&nums=${0}`
       );
       this.setState({ uniList: data.uniList, pageNo: activePage });
       this.ref.current.setState({ uniList: data.uniList });
@@ -112,7 +114,9 @@ export default class findUnis extends React.Component {
     const skip = 0;
     try {
       const { data } = await server.get(
-        `/student/uniList?limit=${this.limit}&skip=${skip}&input=${this.state.inp}`
+        `/student/uniList?limit=${this.limit}&skip=${skip}&input=${
+          this.state.inp
+        }&nums=${0}`
       );
       // this.setState({ ...data });
       this.setState(
@@ -127,8 +131,37 @@ export default class findUnis extends React.Component {
       console.log(err);
     }
     // this.render();
-    this.setState({ temp: 1 });
+    // this.setState({ temp: 1 });
     // this.forceUpdate();
+  };
+
+  filterSubmitHandler = async () => {
+    const skip = 0;
+    let send_arr = {
+      loc: this.state.location,
+      rank: this.state.ranking,
+      prog: this.state.programme,
+      feemin: this.state.feeMin,
+      feemax: this.state.feeMax,
+    };
+    try {
+      const { data } = await server.get(
+        `/student/uniList?limit=${
+          this.limit
+        }&skip=${skip}&input=${send_arr}&nums=${1}`
+      );
+      // this.setState({ ...data });
+      this.setState(
+        {
+          totalPages: data.totalPages,
+          uniList: data.uniList,
+          inp: this.state.inp,
+        },
+        () => this.render()
+      );
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   render() {
@@ -359,6 +392,11 @@ export default class findUnis extends React.Component {
 
             <button
               type="submit"
+              onClick={(event) => {
+                event.preventDefault();
+                this.filterSubmitHandler();
+                // forceUpdate;
+              }}
               style={{
                 border: "none",
                 color: "white",

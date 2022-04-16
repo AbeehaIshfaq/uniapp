@@ -117,10 +117,10 @@ let temp = new Uni({
   password: "password",
   deadline: Date.now(),
   phoneNumber: "0202001282092",
-  fee: 30000,
+  fee: 60000,
   ranking: "10",
   city: "Lahore",
-  programsOffered: ["prog1", "prog2"],
+  programsOffered: ["CS", "MBA"],
   tokens: [{ token: "efefwefweff" }],
 });
 
@@ -132,19 +132,19 @@ let temp1 = new Uni({
   phoneNumber: "020200128232092",
   fee: 30000,
   ranking: "110",
-  city: "Lahore",
-  programsOffered: ["prog1", "prog2"],
+  city: "Narowal",
+  programsOffered: ["Electrical", "Mechanical"],
   tokens: [{ token: "efefwwsffefweff" }],
 });
 
-// try {
-//   Uni.remove({ name: "LUMSU" }, function (err) {
-//     console.log(err);
-//   });
-//   Uni.remove({ name: "UET" }, function (err) {
-//     console.log(err);
-//   });
-// } catch {}
+try {
+  Uni.deleteOne({ name: "LUMSU" }, function (err) {
+    // console.log(err);
+  });
+  Uni.deleteOne({ name: "UET" }, function (err) {
+    // console.log(err);
+  });
+} catch {}
 
 try {
   temp.save(function (err, tempo) {
