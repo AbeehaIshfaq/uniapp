@@ -1,5 +1,5 @@
 import React from "react";
-import { Container, Grid, Card } from "semantic-ui-react";
+import { Container, Card } from "semantic-ui-react";
 
 import LandingHeader from "../components/landing/LandingHeader";
 import RouterCard from "../components/landing/RouterCard";
@@ -38,19 +38,3 @@ const LandingPage = () => {
 };
 
 export default LandingPage;
-
-// <Grid stackable>
-// <Grid.Row columns={2}>
-//     <Grid.Column width="5">
-//
-//     </Grid.Column>
-//     <Grid.Column width="5">
-//         <RouterCard
-//             title="For Universities"
-//             to="uni/auth"
-//             buttonText="Register or Login"
-//             paragraph={uniMessage}
-//         />
-//     </Grid.Column>
-// </Grid.Row>
-// </Grid>

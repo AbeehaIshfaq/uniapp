@@ -1,5 +1,5 @@
 import React from "react";
-import { Card, Button, Header } from "semantic-ui-react";
+import { Card, Button } from "semantic-ui-react";
 import { Link } from "react-router-dom";
 
 const RouterCard = (props) => {
