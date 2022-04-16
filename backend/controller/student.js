@@ -156,3 +156,15 @@ export async function postRemoveUni(req, res) {
         res.status(500).send(err);
     }
 }
+
+
+export async function getDeadlines(req, res) {
+    console.log("GET /deadlines");
+
+
+    try {
+        res.send({ deadlines: req.uni.deadlines });
+    } catch (err) {
+        console.log(err);
+    }
+}

@@ -51,6 +51,8 @@ router.post("/addUni", auth, postAddUni);
 
 router.post("/removeUni", auth, postRemoveUni);
 
+router.get("/deadlines", auth, getDeadlines);
+
 router.post("/addAllUnis", auth, async (req, res) => {
     //console.log("POST /addAllUnis");
 
