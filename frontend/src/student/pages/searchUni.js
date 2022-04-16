@@ -158,6 +158,18 @@ export default class findUnis extends React.Component {
 
             <button
               type="submit"
+              style={{
+                border: "none",
+                color: "white",
+                textAlign: "center",
+                backgroundColor: "#008CBA",
+                borderRadius: "20px",
+                width: "70px",
+                height: "25px",
+                top: "10px",
+                position: "relative",
+                left: "10px",
+              }}
               onClick={(event) => {
                 event.preventDefault();
                 this.Submithandler();
@@ -169,9 +181,167 @@ export default class findUnis extends React.Component {
           </form>
         </Container>
 
+        <div
+          style={{
+            textAlign: "center",
+            position: "relative",
+            top: "30px",
+            left: "100px",
+          }}
+        >
+          <form id="filters">
+            <b
+              style={{ fontSize: "large", position: "absolute", left: "600px" }}
+            >
+              Filters
+            </b>
+            <div
+              style={{
+                textAlign: "center",
+                position: "absolute",
+                top: "40px",
+                left: "300px",
+              }}
+            >
+              <b>Location</b>
+              <input
+                value=""
+                type="text"
+                placeholder="Add Location"
+                style={{
+                  textAlign: "center",
+                  position: "relative",
+                  top: "0px",
+                  left: "88px",
+                  border: "1px solid",
+                  borderRadius: "20px",
+                  width: "120px",
+                  height: "25px",
+                }}
+              ></input>
+            </div>
+            <div
+              style={{
+                textAlign: "center",
+                position: "absolute",
+                top: "40px",
+                left: "700px",
+              }}
+            >
+              <b>Ranking</b>
+              <input
+                value=""
+                type="text"
+                placeholder="Add Ranking"
+                style={{
+                  textAlign: "center",
+                  position: "relative",
+                  top: "0px",
+                  left: "25px",
+                  border: "1px solid",
+                  borderRadius: "20px",
+                  width: "120px",
+                  height: "25px",
+                }}
+              ></input>
+            </div>
+            <div
+              style={{
+                textAlign: "center",
+                position: "absolute",
+                top: "80px",
+                left: "300px",
+              }}
+            >
+              <b>Programmes Offered</b>
+              <input
+                value=""
+                type="text"
+                placeholder="Enter Programme"
+                style={{
+                  textAlign: "center",
+                  position: "relative",
+                  top: "0px",
+                  left: "10px",
+                  border: "1px solid",
+                  borderRadius: "20px",
+                  width: "150px",
+                  height: "25px",
+                }}
+              ></input>
+            </div>
+            <div
+              style={{
+                textAlign: "center",
+                position: "absolute",
+                top: "80px",
+                left: "700px",
+              }}
+            >
+              <b>Fee Range</b>
+              <input
+                value=""
+                type="text"
+                placeholder="0"
+                style={{
+                  textAlign: "center",
+                  position: "relative",
+                  top: "0px",
+                  left: "10px",
+                  border: "1px solid",
+                  borderRadius: "20px",
+                  width: "120px",
+                  height: "25px",
+                }}
+              ></input>
+              <b
+                style={{
+                  textAlign: "center",
+                  position: "relative",
+                  top: "0px",
+                  left: "20px",
+                  border: "none",
+                  fontSize: "large",
+                }}
+              >
+                -
+              </b>
+              <input
+                value=""
+                type="text"
+                placeholder="Max fee range"
+                style={{
+                  textAlign: "center",
+                  position: "relative",
+                  top: "0px",
+                  left: "30px",
+                  border: "1px solid",
+                  borderRadius: "20px",
+                  width: "120px",
+                  height: "25px",
+                }}
+              ></input>
+              <b
+                style={{
+                  textAlign: "center",
+                  position: "relative",
+                  top: "0px",
+                  left: "40px",
+                  border: "none",
+                  fontSize: "medium",
+                }}
+              >
+                USD
+              </b>
+            </div>
+          </form>
+        </div>
+
         {/* <MainUniGrid states={this.state} refs={this.ref} /> */}
 
-        <Container style={{ padding: "20px" }}>
+        <Container
+          style={{ padding: "20px", position: "relative", top: "200px" }}
+        >
           <Segment raised>
             {uniList.length > 0 ? (
               <UniGrid unis={uniList} ref={this.ref} />
