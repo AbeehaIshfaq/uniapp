@@ -1,6 +1,5 @@
 import React from "react";
 import { Form, Message } from "semantic-ui-react";
-
 import server from "../../../server/server";
 
 export default class AppForm extends React.Component {
@@ -83,7 +82,8 @@ export default class AppForm extends React.Component {
                     header="An error has occured!"
                     content={error && error.toString()}
                 />
-                <Form.Button>Save</Form.Button>
+                <Form.Button color='blue' class="ui button"><i class="save icon"></i> Save</Form.Button>
+
             </Form>
         );
     }
