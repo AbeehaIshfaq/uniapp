@@ -161,10 +161,28 @@ export async function postRemoveUni(req, res) {
 export async function getDeadlines(req, res) {
     console.log("GET /deadlines");
 
+    const uniIdList = req.student.uniList.map((uni) => uni);
+
+    // console.log(uniIdList);
+
+    const uniList = await Uni.find({
+        _id: {
+            $in: uniIdList,
+        },
+    });
+
+    // console.log(uniList)
+
+    let sendList = [];
+    uniList.forEach((uni) => {
+        let temp = uni.toJSON();
+        sendList.push(temp.deadline);
+    });
 
     try {
-        res.send({ deadlines: req.uni.deadlines });
+        res.send( sendList );
     } catch (err) {
         console.log(err);
+        console.log(res.error)
     }
 }

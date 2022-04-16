@@ -15,6 +15,7 @@ import {
     getMyUnis,
     getUniListLength,
     getUniList,
+    getDeadlines,
     postAddUni,
     postRemoveUni,
 } from "../controller/student.js";
