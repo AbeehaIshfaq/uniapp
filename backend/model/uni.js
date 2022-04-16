@@ -54,6 +54,13 @@ const uniSchema = mongoose.Schema({
             },
         },
     ],
+    studentList: [
+        {
+            type: mongoose.Schema.Types.ObjectId,
+            required: true,
+            ref: "Student",
+        },
+    ],
 });
 
 // uniSchema.methods.toJSON = function () {

@@ -132,8 +132,19 @@ export async function postAddUni(req, res) {
     const uniId = req.body.uniId;
     req.student.uniList.push(uniId);
 
+    let uni;
+    try {
+        uni = await Uni.findOne({ _id: uniId });
+    } catch (err) {
+        console.log(err);
+        return res.status(404).send();
+    }
+
+    uni.studentList.push(req.student._id);
+
     try {
         await req.student.save();
+        await uni.save();
         res.send();
     } catch (err) {
         console.log(err);
@@ -148,8 +159,21 @@ export async function postRemoveUni(req, res) {
         (uni) => uni.toString() !== req.body.uniId
     );
 
+    let uni;
+    try {
+        uni = await Uni.findOne({ _id: req.body.uniId });
+    } catch (err) {
+        console.log(err);
+        return res.status(404).send();
+    }
+
+    uni.studentList = uni.studentList.filter(
+        (student) => student.toString() !== req.student._id.toString()
+    );
+
     try {
         await req.student.save();
+        await uni.save();
         res.send();
     } catch (err) {
         console.log(err);
