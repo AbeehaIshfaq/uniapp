@@ -6,24 +6,36 @@ const LandingHeader = (props) => {
     // const { fixed } = props;
     // const fixed = false;
     return (
-        <Segment basic style={{ padding: "60px 10%", border: "0" }} attached>
-            <Menu secondary>
+        <Segment
+            // color="grey"
+            inverted
+            basic
+            style={{
+                padding: "60px 10%",
+                border: "0",
+                backgroundColor: "darkblue",
+            }}
+            attached
+        >
+            <Menu stackable secondary inverted>
                 <Menu.Menu position="left">
                     <Menu.Item>
-                        <Icon name="braille" fitted size="big" />
+                        <Icon name="braille" size="huge" />
                     </Menu.Item>
                     <Menu.Item>
-                        <Header as="h1">UniApp</Header>
+                        <Header as="h1" inverted>
+                            UniApp
+                        </Header>
                     </Menu.Item>
                 </Menu.Menu>
                 <Menu.Menu position="right">
                     <Menu.Item>
-                        <Button as={Link} to="/student/auth" basic secondary>
+                        <Button inverted as={Link} to="/student/auth">
                             Login
                         </Button>
                     </Menu.Item>
                     <Menu.Item>
-                        <Button as={Link} to="student/auth" basic secondary>
+                        <Button inverted as={Link} to="student/auth">
                             Sign up
                         </Button>
                     </Menu.Item>

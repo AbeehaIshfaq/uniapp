@@ -22,6 +22,7 @@ class NavBar extends React.Component {
                 style={{
                     borderRadius: "0px",
                     padding: "10px",
+                    backgroundColor: "darkblue",
                 }}
             >
                 <Menu
