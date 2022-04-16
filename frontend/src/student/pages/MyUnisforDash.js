@@ -1,16 +1,18 @@
 import React from "react";
-import { Container, Pagination, Icon, Segment } from "semantic-ui-react";
+import { Container, Segment, Header } from "semantic-ui-react";
 
 import server from "../../server/server";
 
 import UniGrid from "../components/unigrid/UniGrid";
 import NoUni from "../components/unigrid/NoUni";
 
+import UniGridCompact from "../components/unigrid/UniGridCompact";
+
 export default class MyUnis extends React.Component {
     constructor(props) {
         super(props);
         this.state = { pageNo: 1, loading: false, totalPages: 0, uniList: [] };
-        this.limit = 12;
+        this.limit = 5;
         this.ref = React.createRef();
     }
 
@@ -26,60 +28,25 @@ export default class MyUnis extends React.Component {
         }
     }
 
-    paginationHandler = async (e, { activePage }) => {
-        const skip = activePage - 1;
-        try {
-            const { data } = await server.get(
-                `/student/myUnis?limit=${this.limit}&skip=${skip}`
-            );
-            this.setState({ uniList: data.uniList, pageNo: activePage });
-            this.ref.current.setState({ uniList: data.uniList });
-        } catch (err) {
-            console.log(err);
-        }
-    };
-
     render() {
         const { pageNo, totalPages, uniList } = this.state;
         return (
             <div>
-                <h1>Your universities</h1>
                 <Container style={{ padding: "20px" }}>
-                    <Segment raised>
+                    <Segment>
+                        <Header as="h1">Your Universities</Header>
                         {uniList.length > 0 ? (
-                            <UniGrid unis={uniList} ref={this.ref} />
+                            <UniGridCompact unis={uniList} ref={this.ref} />
                         ) : (
-                            <NoUni />
+                            <NoUni
+                                header="No Universities Selected"
+                                content="You do not have any universities selected at the moment. Click
+                            the button below to select a university"
+                                button="Find Universities"
+                                redirect="/student/findUnis"
+                            />
                         )}
                     </Segment>
-                    {totalPages > 1 && (
-                        <Container textAlign="center">
-                            <Pagination
-                                onPageChange={this.paginationHandler}
-                                activePage={pageNo}
-                                totalPages={totalPages}
-                                size="small"
-                                siblingRange={1}
-                                boundaryRange={0}
-                                firstItem={{
-                                    content: <Icon name="angle double left" />,
-                                    icon: true,
-                                }}
-                                prevItem={{
-                                    content: <Icon name="angle left" />,
-                                    icon: true,
-                                }}
-                                nextItem={{
-                                    content: <Icon name="angle right" />,
-                                    icon: true,
-                                }}
-                                lastItem={{
-                                    content: <Icon name="angle double right" />,
-                                    icon: true,
-                                }}
-                            />
-                        </Container>
-                    )}
                 </Container>
             </div>
         );

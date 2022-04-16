@@ -1,12 +1,11 @@
 import React from "react";
+import { Container, Grid, Card } from "semantic-ui-react";
 
-import { Container } from "semantic-ui-react";
 import NavBar from "../components/navbar/Navbar";
 import ProgressCard from "../components/dashboard/ProgressCard";
 // import DeadlineCard from "../components/dashboard/DeadlineCard";
+import UniListCard from "../components/dashboard/UniListCard";
 import Calend from "../components/calendar/calend";
-import { Grid } from "semantic-ui-react";
-import MyUnis from "./MyUnisforDash";
 
 const StudentDash = (props) => {
     return (
@@ -15,18 +14,14 @@ const StudentDash = (props) => {
                 <NavBar />
             </header>
             <main>
-                <Grid columns={2} style={{ padding: "60px" }} align="center">
-                    <Grid.Row>
-                        <Grid.Column>
-                            <ProgressCard />
-                        </Grid.Column>
-                        <Grid.Column>
-                            <Calend />
-                        </Grid.Column>
-                    </Grid.Row>
-                </Grid>
-                <Container style={{ padding: "20px" }} align="center">
-                    <MyUnis />
+                <Container style={{ margin: "2.5rem" }}>
+                    <Card.Group itemsPerRow={2} stackable>
+                        <ProgressCard />
+                        <Calend />
+                    </Card.Group>
+                </Container>
+                <Container align="center" style={{ margin: "2.5rem" }}>
+                    <UniListCard />
                 </Container>
             </main>
         </>
