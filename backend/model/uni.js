@@ -148,13 +148,13 @@ let temp1 = new Uni({
 
 try {
   temp.save(function (err, tempo) {
-    console.log(err);
+    // console.log(err);
   });
 } catch {}
 
 try {
   temp1.save(function (err, tempo) {
-    console.log(err);
+    // console.log(err);
   });
 } catch {}
 

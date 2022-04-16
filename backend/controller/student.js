@@ -98,21 +98,47 @@ export async function getUniListLength(req, res) {
   }
 }
 
+function checkSimilarity(inp, name) {
+  inp = inp.toLowerCase();
+  name = name.toLowerCase();
+  console.log(inp, name);
+  if (inp.length > name.length) {
+    return false;
+  }
+
+  for (let i = 0; i < inp.length; i++) {
+    if (inp[i] == name[i]) {
+      continue;
+    } else {
+      return false;
+    }
+  }
+  return true;
+}
+
 export async function getUniList(req, res) {
+  console.log("here");
   const limit = req.query.limit || 12;
   const skip = req.query.skip ? req.query.skip * limit : 0;
-  const totalPages1 = Math.ceil(req.student.uniList.length / limit);
+  const totalPages = Math.ceil(req.student.uniList.length / limit);
+
+  const inputs = req.query.input;
 
   try {
     const uniList = await Uni.find().skip(skip).limit(limit);
-    console.log("unilist:", uniList);
+    // console.log("unilist:", uniList);
     const sendList1 = [];
     uniList.forEach((uni) => {
       let temp = uni.toJSON();
-      temp.isAdded = true;
-      sendList1.push(temp);
+      // temp.isAdded = true;
+
+      // search conditions
+      if (checkSimilarity(inputs, uni.name)) {
+        sendList1.push(temp);
+      }
     });
-    res.send({ uniList: sendList1, totalPages1 });
+    console.log("sendList:", sendList1);
+    res.send({ uniList: sendList1, totalPages });
   } catch (err) {
     console.log(err);
     res.status(404).send(err);
