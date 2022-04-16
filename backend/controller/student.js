@@ -133,7 +133,7 @@ function filtersfunc(inp, uni) {
   } else {
     loopFlag = true;
   }
-  console.log(flag, loopFlag);
+  // console.log(flag, loopFlag);
 
   return flag && loopFlag;
 }
@@ -157,9 +157,11 @@ export async function getUniList(req, res) {
       let temp = uni.toJSON();
       // temp.isAdded = true;
 
+      console.log(inputs.split(","));
       // search conditions
       if (num === 1) {
         // let inps = strToLst(inputs);
+        console.log("inps:", typeof inputs);
         console.log(inputs.split(","));
         if (filtersfunc(inputs.split(","), uni)) {
           sendList1.push(temp);

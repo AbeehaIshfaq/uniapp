@@ -92,13 +92,27 @@ export default class findUnis extends React.Component {
 
   filterSubmitHandler = async () => {
     const skip = 0;
-    let send_arr = {
-      loc: this.state.location,
-      rank: this.state.ranking,
-      prog: this.state.programme,
-      feemin: this.state.feeMin,
-      feemax: this.state.feeMax,
-    };
+
+    let selectMonth = document.getElementById("months");
+    let monthVal = selectMonth.options[selectMonth.selectedIndex].value;
+
+    let selectYear = document.getElementById("yearss");
+    let yearVal = selectYear.options[selectYear.selectedIndex].value;
+
+    let send_arr = [
+      this.state.location,
+      this.state.ranking,
+      this.state.programme,
+      this.state.feeMin,
+      this.state.feeMax,
+      monthVal,
+      yearVal,
+    ];
+    console.log(send_arr);
+    // month: selectMonth.value,
+    // year: document.forms[0].year.value,
+    // month: document.getElementById("month").value,
+    // year: document.getElementById("year").value,
     try {
       const { data } = await server.get(
         `/student/uniList?limit=${
@@ -358,10 +372,10 @@ export default class findUnis extends React.Component {
                 Deadline
               </b>
               <div>
-                <label for="month"></label>
+                <label for="months"></label>
                 <select
-                  name="month"
-                  id="month"
+                  name="months"
+                  id="months"
                   style={{
                     textAlign: "center",
                     position: "absolute",
@@ -400,10 +414,10 @@ export default class findUnis extends React.Component {
                   left: "80px",
                 }}
               >
-                <label for="year"></label>
+                <label for="yearss"></label>
                 <select
-                  name="year"
-                  id="year"
+                  name="yearss"
+                  id="yearss"
                   style={{
                     textAlign: "center",
                     position: "absolute",
@@ -419,12 +433,12 @@ export default class findUnis extends React.Component {
                   <option value="Select" selected>
                     Select year
                   </option>
-                  <option value="2018">Jan</option>
-                  <option value="2019">Feb</option>
-                  <option value="2021">Mar</option>
-                  <option value="2022">Apr</option>
-                  <option value="2023">May</option>
-                  <option value="2024">Jun</option>
+                  <option value="2018">2018</option>
+                  <option value="2019">2019</option>
+                  <option value="2021">2021</option>
+                  <option value="2022">2022</option>
+                  <option value="2023">2023</option>
+                  <option value="2024">2024</option>
                 </select>
               </div>
             </div>
