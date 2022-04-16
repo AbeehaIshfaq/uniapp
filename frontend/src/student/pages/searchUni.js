@@ -8,51 +8,6 @@ import Navbar from "../components/navbar/Navbar";
 import UniGrid from "../components/unigrid/findUniGrid";
 import NoUni from "../components/unigrid/findUniEmpty";
 
-// let tempList = [];
-
-function MainUniGrid(props) {
-  const { pageNo, totalPages, uniList, endList } = props.states;
-  return (
-    <Container style={{ padding: "20px" }}>
-      <Segment raised>
-        {uniList.length > 0 ? (
-          <UniGrid unis={uniList} ref={props.refs} />
-        ) : (
-          <NoUni />
-        )}
-      </Segment>
-      {totalPages > 1 && (
-        <Container textAlign="center">
-          <Pagination
-            onPageChange={this.paginationHandler}
-            activePage={pageNo}
-            totalPages={totalPages}
-            size="small"
-            siblingRange={1}
-            boundaryRange={0}
-            firstItem={{
-              content: <Icon name="angle double left" />,
-              icon: true,
-            }}
-            prevItem={{
-              content: <Icon name="angle left" />,
-              icon: true,
-            }}
-            nextItem={{
-              content: <Icon name="angle right" />,
-              icon: true,
-            }}
-            lastItem={{
-              content: <Icon name="angle double right" />,
-              icon: true,
-            }}
-          />
-        </Container>
-      )}
-    </Container>
-  );
-}
-
 export default class findUnis extends React.Component {
   constructor(props) {
     super(props);
@@ -390,6 +345,90 @@ export default class findUnis extends React.Component {
               </b>
             </div>
 
+            <div>
+              <b
+                style={{
+                  textAlign: "center",
+                  position: "absolute",
+                  top: "133px",
+                  left: "480px",
+                  font: "medium",
+                }}
+              >
+                Deadline
+              </b>
+              <div>
+                <label for="month"></label>
+                <select
+                  name="month"
+                  id="month"
+                  style={{
+                    textAlign: "center",
+                    position: "absolute",
+                    top: "130px",
+                    left: "550px",
+
+                    border: "1px solid",
+                    borderRadius: "20px",
+                    width: "112px",
+                    height: "25px",
+                  }}
+                >
+                  <option value="Select" selected>
+                    Select month
+                  </option>
+                  <option value="Jan">Jan</option>
+                  <option value="Feb">Feb</option>
+                  <option value="Mar">Mar</option>
+                  <option value="Apr">Apr</option>
+                  <option value="May">May</option>
+                  <option value="Jun">Jun</option>
+                  <option value="Jul">Jul</option>
+                  <option value="Aug">Aug</option>
+                  <option value="Sep">Sep</option>
+                  <option value="Oct">Oct</option>
+                  <option value="Nov">Nov</option>
+                  <option value="Dec">Dec</option>
+                </select>
+              </div>
+
+              <div
+                style={{
+                  textAlign: "center",
+                  position: "absolute",
+                  top: "80px",
+                  left: "80px",
+                }}
+              >
+                <label for="year"></label>
+                <select
+                  name="year"
+                  id="year"
+                  style={{
+                    textAlign: "center",
+                    position: "absolute",
+                    top: "50px",
+                    left: "600px",
+
+                    border: "1px solid",
+                    borderRadius: "20px",
+                    width: "105px",
+                    height: "25px",
+                  }}
+                >
+                  <option value="Select" selected>
+                    Select year
+                  </option>
+                  <option value="2018">Jan</option>
+                  <option value="2019">Feb</option>
+                  <option value="2021">Mar</option>
+                  <option value="2022">Apr</option>
+                  <option value="2023">May</option>
+                  <option value="2024">Jun</option>
+                </select>
+              </div>
+            </div>
+
             <button
               type="submit"
               onClick={(event) => {
@@ -405,7 +444,7 @@ export default class findUnis extends React.Component {
                 borderRadius: "10px",
                 width: "110px",
                 height: "30px",
-                top: "130px",
+                top: "175px",
                 position: "absolute",
                 left: "570px",
               }}
@@ -418,7 +457,7 @@ export default class findUnis extends React.Component {
         {/* <MainUniGrid states={this.state} refs={this.ref} /> */}
 
         <Container
-          style={{ padding: "20px", position: "relative", top: "200px" }}
+          style={{ padding: "20px", position: "relative", top: "280px" }}
         >
           <Segment raised>
             {uniList.length > 0 ? (
