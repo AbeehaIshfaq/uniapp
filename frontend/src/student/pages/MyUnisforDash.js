@@ -3,7 +3,6 @@ import { Container, Segment, Header } from "semantic-ui-react";
 
 import server from "../../server/server";
 
-import UniGrid from "../components/unigrid/UniGrid";
 import NoUni from "../components/unigrid/NoUni";
 
 import UniGridCompact from "../components/unigrid/UniGridCompact";
@@ -29,7 +28,7 @@ export default class MyUnis extends React.Component {
     }
 
     render() {
-        const { pageNo, totalPages, uniList } = this.state;
+        const { uniList } = this.state;
         return (
             <div>
                 <Container style={{ padding: "20px" }}>

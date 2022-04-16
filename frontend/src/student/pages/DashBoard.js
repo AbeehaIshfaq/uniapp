@@ -1,5 +1,5 @@
 import React from "react";
-import { Container, Grid, Card } from "semantic-ui-react";
+import { Container, Card } from "semantic-ui-react";
 
 import NavBar from "../components/navbar/Navbar";
 import ProgressCard from "../components/dashboard/ProgressCard";
