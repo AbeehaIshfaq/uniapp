@@ -53,17 +53,9 @@ class UniCard extends React.Component {
                         </Item.Group>
                     </Card.Content>
                     <Card.Content textAlign="center">
-                        <Button
-                            as={Link}
-                            to={`/viewUniversity/${uni._id}`}
-                            primary
-                            animated
-                        >
-                            <Button.Content visible>Visit Page</Button.Content>
-                            <Button.Content hidden>
-                                <Icon name="right arrow" />
-                            </Button.Content>
-                        </Button>
+                    <Button as={Link} to="/student/viewpage" basic>
+                    <Button color='blue'>Set Deadline</Button>
+                     </Button>
                         {isAdded ? (
                             <Button
                                 loading={loading}
