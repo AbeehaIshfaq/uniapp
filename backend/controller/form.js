@@ -3,9 +3,7 @@ import Form from "../model/form.js";
 export async function patchPersonalInfo(req, res) {
     console.log("PATCH /student/application/personalInfo");
     const student = req.student;
-    //console.log(student,"syudents");
     const body = req.body;
-    // console.log(body,"body");
     const name =
         body.first + (body.middle ? ` ${body.middle} ` : " ") + body.last;
     body.name = name;
@@ -30,7 +28,6 @@ export async function patchFamilyInfo(req, res) {
     console.log("PATCH /student/application/familyInfo");
     const student = req.student;
     const body = req.body;
-    console.log(body,"body");
     const name =
         body.first + (body.middle ? ` ${body.middle} ` : " ") + body.last;
     body.name = name;
@@ -50,12 +47,10 @@ export async function patchFamilyInfo(req, res) {
 }
 export async function patchAcademicInfo(req, res) {
     console.log("PATCH /student/application/academicInfo");
+
     const student = req.student;
     const body = req.body;
-    console.log(body,"body");
-    // const name =
-    //     body.first + (body.middle ? ` ${body.middle} ` : " ") + body.last;
-    // body.name = name;
+
     try {
         let form = await Form.findOne({ owner: student._id });
         !form && (form = new Form({ owner: student._id }));

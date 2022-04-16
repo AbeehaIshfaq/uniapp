@@ -1,12 +1,18 @@
 import React from "react";
 import { Card, Item, Button, Icon } from "semantic-ui-react";
 import { Link } from "react-router-dom";
+
 class UniCard extends React.Component {
     state = { loading: false };
 
-    clickHandler = (e) => {
+    clickHandler = async (e) => {
         this.setState({ loading: true });
-        this.props.remove(this.props.uni._id);
+        if (this.props.uni.isAdded) {
+            await this.props.remove(this.props.uni._id);
+        } else {
+            await this.props.add(this.props.uni._id);
+        }
+        this.setState({ loading: false });
     };
 
     render() {
