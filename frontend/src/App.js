@@ -24,6 +24,7 @@ import UniDash from "./uni/pages/DashBoard";
 import UniInfo from "./uni/pages/UniInfo";
 import SetDeadline from "./uni/pages/setdeadline";
 import UploadDoc from "./student/pages/UploadDoc";
+import Viewuni from "./student/pages/Viewuni";
 
 class App extends React.PureComponent {
     state = { loggedIn: null, token: null, userId: null };
@@ -78,6 +79,8 @@ class App extends React.PureComponent {
                     <Route path="*" element={<Page404 />} />
                     <Route path="/" element={<Navigate to="/student" />} />
                     <Route path="/student" element={<StudentDash />} />
+                    <Route path="/student/viewuni" element={<Viewuni/>} />
+
                     <Route
                         path="/student/auth"
                         element={<Navigate to="/student" />}

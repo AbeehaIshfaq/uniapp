@@ -8,12 +8,11 @@ const LandingHeader = (props) => {
     return (
         <Segment
             // color="grey"
-            inverted
+            inverted color="blue"
             basic
             style={{
                 padding: "60px 10%",
                 border: "0",
-                backgroundColor: "darkblue",
             }}
             attached
         >
