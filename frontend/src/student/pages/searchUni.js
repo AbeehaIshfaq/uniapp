@@ -62,6 +62,13 @@ export default class findUnis extends React.Component {
       totalPages: 0,
       uniList: [],
       inp: "",
+
+      // vars for Filters
+      location: "",
+      feeMin: "",
+      feeMax: "",
+      ranking: "",
+      programme: "",
     };
     this.limit = 12;
     this.ref = React.createRef();
@@ -205,7 +212,10 @@ export default class findUnis extends React.Component {
             >
               <b>Location</b>
               <input
-                value=""
+                value={this.state.location}
+                onChange={(event) =>
+                  this.setState({ location: event.target.value })
+                }
                 type="text"
                 placeholder="Add Location"
                 style={{
@@ -230,7 +240,10 @@ export default class findUnis extends React.Component {
             >
               <b>Ranking</b>
               <input
-                value=""
+                value={this.state.ranking}
+                onChange={(event) =>
+                  this.setState({ ranking: event.target.value })
+                }
                 type="text"
                 placeholder="Add Ranking"
                 style={{
@@ -255,7 +268,10 @@ export default class findUnis extends React.Component {
             >
               <b>Programmes Offered</b>
               <input
-                value=""
+                value={this.state.programme}
+                onChange={(event) =>
+                  this.setState({ programme: event.target.value })
+                }
                 type="text"
                 placeholder="Enter Programme"
                 style={{
@@ -280,7 +296,10 @@ export default class findUnis extends React.Component {
             >
               <b>Fee Range</b>
               <input
-                value=""
+                value={this.state.feeMin}
+                onChange={(event) =>
+                  this.setState({ feeMin: event.target.value })
+                }
                 type="text"
                 placeholder="0"
                 style={{
@@ -307,7 +326,10 @@ export default class findUnis extends React.Component {
                 -
               </b>
               <input
-                value=""
+                value={this.state.feeMax}
+                onChange={(event) =>
+                  this.setState({ feeMax: event.target.value })
+                }
                 type="text"
                 placeholder="Max fee range"
                 style={{
@@ -334,6 +356,24 @@ export default class findUnis extends React.Component {
                 USD
               </b>
             </div>
+
+            <button
+              type="submit"
+              style={{
+                border: "none",
+                color: "white",
+                textAlign: "center",
+                backgroundColor: "#008CBA",
+                borderRadius: "10px",
+                width: "110px",
+                height: "30px",
+                top: "130px",
+                position: "absolute",
+                left: "570px",
+              }}
+            >
+              <b>Apply Filters</b>
+            </button>
           </form>
         </div>
 
