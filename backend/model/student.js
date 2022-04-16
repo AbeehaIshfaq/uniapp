@@ -30,11 +30,9 @@ const studentSchema = new mongoose.Schema({
     ],
     uniList: [
         {
-            uni: {
-                type: mongoose.Schema.Types.ObjectId,
-                required: true,
-                ref: "Uni",
-            },
+            type: mongoose.Schema.Types.ObjectId,
+            required: true,
+            ref: "Uni",
         },
     ],
 });

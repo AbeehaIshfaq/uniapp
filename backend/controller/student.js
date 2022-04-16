@@ -98,25 +98,85 @@ export async function getUniListLength(req, res) {
     }
 }
 
+function checkSimilarity(inp, name) {
+    inp = inp.toLowerCase();
+    name = name.toLowerCase();
+    console.log(inp, name);
+    if (inp.length > name.length) {
+        return false;
+    }
+
+    for (let i = 0; i < inp.length; i++) {
+        if (inp[i] == name[i]) {
+            continue;
+        } else {
+            return false;
+        }
+    }
+    return true;
+}
+
+function filtersfunc(inp, uni) {
+    let [loc, rank, prog, feeMin, feeMax, month, year] = inp;
+    let flag = true;
+    // console.log("month:", );
+    // console.log("year:", );
+
+    if (loc.toLowerCase() != uni.city.toLowerCase() && loc != "") flag = false;
+    if (rank != uni.ranking && rank != "") flag = false;
+    if (feeMax != "" && uni.fee > parseInt(feeMax)) flag = false;
+    if (feeMin != "" && uni.fee < parseInt(feeMin)) flag = false;
+    if (month != "Select" && month != uni.deadline.getMonth()) flag = false;
+    if (year != "Select" && year != uni.deadline.getFullYear()) flag = false;
+
+    let loopFlag = false;
+    if (prog != "") {
+        for (let i = 0; i < uni.programsOffered.length; i++) {
+            loopFlag =
+                loopFlag || checkSimilarity(prog, uni.programsOffered[i]);
+        }
+    } else {
+        loopFlag = true;
+    }
+    // console.log(flag, loopFlag);
+
+    return flag && loopFlag;
+}
+
 export async function getUniList(req, res) {
+    // console.log("here");
     const limit = req.query.limit || 12;
     const skip = req.query.skip ? req.query.skip * limit : 0;
-
     const uniCount = await Uni.countDocuments();
     const totalPages = Math.ceil(uniCount / limit);
-
-    console.log(uniCount, totalPages);
+    const inputs = req.query.input;
+    const num = parseInt(req.query.nums);
+    // const num = 0;
+    console.log("num:", num);
 
     try {
         const uniList = await Uni.find().skip(skip).limit(limit);
-        console.log(uniList.length);
-
+        // console.log("unilist:", uniList);
         const sendList1 = [];
         uniList.forEach((uni) => {
             let temp = uni.toJSON();
-            temp.isAdded = true;
-            sendList1.push(temp);
+            // temp.isAdded = true;
+
+            console.log(inputs.split(","));
+            // search conditions
+            if (num === 1) {
+                // console.log("inps:", typeof inputs);
+                console.log(inputs.split(","));
+                if (filtersfunc(inputs.split(","), uni)) {
+                    sendList1.push(temp);
+                }
+            } else if (num === 0) {
+                if (checkSimilarity(inputs, uni.name)) {
+                    sendList1.push(temp);
+                }
+            }
         });
+        console.log("sendList:", sendList1);
         res.send({ uniList: sendList1, totalPages });
     } catch (err) {
         console.log(err);
