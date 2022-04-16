@@ -4,6 +4,7 @@ import NavBar from "../components/navbar/Navbar";
 import ProgressCard from "../components/dashboard/ProgressCard";
 // import DeadlineCard from "../components/dashboard/DeadlineCard";
 import { Button, Image, List } from 'semantic-ui-react'
+import Upload from "../components/upload";
 
 
 const UploadDoc = (props) => {
@@ -13,7 +14,7 @@ const UploadDoc = (props) => {
                 <NavBar />
             </header>
             <main>
-        <List divided verticalAlign='middle'  style={{ padding: "60px" }} >
+        {/* <List divided verticalAlign='middle'  style={{ padding: "60px" }} >
         <h1>   Upload Your Documents Here </h1>
         <List.Item >
           <List.Content floated='right'>
@@ -58,7 +59,9 @@ const UploadDoc = (props) => {
         <h1>    </h1>
 
 <Button color='blue'>Submit</Button>  
-      </List>
+      </List> */}
+                      <Upload />
+
    
       
 

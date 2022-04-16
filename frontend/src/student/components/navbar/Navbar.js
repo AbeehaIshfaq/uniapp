@@ -1,5 +1,5 @@
 import React from "react";
-import { Menu } from "semantic-ui-react";
+import { Menu, Segment } from "semantic-ui-react";
 import withRouter from "../../../router/withRouter";
 
 import AuthContext from "../../../shared/context/AuthContext";
@@ -17,8 +17,20 @@ class NavBar extends React.Component {
 
     render() {
         return (
-            <div>
-                <Menu secondary pointing>
+            <Segment
+                inverted
+                style={{
+                    borderRadius: "0px",
+                    padding: "10px",
+                    backgroundColor: "darkblue",
+                }}
+            >
+                <Menu
+                    stackable
+                    secondary
+                    inverted
+                    style={{ borderRadius: "0" }}
+                >
                     <Menu.Menu position="left">
                         <NavbarItem to="/student">Dashboard</NavbarItem>
                         <NavbarItem to="/student/application">
@@ -40,7 +52,7 @@ class NavBar extends React.Component {
                         </Menu.Item>
                     </Menu.Menu>
                 </Menu>
-            </div>
+            </Segment>
         );
     }
 }

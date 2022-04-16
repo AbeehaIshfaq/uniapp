@@ -13,7 +13,6 @@ export default class AppForm extends React.Component {
     submitHandler = async (e) => {
         e.preventDefault();
         const { title } = this.props;
-
         this.setState({ loading: true });
         const child = this.formRef.current; // something is wrong here
 
@@ -28,6 +27,7 @@ export default class AppForm extends React.Component {
         try {
             await server.patch(`/student/application/${title}`, data);
             this.setState({ success: true, loading: false });
+
         } catch (err) {
             console.log(err);
             this.setState({ error: err, loading: false });

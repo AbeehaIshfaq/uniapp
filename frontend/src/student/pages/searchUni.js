@@ -5,8 +5,8 @@ import { Container, Pagination, Icon, Segment } from "semantic-ui-react";
 import server from "../../server/server";
 
 import Navbar from "../components/navbar/Navbar";
-import UniGrid from "../components/unigrid/findUniGrid";
-import NoUni from "../components/unigrid/findUniEmpty";
+import UniGrid from "../components/unigrid/UniGrid";
+import NoUni from "../components/unigrid/NoUni";
 
 export default class findUnis extends React.Component {
     constructor(props) {
@@ -39,67 +39,28 @@ export default class findUnis extends React.Component {
             const { data } = await server.get(
                 `/student/uniList?limit=${this.limit}&skip=${skip}&input=${this.inp}`
             );
+
             this.setState({ ...data });
         } catch (err) {
             console.log(err);
         }
     }
 
-    // render() {
-    //     const { pageNo, totalPages, uniList } = this.state;
-    //     return (
-    //         <div>
-    //             <header>
-    //                 <Navbar />
-    //             </header>
-    //             <Container style={{ padding: "20px" }}>
-    //                 <Segment raised>
-    //                     {uniList.length > 0 ? (
-    //                         <UniGrid unis={uniList} ref={this.ref} />
-    //                     ) : (
-    //                         <NoUni />
-    //                     )}
-    //                 </Segment>
-    //                 {totalPages > 1 && (
-    //                     <Container textAlign="center">
-    //                         <Pagination
-    //                             onPageChange={this.paginationHandler}
-    //                             activePage={pageNo}
-    //                             totalPages={totalPages}
-    //                             size="small"
-    //                             siblingRange={1}
-    //                             boundaryRange={0}
-    //                             firstItem={{
-    //                                 content: <Icon name="angle double left" />,
-    //                                 icon: true,
-    //                             }}
-    //                             prevItem={{
-    //                                 content: <Icon name="angle left" />,
-    //                                 icon: true,
-    //                             }}
-    //                             nextItem={{
-    //                                 content: <Icon name="angle right" />,
-    //                                 icon: true,
-    //                             }}
-    //                             lastItem={{
-    //                                 content: <Icon name="angle double right" />,
-    //                                 icon: true,
-    //                             }}
-    //                         />
-    //                     </Container>
-    //                 )}
-    //             </Container>
-    //         </div>
-    //     );
-    // }
+    reload = async () => {
+        const skip = this.state.pageNo - 1;
+        try {
+            const { data } = await server.get(
+                `/student/uniList?limit=${this.limit}&skip=${skip}`
+            );
+            this.setState({ ...data });
+            this.ref?.current?.setState({ uniList: data.uniList });
+        } catch (err) {
+            console.log(err);
+        }
+    };
 
-    componentDidUpdate() {
-        console.log(this.state);
-    }
-
-    Submithandler = async () => {
-        // event.preventDefault();
-        const skip = 0;
+    paginationHandler = async (e, { activePage }) => {
+        const skip = activePage - 1;
         try {
             const { data } = await server.get(
                 `/student/uniList?limit=${this.limit}&skip=${skip}&input=${
@@ -115,6 +76,8 @@ export default class findUnis extends React.Component {
                 },
                 () => this.render()
             );
+            // this.setState({ uniList: data.uniList, pageNo: activePage });
+            // this.ref.current.setState({ uniList: data.uniList });
         } catch (err) {
             console.log(err);
         }
@@ -522,9 +485,16 @@ export default class findUnis extends React.Component {
                 >
                     <Segment raised>
                         {uniList.length > 0 ? (
-                            <UniGrid unis={uniList} ref={this.ref} />
+                            <UniGrid
+                                reload={this.reload}
+                                unis={uniList}
+                                ref={this.ref}
+                            />
                         ) : (
-                            <NoUni />
+                            <NoUni
+                                header="No Universities Available"
+                                content="No universities have currently joined. Please come back later"
+                            />
                         )}
                     </Segment>
                     {totalPages > 1 && (
