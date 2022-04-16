@@ -7,15 +7,16 @@ import { patchPersonalInfo, getPersonalInfo } from "../controller/form.js";
 import { patchFamilyInfo, getFamilyInfo } from "../controller/form.js";
 import { patchAcademicInfo, getAcademicInfo } from "../controller/form.js";
 
-
 import {
-  postSignup,
-  postLogin,
-  postLogout,
-  postLogoutAll,
-  getMyUnis,
-  getUniListLength,
-  getUniList,
+    postSignup,
+    postLogin,
+    postLogout,
+    postLogoutAll,
+    getMyUnis,
+    getUniListLength,
+    getUniList,
+    postAddUni,
+    postRemoveUni,
 } from "../controller/student.js";
 
 const router = new express.Router();
@@ -46,31 +47,35 @@ router.get("/myUnis", auth, getMyUnis);
 
 router.get("/uniList", auth, getUniList);
 
-router.post("/addAllUnis", auth, async (req, res) => {
-  //console.log("POST /addAllUnis");
+router.post("/addUni", auth, postAddUni);
 
-  try {
-    const unis = await Uni.find({});
-    req.student.uniList = unis.map((value) => ({
-      uni: value._id,
-    }));
-    req.student.save();
-    res.send();
-  } catch (err) {
-    res.status(404).send(err);
-  }
+router.post("/removeUni", auth, postRemoveUni);
+
+router.post("/addAllUnis", auth, async (req, res) => {
+    //console.log("POST /addAllUnis");
+
+    try {
+        const unis = await Uni.find({});
+        req.student.uniList = unis.map((value) => ({
+            uni: value._id,
+        }));
+        req.student.save();
+        res.send();
+    } catch (err) {
+        res.status(404).send(err);
+    }
 });
 
 router.get("/student", auth, async (req, res) => {
-  // console.log(req.token);
-  // console.log(req.user);
-  res.send(req.user);
+    // console.log(req.token);
+    // console.log(req.user);
+    res.send(req.student);
 });
 
 router.get("/testForm", async (req, res) => {
-  let data = await Form.findById("624ca402bdf773a7a43082fd");
- // console.log(data);
-  res.send({ data });
+    let data = await Form.findById("624ca402bdf773a7a43082fd");
+    // console.log(data);
+    res.send({ data });
 });
 
 export default router;

@@ -4,8 +4,8 @@ import { Container, Pagination, Icon, Segment } from "semantic-ui-react";
 import server from "../../server/server";
 
 import Navbar from "../components/navbar/Navbar";
-import UniGrid from "../components/unigrid/findUniGrid";
-import NoUni from "../components/unigrid/findUniEmpty";
+import UniGrid from "../components/unigrid/UniGrid";
+import NoUni from "../components/unigrid/NoUni";
 
 export default class findUnis extends React.Component {
     constructor(props) {
@@ -21,11 +21,25 @@ export default class findUnis extends React.Component {
             const { data } = await server.get(
                 `/student/uniList?limit=${this.limit}&skip=${skip}`
             );
+
             this.setState({ ...data });
         } catch (err) {
             console.log(err);
         }
     }
+
+    reload = async () => {
+        const skip = this.state.pageNo - 1;
+        try {
+            const { data } = await server.get(
+                `/student/uniList?limit=${this.limit}&skip=${skip}`
+            );
+            this.setState({ ...data });
+            this.ref?.current?.setState({ uniList: data.uniList });
+        } catch (err) {
+            console.log(err);
+        }
+    };
 
     paginationHandler = async (e, { activePage }) => {
         const skip = activePage - 1;
@@ -33,6 +47,7 @@ export default class findUnis extends React.Component {
             const { data } = await server.get(
                 `/student/uniList?limit=${this.limit}&skip=${skip}`
             );
+
             this.setState({ uniList: data.uniList, pageNo: activePage });
             this.ref.current.setState({ uniList: data.uniList });
 
@@ -52,7 +67,11 @@ export default class findUnis extends React.Component {
                 <Container style={{ padding: "20px" }}>
                     <Segment raised>
                         {uniList.length > 0 ? (
-                            <UniGrid unis={uniList} ref={this.ref} />
+                            <UniGrid
+                                reload={this.reload}
+                                unis={uniList}
+                                ref={this.ref}
+                            />
                         ) : (
                             <NoUni />
                         )}

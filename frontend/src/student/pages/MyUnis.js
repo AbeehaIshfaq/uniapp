@@ -42,6 +42,19 @@ export default class MyUnis extends React.Component {
         }
     };
 
+    reload = async () => {
+        const skip = this.state.pageNo - 1;
+        try {
+            const { data } = await server.get(
+                `/student/myUnis?limit=${this.limit}&skip=${skip}`
+            );
+            this.setState({ ...data });
+            this.ref?.current?.setState({ uniList: data.uniList });
+        } catch (err) {
+            console.log(err);
+        }
+    };
+
     render() {
         const { pageNo, totalPages, uniList } = this.state;
         return (
@@ -52,7 +65,11 @@ export default class MyUnis extends React.Component {
                 <Container style={{ padding: "20px" }}>
                     <Segment raised>
                         {uniList.length > 0 ? (
-                            <UniGrid unis={uniList} ref={this.ref} />
+                            <UniGrid
+                                reload={this.reload}
+                                unis={uniList}
+                                ref={this.ref}
+                            />
                         ) : (
                             <NoUni />
                         )}

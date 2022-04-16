@@ -7,7 +7,10 @@ class UniCard extends React.Component {
 
     clickHandler = (e) => {
         this.setState({ loading: true });
-        this.props.remove(this.props.uni._id);
+
+        if (this.props.uni.isAdded) { 
+            this.props.add()
+        } this.props.remove(this.props.uni._id);
     };
 
     render() {
@@ -19,7 +22,6 @@ class UniCard extends React.Component {
         deadline = `${date.getDate()}/${date.getMonth()}/${date.getFullYear()}`;
         return (
             <>
-                {/* <p> name, email</p> */}
                 <Card>
                     <Card.Content
                         textAlign="center"
@@ -67,31 +69,31 @@ class UniCard extends React.Component {
                             </Button.Content>
                         </Button>
 
-                        {/* {isAdded ? (
-              <Button
-                loading={loading}
-                negative
-                animated="fade"
-                onClick={this.clickHandler}
-              >
-                <Button.Content visible>Remove</Button.Content>
-                <Button.Content hidden>
-                  <Icon name="remove" />
-                </Button.Content>
-              </Button>
-            ) : (
-              <Button
-                loading={loading}
-                positive
-                animated="fade"
-                onClick={this.clickHandler}
-              >
-                <Button.Content visible>Add</Button.Content>
-                <Button.Content hidden>
-                  <Icon name="add" />
-                </Button.Content>
-              </Button>
-            )} */}
+                        {isAdded ? (
+                            <Button
+                                loading={loading}
+                                negative
+                                animated="fade"
+                                onClick={this.clickHandler}
+                            >
+                                <Button.Content visible>Remove</Button.Content>
+                                <Button.Content hidden>
+                                    <Icon name="remove" />
+                                </Button.Content>
+                            </Button>
+                        ) : (
+                            <Button
+                                loading={loading}
+                                positive
+                                animated="fade"
+                                onClick={this.clickHandler}
+                            >
+                                <Button.Content visible>Add</Button.Content>
+                                <Button.Content hidden>
+                                    <Icon name="add" />
+                                </Button.Content>
+                            </Button>
+                        )}
                     </Card.Content>
                 </Card>
             </>
