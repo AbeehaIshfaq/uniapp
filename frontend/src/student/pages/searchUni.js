@@ -73,7 +73,10 @@ export default class findUnis extends React.Component {
                                 ref={this.ref}
                             />
                         ) : (
-                            <NoUni />
+                            <NoUni
+                                header="No Universities Available"
+                                content="No universities have currently joined. Please come back later"
+                            />
                         )}
                     </Segment>
                     {totalPages > 1 && (

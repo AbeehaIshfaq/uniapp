@@ -71,7 +71,13 @@ export default class MyUnis extends React.Component {
                                 ref={this.ref}
                             />
                         ) : (
-                            <NoUni />
+                            <NoUni
+                                header="No Universities Selected"
+                                content="You do not have any universities selected at the moment. Click
+                            the button below to select a university"
+                                button="Find Universities"
+                                redirect="/student/findUnis"
+                            />
                         )}
                     </Segment>
                     {totalPages > 1 && (
