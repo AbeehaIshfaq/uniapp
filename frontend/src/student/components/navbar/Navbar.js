@@ -1,5 +1,5 @@
 import React from "react";
-import { Menu } from "semantic-ui-react";
+import { Menu, Segment } from "semantic-ui-react";
 import withRouter from "../../../router/withRouter";
 
 import AuthContext from "../../../shared/context/AuthContext";
@@ -17,30 +17,26 @@ class NavBar extends React.Component {
 
     render() {
         return (
-            <div>
-                <Menu secondary pointing>
-                    <Menu.Menu position="left">
-                        <NavbarItem to="/student">Dashboard</NavbarItem>
-                        <NavbarItem to="/student/application">
-                            Application
-                        </NavbarItem>
-                        <NavbarItem to="/student/findUnis">
-                            Find Universities
-                        </NavbarItem>
-                        <NavbarItem to="/student/myUnis">
-                            My Universities
-                        </NavbarItem>
-                        <NavbarItem to="/student/upload_documents">
-                            Upload Documents
-                        </NavbarItem>
-                    </Menu.Menu>
-                    <Menu.Menu position="right">
-                        <Menu.Item onClick={this.logoutHandler}>
-                            Logout
-                        </Menu.Item>
-                    </Menu.Menu>
-                </Menu>
-            </div>
+            <Menu stackable inverted color="blue" style={{ borderRadius: "0" }}>
+                <Menu.Menu position="left">
+                    <NavbarItem to="/student">Dashboard</NavbarItem>
+                    <NavbarItem to="/student/application">
+                        Application
+                    </NavbarItem>
+                    <NavbarItem to="/student/findUnis">
+                        Find Universities
+                    </NavbarItem>
+                    <NavbarItem to="/student/myUnis">
+                        My Universities
+                    </NavbarItem>
+                    <NavbarItem to="/student/upload_documents">
+                        Upload Documents
+                    </NavbarItem>
+                </Menu.Menu>
+                <Menu.Menu position="right">
+                    <Menu.Item onClick={this.logoutHandler}>Logout</Menu.Item>
+                </Menu.Menu>
+            </Menu>
         );
     }
 }
