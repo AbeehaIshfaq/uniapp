@@ -1,5 +1,5 @@
 import React from "react";
-import { Menu, Segment } from "semantic-ui-react";
+import { Menu } from "semantic-ui-react";
 import withRouter from "../../../router/withRouter";
 
 import AuthContext from "../../../shared/context/AuthContext";
