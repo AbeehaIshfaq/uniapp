@@ -1,11 +1,12 @@
 import express from "express";
-
 import auth from "../middleware/studentAuth.js";
-
 import Form from "../model/form.js";
 import Uni from "../model/uni.js";
 
 import { patchPersonalInfo, getPersonalInfo } from "../controller/form.js";
+import { patchFamilyInfo, getFamilyInfo } from "../controller/form.js";
+import { patchAcademicInfo, getAcademicInfo } from "../controller/form.js";
+
 import {
     postSignup,
     postLogin,
@@ -13,8 +14,14 @@ import {
     postLogoutAll,
     getMyUnis,
     getUniListLength,
+<<<<<<< HEAD
     forgetPassword,
     resetPassword,
+=======
+    getUniList,
+    postAddUni,
+    postRemoveUni,
+>>>>>>> f9b67b583807884a9f9d4861823aba0585cd3a3e
 } from "../controller/student.js";
 import Student from "../model/student.js";
 
@@ -30,7 +37,15 @@ router.post("/logoutAll", auth, postLogoutAll);
 
 router.patch("/application/personalInfo", auth, patchPersonalInfo);
 
+router.patch("/application/familyInfo", auth, patchFamilyInfo);
+
+router.patch("/application/academicInfo", auth, patchAcademicInfo);
+
 router.get("/application/personalInfo", auth, getPersonalInfo);
+
+router.get("/application/familyInfo", auth, getFamilyInfo);
+
+router.get("/application/academicInfo", auth, getAcademicInfo);
 
 router.post("/uniListLength", auth, getUniListLength);
 
@@ -53,9 +68,14 @@ router.post("/resetPassword/:id/:token", async (req, res) => {
         res.status(404).send("error!!!");
     }
 });
+router.get("/uniList", auth, getUniList);
+
+router.post("/addUni", auth, postAddUni);
+
+router.post("/removeUni", auth, postRemoveUni);
 
 router.post("/addAllUnis", auth, async (req, res) => {
-    console.log("POST /addAllUnis");
+    //console.log("POST /addAllUnis");
 
     try {
         const unis = await Uni.find({});
@@ -70,14 +90,14 @@ router.post("/addAllUnis", auth, async (req, res) => {
 });
 
 router.get("/student", auth, async (req, res) => {
-    console.log(req.token);
-    console.log(req.user);
-    res.send(req.user);
+    // console.log(req.token);
+    // console.log(req.user);
+    res.send(req.student);
 });
 
 router.get("/testForm", async (req, res) => {
     let data = await Form.findById("624ca402bdf773a7a43082fd");
-    console.log(data);
+    // console.log(data);
     res.send({ data });
 });
 

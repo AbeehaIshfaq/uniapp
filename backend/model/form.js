@@ -116,21 +116,50 @@ const familyInfoSchema = mongoose.Schema({
         default: "",
     },
 });
+familyInfoSchema.methods.toJSON = function () {
+    const info = this;
+    const infoObject = info.toObject();
+    const [first, middle, last] = infoObject.name.split(" ");
+    infoObject.first = first;
+    if (last) {
+        infoObject.middle = middle;
+        infoObject.last = last;
+    } else {
+        infoObject.last = middle;
+        infoObject.middle = "";
+    }
+    delete infoObject.name;
 
-const academicInfoSchema = new mongoose.Schema({
-    typeOf: String,
-    completionStatus: String,
-    degreeStatus: String,
-    board: String,
-    school: String,
-    startDate: Date,
-    endDate: Date,
-    subjects: [
-        {
-            subjectName: String,
-            grade: String,
-        },
-    ],
+    return infoObject;
+};
+
+const academicInfoSchema = mongoose.Schema({
+    EducationType: {
+        type: String,
+        default: "",
+    },
+    Status: {
+        type: String,
+        default: "",
+    },
+    startDate: {
+        type: String,
+        default: "",
+    },
+    endDate: {
+        type: String,
+        default: "",
+    },
+    School: {
+        type: String,
+        trim: true,
+        default: "",
+    },
+    OverallPercentage: {
+        type: String,
+        trim: true,
+        default: "",
+    },
 });
 
 const extraCurrInfoSchema = mongoose.Schema({
@@ -146,8 +175,8 @@ const formSchema = mongoose.Schema({
         ref: "Student",
     },
     personalInfo: personalInfoSchema,
-    familyInfo: [familyInfoSchema],
-    academicInfo: [academicInfoSchema],
+    familyInfo: familyInfoSchema,
+    academicInfo: academicInfoSchema,
     exrtaCurrInfo: [extraCurrInfoSchema],
 });
 

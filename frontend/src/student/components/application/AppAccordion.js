@@ -10,16 +10,17 @@ import AcademicInfo from "./AcademicInfo";
 const items = [
     {
         title: "Personal Information",
-        children: <AppForm children={<PersonalInfo />} />,
+        children: <AppForm children={<PersonalInfo />} title="personalInfo" />,
     },
-    { title: "Family Information",
-    children: <AppForm children={<FamilyInfo />} />,
-},
+    {
+        title: "Family Information",
+        children: <AppForm children={<FamilyInfo />} title="familyInfo" />,
+    },
 
-    { title: "Academic Information", 
-    children: <AppForm children={<AcademicInfo />} />,
-},
-  
+    {
+        title: "Academic Information",
+        children: <AppForm children={<AcademicInfo />} title="academicInfo" />,
+    },
 ];
 
 export default class AppAccordion extends React.Component {

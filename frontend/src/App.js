@@ -15,8 +15,8 @@ import Page404 from "./shared/pages/404Page";
 import StudentDash from "./student/pages/DashBoard";
 import StudentApplication from "./student/pages/Application";
 import StudentAuth from "./student/pages/Auth";
-import Navbar from "./student/components/navbar/Navbar";
 import StudentMyUnis from "./student/pages/MyUnis";
+import StudentfindUnis from "./student/pages/searchUni";
 
 import ApplicationPageUni from "./uni/pages/Application";
 import UniAuth from "./uni/pages/Auth";
@@ -24,14 +24,6 @@ import UniDash from "./uni/pages/DashBoard";
 import UniInfo from "./uni/pages/UniInfo";
 import SetDeadline from "./uni/pages/setdeadline";
 import UploadDoc from "./student/pages/UploadDoc";
-
-const TempComponent = () => {
-    return (
-        <header>
-            <Navbar />
-        </header>
-    );
-};
 
 class App extends React.PureComponent {
     state = { loggedIn: null, token: null, userId: null };
@@ -97,7 +89,7 @@ class App extends React.PureComponent {
 
                     <Route
                         path="/student/findUnis"
-                        element={<TempComponent />}
+                        element={<StudentfindUnis />}
                     />
                     <Route path="/student/myUnis" element={<StudentMyUnis />} />
                     <Route

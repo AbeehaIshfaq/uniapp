@@ -66,8 +66,9 @@ export async function getMyUnis(req, res) {
     const skip = req.query.skip ? req.query.skip * limit : 0;
 
     console.log(`GET student/myUnis/`, `skip=${skip}`, `limit=${limit}`);
-    console.log(req.student);
-    const uniIdList = req.student.uniList.map((uni) => uni.uni);
+
+    const uniIdList = req.student.uniList.map((uni) => uni);
+
     const totalPages = Math.ceil(req.student.uniList.length / limit);
     try {
         const uniList = await Uni.find({
@@ -163,3 +164,84 @@ export async function resetPassword(req, res) {
 }
 
 export async function updatePassword(req, res) {}
+export async function getUniList(req, res) {
+    const limit = req.query.limit || 12;
+    const skip = req.query.skip ? req.query.skip * limit : 0;
+
+    console.log(`GET student/uniList/`, `skip=${skip}`, `limit=${limit}`);
+
+    const uniCount = await Uni.countDocuments();
+    const totalPages = Math.ceil(uniCount / limit);
+
+    try {
+        const uniList = await Uni.find().skip(skip).limit(limit);
+        const sendList = [];
+        uniList.forEach((uni) => {
+            let temp = uni.toJSON();
+            temp.isAdded = req.student.uniList.includes(uni._id.toString())
+                ? true
+                : false;
+            sendList.push(temp);
+        });
+
+        res.send({ uniList: sendList, totalPages });
+    } catch (err) {
+        console.log(err);
+        res.status(404).send(err);
+    }
+}
+
+export async function postAddUni(req, res) {
+    console.log("POST /student/addUni");
+
+    const uniId = req.body.uniId;
+    req.student.uniList.push(uniId);
+
+    let uni;
+    try {
+        uni = await Uni.findOne({ _id: uniId });
+    } catch (err) {
+        console.log(err);
+        return res.status(404).send();
+    }
+
+    uni.studentList.push(req.student._id);
+
+    try {
+        await req.student.save();
+        await uni.save();
+        res.send();
+    } catch (err) {
+        console.log(err);
+        res.status(500).send(err);
+    }
+}
+
+export async function postRemoveUni(req, res) {
+    console.log("POST /student/removeUni");
+
+    req.student.uniList = req.student.uniList.filter(
+        (uni) => uni.toString() !== req.body.uniId
+    );
+
+    let uni;
+    try {
+        uni = await Uni.findOne({ _id: req.body.uniId });
+    } catch (err) {
+        console.log(err);
+        return res.status(404).send();
+    }
+
+    uni.studentList = uni.studentList.filter(
+        (student) => student.toString() !== req.student._id.toString()
+    );
+
+    try {
+        await req.student.save();
+        await uni.save();
+        res.send();
+    } catch (err) {
+        console.log(err);
+        res.status(500).send(err);
+    }
+}
