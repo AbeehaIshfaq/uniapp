@@ -63,7 +63,7 @@ class UniCard extends React.Component {
               </Button.Content>
             </Button>
 
-            {/* {isAdded ? (
+            {isAdded ? (
               <Button
                 loading={loading}
                 negative
@@ -87,7 +87,7 @@ class UniCard extends React.Component {
                   <Icon name="add" />
                 </Button.Content>
               </Button>
-            )} */}
+            )}
           </Card.Content>
         </Card>
       </>
