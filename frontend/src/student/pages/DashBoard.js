@@ -16,7 +16,7 @@ const StudentDash = (props) => {
             <main>
                 <Container style={{ margin: "2.5rem" }}>
                     <Card.Group itemsPerRow={2} stackable>
-                        <ProgressCard name={props}/>
+                        <ProgressCard />
                         <Calend />
                     </Card.Group>
                 </Container>

@@ -3,7 +3,6 @@ import { Progress, Card, Button, Icon, Header } from "semantic-ui-react";
 import { Link } from "react-router-dom";
 
 const ProgressCard = (props) => {
-    console.log(props.name,"name");
     return (
         <Card align="left" fluid>
             <Card.Content textAlign="center">
@@ -12,7 +11,7 @@ const ProgressCard = (props) => {
 
             <Card.Content>
                 <Progress
-                    percent={props.name}
+                    percent="90"
                     indicating
                     progress
                     label="Personal Info"
