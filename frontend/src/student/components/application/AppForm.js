@@ -13,7 +13,7 @@ export default class AppForm extends React.Component {
         e.preventDefault();
         const { title } = this.props;
         this.setState({ loading: true });
-        const child = this.formRef.current; // something is wrong here
+        const child = this.formRef.current;
 
         if (child.validator()) {
             this.setState({ loading: false });
