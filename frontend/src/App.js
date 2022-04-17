@@ -15,6 +15,7 @@ import Page404 from "./shared/pages/404Page";
 import StudentDash from "./student/pages/DashBoard";
 import StudentApplication from "./student/pages/Application";
 import StudentAuth from "./student/pages/Auth";
+import ForgetPass from "./student/pages/Forgetpassword";
 import StudentMyUnis from "./student/pages/MyUnis";
 import StudentfindUnis from "./student/pages/searchUni";
 
@@ -71,6 +72,8 @@ class App extends React.PureComponent {
                     <Route path="/uni" element={<Navigate to="/" />} />
                     <Route path="/student/auth" element={<StudentAuth />} />
                     <Route path="/uni/auth" element={<UniAuth />} />
+                    <Route path="/forgetpassword" element={<ForgetPass />} />
+
                 </>
             );
         } else if (loggedIn === "student") {

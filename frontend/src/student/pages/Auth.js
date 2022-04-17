@@ -3,6 +3,8 @@ import { Grid, Menu } from "semantic-ui-react";
 
 import Login from "../components/auth/Login";
 import Signup from "../components/auth/Signup";
+import { Progress, Card, Button, Icon, Header } from "semantic-ui-react";
+import { Link } from "react-router-dom";
 
 class Auth extends React.Component {
     state = { activeItem: "login" };
@@ -33,8 +35,11 @@ class Auth extends React.Component {
                         />
                     </Menu>
                     {activeItem === "login" ? <Login /> : <Signup />}
+                    <Button as={Link} to="/forgetpassword"  attached='bottom'>Forgot your password?</Button>
+
                 </Grid.Column>
             </Grid>
+
         );
     }
 }
