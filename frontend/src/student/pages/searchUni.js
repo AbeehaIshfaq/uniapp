@@ -33,18 +33,31 @@ export default class findUnis extends React.Component {
         this.Submithandler = this.Submithandler.bind(this);
     }
 
-    // async componentDidMount() {
-    //     const skip = 0;
-    //     try {
-    //         const { data } = await server.get(
-    //             `/student/uniList?limit=${this.limit}&skip=${skip}&input=${this.inp}`
-    //         );
-
-    //         this.setState({ ...data });
-    //     } catch (err) {
-    //         console.log(err);
-    //     }
-    // }
+    Submithandler = async () => {
+        // event.preventDefault();
+        const skip = 0;
+        try {
+            const { data } = await server.get(
+                `/student/uniList?limit=${this.limit}&skip=${skip}&input=${
+                    this.state.inp
+                }&nums=${0}`
+            );
+            // this.setState({ ...data });
+            this.setState(
+                {
+                    totalPages: data.totalPages,
+                    uniList: data.uniList,
+                    inp: this.state.inp,
+                },
+                () => this.render()
+            );
+        } catch (err) {
+            console.log(err);
+        }
+        // this.render();
+        // this.setState({ temp: 1 });
+        // this.forceUpdate();
+    };
 
     async componentDidMount() {
         const skip = 0;
@@ -64,41 +77,20 @@ export default class findUnis extends React.Component {
         const skip = this.state.pageNo - 1;
         try {
             const { data } = await server.get(
-                `/student/uniList?limit=${this.limit}&skip=${skip}`
+                `/student/uniList?limit=${this.limit}&skip=${skip}&input=${
+                    this.state.inp
+                }&nums=${0}`
             );
-            this.setState({ ...data });
+
+            this.setState({
+                uniList: data.uniList,
+                totalPages: data.totalPages,
+            });
             this.ref?.current?.setState({ uniList: data.uniList });
         } catch (err) {
             console.log(err);
         }
     };
-
-    // paginationHandler = async (e, { activePage }) => {
-    //     const skip = activePage - 1;
-    //     try {
-    //         const { data } = await server.get(
-    //             `/student/uniList?limit=${this.limit}&skip=${skip}&input=${
-    //                 this.state.inp
-    //             }&nums=${0}`
-    //         );
-    //         // this.setState({ ...data });
-    //         this.setState(
-    //             {
-    //                 totalPages: data.totalPages,
-    //                 uniList: data.uniList,
-    //                 inp: this.state.inp,
-    //             },
-    //             () => this.render()
-    //         );
-    //         // this.setState({ uniList: data.uniList, pageNo: activePage });
-    //         // this.ref.current.setState({ uniList: data.uniList });
-    //     } catch (err) {
-    //         console.log(err);
-    //     }
-    //     // this.render();
-    //     // this.setState({ temp: 1 });
-    //     // this.forceUpdate();
-    // };
 
     paginationHandler = async (e, { activePage }) => {
         const skip = activePage - 1;
