@@ -17,8 +17,7 @@ export default class UpdateProgress extends React.Component {
     updatePersonalinfo = async () => {
         let data;
         let personalcount=0;
-       // const { title } = this.props;
-        //console.log(title,"title")
+
         try {
          const response = await server.get( "/student/application/personalInfo");
             data = response.data;
@@ -81,35 +80,32 @@ export default class UpdateProgress extends React.Component {
         try {
          const response = await server.get( "/student/application/familyInfo");
             data = response.data;
-            if (data.relation!="")
+            if (data.relation!=null)
             {
                 personalcount=personalcount+16.67;
             }
-            if (data.name!="")
+            if (data.name!=null)
             {
                 personalcount=personalcount+16.67;
             }
-            if (data.email!="")
+            if (data.email!=null)
             {
                 personalcount=personalcount+16.67;
             }
-            if (data.phoneNumber!="")
+            if (data.phoneNumber!=null)
             {
                 personalcount=personalcount+16.67;
             }
-            if (data.email!="")
+            if (data.email!=null)
             {
                 personalcount=personalcount+16.67;
             }
-            //console.log(data.gender,"GENDER")
-           // console.log(personalcount,"p count")
-           if (data.occupation!="")
-           {
-               personalcount=personalcount+16.67;
-           }
+            if (data.occupation!=null)
+            {
+                personalcount=personalcount+16.67;
+            }
            this.setState({fcount: personalcount});
 
-           // return personalcount;
 
         } catch (err) {
             console.log(err.response.data);
@@ -117,34 +113,34 @@ export default class UpdateProgress extends React.Component {
         }
     };
     updateAcademicinfo = async () => {
-        let data;
+        let data1;
         let personalcount=0;
        // const { title } = this.props;
         //console.log(title,"title")
         try {
          const response = await server.get( "/student/application/academicInfo");
-            data = response.data;
-            if (data.EducationType!="")
+            data1 = response.data;
+            if (data1.EducationType!=null)
             {
                 personalcount=personalcount+16.67;
             }
-            if (data.Status!="")
+            if (data1.Status!=null)
             {
                 personalcount=personalcount+16.67;
             }
-            if (data.startDate!="")
+            if (data1.startDate!=null)
             {
                 personalcount=personalcount+16.67;
             }
-            if (data.endDate!="")
+            if (data1.endDate!=null)
             {
                 personalcount=personalcount+16.67;
             }
-            if (data.School!="")
+            if (data1.School!=null)
             {
                 personalcount=personalcount+16.67;
             }
-            if (data.OverallPercentage!="")
+            if (data1.OverallPercentage!=null)
             {
                 personalcount=personalcount+16.67;
             }
@@ -162,16 +158,12 @@ export default class UpdateProgress extends React.Component {
     };
     
      componentDidMount() {
-        this.updatePersonalinfo();
         this.updateFamilyinfo();
+        this.updatePersonalinfo();
         this.updateAcademicinfo();
 
     }
-    async pinfo() {
-        let c=0
-        this.updatePersonalinfo().then(result => c=(result))
-        return c;
-    }
+  
     
 
 
