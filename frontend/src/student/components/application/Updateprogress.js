@@ -88,7 +88,7 @@ export default class UpdateProgress extends React.Component {
             {
                 personalcount=personalcount+16.67;
             }
-            if (data.email!=null)
+            if (data.cnic!=null)
             {
                 personalcount=personalcount+16.67;
             }
