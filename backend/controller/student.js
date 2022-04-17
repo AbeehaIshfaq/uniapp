@@ -125,10 +125,11 @@ function filtersfunc(inp, uni) {
   // console.log("month:", );
   // console.log("year:", );
 
-  if (loc != "" && loc.toLowerCase() != uni.city.toLowerCase()) flag = false;
-  if (rank != uni.ranking && rank != "") flag = false;
-  if (feeMax != "" && uni.fee > parseInt(feeMax)) flag = false;
-  if (feeMin != "" && uni.fee < parseInt(feeMin)) flag = false;
+  if (loc != "" && uni.city && loc.toLowerCase() != uni.city.toLowerCase())
+    flag = false;
+  if (rank != "" && uni.ranking && rank != uni.ranking) flag = false;
+  if (feeMax != "" && uni.fee && uni.fee > parseInt(feeMax)) flag = false;
+  if (feeMin != "" && uni.fee && uni.fee < parseInt(feeMin)) flag = false;
   if (month != "Select" && month != uni.deadline.getMonth()) flag = false;
   if (year != "Select" && year != uni.deadline.getFullYear()) flag = false;
 

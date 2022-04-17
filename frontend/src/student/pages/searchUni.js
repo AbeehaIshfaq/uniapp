@@ -32,10 +32,12 @@ export default class findUnis extends React.Component {
 
     this.Submithandler = this.Submithandler.bind(this);
     this.filterSubmitHandler = this.filterSubmitHandler.bind(this);
+    this.reload = this.reload.bind(this);
+
+    // this.startFunc();
   }
 
   Submithandler = async () => {
-    // event.preventDefault();
     const skip = 0;
     try {
       const { data } = await server.get(
@@ -44,23 +46,17 @@ export default class findUnis extends React.Component {
         }&nums=${0}`
       );
       // this.setState({ ...data });
-      this.setState(
-        {
-          totalPages: data.totalPages,
-          uniList: data.uniList,
-          inp: this.state.inp,
-        },
-        () => this.render()
-      );
+      this.setState({
+        totalPages: data.totalPages,
+        uniList: data.uniList,
+        inp: this.state.inp,
+      });
     } catch (err) {
       console.log(err);
     }
-    // this.render();
-    // this.setState({ temp: 1 });
-    // this.forceUpdate();
   };
 
-  async componentDidMount() {
+  async startFunc() {
     const skip = 0;
     try {
       const { data } = await server.get(
@@ -84,7 +80,7 @@ export default class findUnis extends React.Component {
       );
 
       this.setState({
-        uniList: data.uniList,
+        // uniList: data.uniList,
         totalPages: data.totalPages,
       });
       this.ref?.current?.setState({ uniList: data.uniList });
@@ -134,19 +130,23 @@ export default class findUnis extends React.Component {
         }&skip=${skip}&input=${send_arr}&nums=${1}`
       );
       // this.setState({ ...data });
-      this.setState(
-        {
-          totalPages: data.totalPages,
-          uniList: data.uniList,
-          inp: this.state.inp,
-          //   inp: this.state.inp,
-        },
-        () => this.render()
-      );
+      this.setState({
+        totalPages: data.totalPages,
+        uniList: data.uniList,
+        //   inp: this.state.inp,
+        //   inp: this.state.inp,
+      });
     } catch (err) {
       console.log(err);
     }
+    this.forceUpdate();
+
+    // this.reload();
   };
+
+  shouldComponentUpdate() {
+    return true;
+  }
 
   render() {
     const { pageNo, totalPages, uniList } = this.state;
@@ -208,7 +208,7 @@ export default class findUnis extends React.Component {
 
         <div
           style={{
-            textAlign: "center",
+            // textAlign: "center",
             position: "relative",
             top: "30px",
             left: "100px",
@@ -478,7 +478,7 @@ export default class findUnis extends React.Component {
               onClick={(event) => {
                 event.preventDefault();
                 this.filterSubmitHandler();
-                this.reload();
+                // this.reload();
                 // window.location.reload(true);
                 // window.top.location.reload(true);
                 // this.forceUpdate();
@@ -501,8 +501,6 @@ export default class findUnis extends React.Component {
             </button>
           </form>
         </div>
-
-        {/* <MainUniGrid states={this.state} refs={this.ref} /> */}
 
         <Container
           style={{
