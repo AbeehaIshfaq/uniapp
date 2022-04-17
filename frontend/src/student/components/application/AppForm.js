@@ -36,11 +36,12 @@ export default class AppForm extends React.Component {
     getData = async () => {
         let data;
         const { title } = this.props;
-        console.log(title,"title")
+        //console.log(title,"title")
         try {
          const response = await server.get(`/student/application/${title}`);
 
             data = response.data;
+            console.log(data.gender)
 
             const child = this.formRef.current;
 
