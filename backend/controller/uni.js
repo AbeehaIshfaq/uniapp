@@ -117,13 +117,13 @@ export async function resetPassword(req, res) {
 
     if (!uni) res.status(404).send({ error: err });
 
-    try {
-        const payload = jwt.verify(
-            token,
-            "afterlife-avenged-sevenfold" + uni.password
-        );
-        res.send("Enter new password");
-    } catch (err) {
-        res.status(404).send({ error: err });
-    }
+    // try {
+    //     const payload = jwt.verify(
+    //         token,
+    //         "afterlife-avenged-sevenfold" + uni.password
+    //     );
+    //     res.send("Enter new password");
+    // } catch (err) {
+    //     res.status(404).send({ error: err });
+    // }
 }

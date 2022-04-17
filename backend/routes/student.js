@@ -66,6 +66,7 @@ router.post("/resetPassword", async (req, res) => {
         res.status(404).send({ error: err });
     }
 });
+
 router.get("/uniList", auth, getUniList);
 
 router.post("/addUni", auth, postAddUni);

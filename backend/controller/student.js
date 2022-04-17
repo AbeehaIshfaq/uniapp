@@ -154,14 +154,14 @@ export async function resetPassword(req, res) {
 
     if (!student) res.status(404).send({ error: err });
 
-    try {
-        const payload = jwt.verify(
-            token,
-            "afterlife-avenged-sevenfold" + student.password
-        );
-    } catch (err) {
-        res.status(404).send({ error: err });
-    }
+    // try {
+    //     const payload = jwt.verify(
+    //         token,
+    //         "afterlife-avenged-sevenfold" + student.password
+    //     );
+    // } catch (err) {
+    //     res.status(404).send({ error: err });
+    // }
 }
 
 export async function updatePassword(req, res) {}
