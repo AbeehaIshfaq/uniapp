@@ -11,6 +11,14 @@ import "./selected.css";
 
 // var [value, onChange] = useState(new Date());
 
+function shouldDateBeSelected(date) {
+        console.log(date)
+        return true;
+}
+
+
+
+
 export default class App extends React.Component {
     state = { deadlines: [] };
     // deadlineDate() {
@@ -62,6 +70,7 @@ export default class App extends React.Component {
         }
     }
 
+
     render() {
         // const deadlines = deadlineDate()
         console.log(this.state.deadlines);
@@ -73,12 +82,19 @@ export default class App extends React.Component {
                     </Header>
                 </Card.Content>
                 <Card.Content>
-                    <Calendar />
+                    {/* <Calendar
+                        tileClassName={({ date }) => {
+                            if (shouldDateBeSelected(date)) {
+                                return "selected";
+                            }
+                            return null;
+                        }}
+                    /> */}
 
                     {/* <Calendar activeStartDate={new Date(2022, 0, 1)} /> */}
-                    {/* {this.state.deadlines.length > 0 ? (
+                    {this.state.deadlines.length > 0 ? (
                         <Calendar
-                            tileClassName={({ date, view }) => {
+                            tileClassName={({ date }) => {
                                 date = moment(new Date(date)).format(
                                     "MMMM Do YYYY"
                                 );
@@ -88,7 +104,7 @@ export default class App extends React.Component {
                                 }
                             }}
                         />
-                    ) : null} */}
+                    ) : null}
                     {/* <Calendar
                         defaultValue={
                             new Date(
