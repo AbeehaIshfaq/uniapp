@@ -9,6 +9,8 @@ export async function postSignup(req, res) {
     let form = new Form({
         owner: student._id,
         personalInfo: { name: student.name, email: student.email },
+        academicInfo: {},
+        familyInfo: {}
     });
     try {
         await student.save();
@@ -18,6 +20,7 @@ export async function postSignup(req, res) {
         student = student.toJSON();
         res.send({ student, token });
     } catch (err) {
+        console.log(err);
         res.status(400).send({ error: err });
     }
 }
