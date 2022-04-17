@@ -17,6 +17,7 @@ import {
     getUniList,
     postAddUni,
     postRemoveUni,
+    getViewUni,
 } from "../controller/student.js";
 
 const router = new express.Router();
@@ -50,6 +51,8 @@ router.get("/uniList", auth, getUniList);
 router.post("/addUni", auth, postAddUni);
 
 router.post("/removeUni", auth, postRemoveUni);
+
+router.get("/viewuni/:uniId", auth, getViewUni);
 
 router.post("/addAllUnis", auth, async (req, res) => {
     //console.log("POST /addAllUnis");

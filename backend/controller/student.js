@@ -257,3 +257,17 @@ export async function postRemoveUni(req, res) {
         res.status(500).send(err);
     }
 }
+
+export async function getViewUni(req, res) {
+    console.log("GET /student/viewUni");
+
+    const uniId = req.params.uniId;
+
+    try {
+        const uni = await Uni.findOne({ _id: uniId });
+        res.send({ uni: uni });
+    } catch (err) {
+        console.log(err);
+        res.status(400).send(err);
+    }
+}
