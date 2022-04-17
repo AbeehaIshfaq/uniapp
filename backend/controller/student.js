@@ -135,7 +135,7 @@ export async function forgetPassword(req, res) {
 
         let info = await transporter.sendMail({
             from: "projectuniapp@gmail.com",
-            to: "23100170@lums.edu.pk",
+            to: student.email,
             subject: "Change Password Link",
             text: link,
         });
