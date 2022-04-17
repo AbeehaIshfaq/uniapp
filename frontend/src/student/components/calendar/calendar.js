@@ -7,7 +7,7 @@ import { Card, Header } from "semantic-ui-react";
 import { render } from "react-dom";
 import server from "../../../server/server";
 
-import "./calendar.css";
+import "./selected.css";
 
 // var [value, onChange] = useState(new Date());
 
@@ -73,8 +73,10 @@ export default class App extends React.Component {
                     </Header>
                 </Card.Content>
                 <Card.Content>
+                    <Calendar />
+
                     {/* <Calendar activeStartDate={new Date(2022, 0, 1)} /> */}
-                    {this.state.deadlines.length > 0 ? (
+                    {/* {this.state.deadlines.length > 0 ? (
                         <Calendar
                             tileClassName={({ date, view }) => {
                                 date = moment(new Date(date)).format(
@@ -86,7 +88,7 @@ export default class App extends React.Component {
                                 }
                             }}
                         />
-                    ) : null}
+                    ) : null} */}
                     {/* <Calendar
                         defaultValue={
                             new Date(
