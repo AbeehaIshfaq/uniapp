@@ -155,9 +155,38 @@ export async function getUniList(req, res) {
     // const num = 0;
     console.log("num:", num);
 
+    // try {
+    //     const uniList = await Uni.find().skip(skip).limit(limit);
+    //     // console.log("unilist:", uniList);
+    //     const sendList1 = [];
+    //     uniList.forEach((uni) => {
+    //         let temp = uni.toJSON();
+    //         // temp.isAdded = true;
+
+    //         console.log(inputs.split(","));
+    //         // search conditions
+    //         if (num === 1) {
+    //             // console.log("inps:", typeof inputs);
+    //             console.log(inputs.split(","));
+    //             if (filtersfunc(inputs.split(","), uni)) {
+    //                 sendList1.push(temp);
+    //             }
+    //         } else if (num === 0) {
+    //             if (checkSimilarity(inputs, uni.name)) {
+    //                 sendList1.push(temp);
+    //             }
+    //         }
+    //     });
+    //     console.log("sendList:", sendList1);
+    //     res.send({ uniList: sendList1, totalPages });
+    // } catch (err) {
+    //     console.log(err);
+    //     res.status(404).send(err);
+    // }
+
     try {
         const uniList = await Uni.find().skip(skip).limit(limit);
-        // console.log("unilist:", uniList);
+        console.log("unilist:", uniList);
         const sendList1 = [];
         uniList.forEach((uni) => {
             let temp = uni.toJSON();

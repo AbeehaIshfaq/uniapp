@@ -33,13 +33,27 @@ export default class findUnis extends React.Component {
         this.Submithandler = this.Submithandler.bind(this);
     }
 
+    // async componentDidMount() {
+    //     const skip = 0;
+    //     try {
+    //         const { data } = await server.get(
+    //             `/student/uniList?limit=${this.limit}&skip=${skip}&input=${this.inp}`
+    //         );
+
+    //         this.setState({ ...data });
+    //     } catch (err) {
+    //         console.log(err);
+    //     }
+    // }
+
     async componentDidMount() {
         const skip = 0;
         try {
             const { data } = await server.get(
-                `/student/uniList?limit=${this.limit}&skip=${skip}&input=${this.inp}`
+                `/student/uniList?limit=${this.limit}&skip=${skip}&input=${
+                    this.state.inp
+                }&nums=${0}`
             );
-
             this.setState({ ...data });
         } catch (err) {
             console.log(err);
@@ -59,6 +73,33 @@ export default class findUnis extends React.Component {
         }
     };
 
+    // paginationHandler = async (e, { activePage }) => {
+    //     const skip = activePage - 1;
+    //     try {
+    //         const { data } = await server.get(
+    //             `/student/uniList?limit=${this.limit}&skip=${skip}&input=${
+    //                 this.state.inp
+    //             }&nums=${0}`
+    //         );
+    //         // this.setState({ ...data });
+    //         this.setState(
+    //             {
+    //                 totalPages: data.totalPages,
+    //                 uniList: data.uniList,
+    //                 inp: this.state.inp,
+    //             },
+    //             () => this.render()
+    //         );
+    //         // this.setState({ uniList: data.uniList, pageNo: activePage });
+    //         // this.ref.current.setState({ uniList: data.uniList });
+    //     } catch (err) {
+    //         console.log(err);
+    //     }
+    //     // this.render();
+    //     // this.setState({ temp: 1 });
+    //     // this.forceUpdate();
+    // };
+
     paginationHandler = async (e, { activePage }) => {
         const skip = activePage - 1;
         try {
@@ -67,23 +108,11 @@ export default class findUnis extends React.Component {
                     this.state.inp
                 }&nums=${0}`
             );
-            // this.setState({ ...data });
-            this.setState(
-                {
-                    totalPages: data.totalPages,
-                    uniList: data.uniList,
-                    inp: this.state.inp,
-                },
-                () => this.render()
-            );
-            // this.setState({ uniList: data.uniList, pageNo: activePage });
-            // this.ref.current.setState({ uniList: data.uniList });
+            this.setState({ uniList: data.uniList, pageNo: activePage });
+            this.ref.current.setState({ uniList: data.uniList });
         } catch (err) {
             console.log(err);
         }
-        // this.render();
-        // this.setState({ temp: 1 });
-        // this.forceUpdate();
     };
 
     filterSubmitHandler = async () => {
