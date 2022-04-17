@@ -59,8 +59,7 @@ const personalInfoSchema = mongoose.Schema({
         type: String,
         trim: true,
         default: "",
-    }
-   
+    },
 });
 
 personalInfoSchema.methods.toJSON = function () {
@@ -110,7 +109,7 @@ const familyInfoSchema = mongoose.Schema({
         type: String,
         trim: true,
         validate(value) {
-            if (!validator.isEmail(value)) {
+            if (value && !validator.isEmail(value)) {
                 throw new Error("Email is Invalid");
             }
         },
