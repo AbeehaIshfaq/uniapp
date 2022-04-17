@@ -21,7 +21,6 @@ const ApplicationPage = () => {
                     <AppAccordion />
                     <h1>    </h1>
                     
-                    <Button color='blue' class="ui button"><i class="save icon"></i> Submit</Button>
 
                 </Container>
             </main>
