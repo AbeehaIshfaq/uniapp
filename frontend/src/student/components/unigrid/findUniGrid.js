@@ -1,7 +1,7 @@
 import React from "react";
 import { Card } from "semantic-ui-react";
 
-import UniCard from "./findUniCard";
+import UniCard from "./UniCard";
 
 export default class UniGrid extends React.Component {
   state = { uniList: this.props.unis, loading: false };

@@ -37,7 +37,9 @@ export default class findUnis extends React.Component {
     const skip = 0;
     try {
       const { data } = await server.get(
-        `/student/uniList?limit=${this.limit}&skip=${skip}&input=${this.inp}`
+        `/student/uniList?limit=${this.limit}&skip=${skip}&input=${
+          this.state.inp
+        }&nums=${0}`
       );
       this.setState({ ...data });
     } catch (err) {
@@ -49,8 +51,8 @@ export default class findUnis extends React.Component {
     const skip = activePage - 1;
     try {
       const { data } = await server.get(
-        `/student/uniList?limit=${this.limit}&skip=${skip}&inp=${
-          this.inp
+        `/student/uniList?limit=${this.limit}&skip=${skip}&input=${
+          this.state.inp
         }&nums=${0}`
       );
       this.setState({ uniList: data.uniList, pageNo: activePage });

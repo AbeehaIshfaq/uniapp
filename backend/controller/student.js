@@ -155,7 +155,7 @@ export async function getUniList(req, res) {
 
   try {
     const uniList = await Uni.find().skip(skip).limit(limit);
-    // console.log("unilist:", uniList);
+    console.log("unilist:", uniList);
     const sendList1 = [];
     uniList.forEach((uni) => {
       let temp = uni.toJSON();
