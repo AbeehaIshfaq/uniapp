@@ -106,6 +106,7 @@ export async function forgetPassword(req, res) {
     const { email } = req.body;
     try {
         const student = await Student.findOne({ email });
+        console.log(student.id);
         if (!student) res.status(404).send({ error: "User not found" });
 
         let transporter = nodemailer.createTransport({
@@ -113,8 +114,8 @@ export async function forgetPassword(req, res) {
             // port: 587,
             secure: false,
             auth: {
-                user: "blooddreamer70@gmail.com",
-                pass: "xxx",
+                user: "projectuniapp@gmail.com",
+                pass: "UniApp123",
             },
         });
 
@@ -133,9 +134,9 @@ export async function forgetPassword(req, res) {
         const link = `http://localhost:5000/api/student/resetPassword/${student._id}/${token}`;
 
         let info = await transporter.sendMail({
-            from: "blooddreamer70@gmail.com",
+            from: "projectuniapp@gmail.com",
             to: "23100170@lums.edu.pk",
-            subject: "Checking if email is sending",
+            subject: "Change Password Link",
             text: link,
         });
 
@@ -147,7 +148,7 @@ export async function forgetPassword(req, res) {
 }
 
 export async function resetPassword(req, res) {
-    console.log("PATCH ");
+    console.log(req.params);
     const { id, token } = req.params;
     const student = await Student.findOne({ id });
 

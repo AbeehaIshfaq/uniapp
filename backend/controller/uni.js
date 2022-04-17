@@ -76,8 +76,8 @@ export async function forgetPassword(req, res) {
             // port: 587,
             secure: false,
             auth: {
-                user: "blooddreamer70@gmail.com",
-                pass: "xxx",
+                user: "projectUniApp@gmail.com",
+                pass: "UniApp123",
             },
         });
 
@@ -96,9 +96,9 @@ export async function forgetPassword(req, res) {
         const link = `http://localhost:5000/api/uni/resetPassword/${uni._id}/${token}`;
 
         let info = await transporter.sendMail({
-            from: "blooddreamer70@gmail.com",
-            to: "23100170@lums.edu.pk",
-            subject: "Checking if email is sending",
+            from: "projectUniApp@gmail.com",
+            to: uni.email,
+            subject: "Change Password Link",
             text: link,
         });
 

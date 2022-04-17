@@ -14,16 +14,14 @@ import {
     postLogoutAll,
     getMyUnis,
     getUniListLength,
-<<<<<<< HEAD
     forgetPassword,
     resetPassword,
-=======
     getUniList,
     postAddUni,
     postRemoveUni,
->>>>>>> f9b67b583807884a9f9d4861823aba0585cd3a3e
 } from "../controller/student.js";
 import Student from "../model/student.js";
+import mongoose from "mongoose";
 
 const router = new express.Router();
 
@@ -55,17 +53,17 @@ router.get("/forgetPassword", forgetPassword);
 
 router.get("/resetPassword/:id/:token", resetPassword);
 
-router.post("/resetPassword/:id/:token", async (req, res) => {
-    const { id, token } = req.params;
-    const student = await Student.findOne({ id });
+router.post("/resetPassword", async (req, res) => {
+    const { id, token } = req.query;
+    const student = await Student.findOne({ _id: id });
     if (!student) res.status(404).send("Error");
-
     try {
         student.password = req.body.password;
-        await student.save();
-        res.send("Password changed");
+        student.save();
+        res.send();
     } catch (err) {
-        res.status(404).send("error!!!");
+        console.log(err);
+        res.status(404).send({ error: err });
     }
 });
 router.get("/uniList", auth, getUniList);

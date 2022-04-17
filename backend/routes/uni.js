@@ -1,7 +1,7 @@
 import express from "express";
 import Uni from "../model/uni.js";
 
-import Uni from "../model/uni.js";
+// import Uni from "../model/uni.js";
 
 import auth from "../middleware/uniAuth.js";
 import {
@@ -45,19 +45,17 @@ router.get("/forgetPassword", forgetPassword);
 
 router.get("/resetPassword/:id/:token", resetPassword);
 
-router.post("/resetPassword/:id/:token", async (req, res) => {
-    const { id, token } = req.params;
-    const uni = await Uni.findOne({ id });
+router.post("/resetPassword", async (req, res) => {
+    const { id, token } = req.query;
+    const uni = await Uni.findOne({ _id: id });
     if (!uni) res.status(404).send("Error");
-
-    console.log(uni);
 
     try {
         uni.password = req.body.password;
-        await uni.save();
-        res.send("Password changed");
+        uni.save();
+        res.send();
     } catch (err) {
-        res.status(404).send("error!!!");
+        res.status(404).send({ error: err });
     }
 });
 
