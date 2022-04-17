@@ -16,14 +16,16 @@ export default class UpdateProgress extends React.Component {
     updatePersonalinfo = async () => {
         let data;
         let personalcount = 0;
-
         try {
             const response = await server.get(
                 "/student/application/personalInfo"
             );
             data = response.data;
+          //  console.log(data.gender,"gender")
+
             if (data.gender !== "") {
                 personalcount = personalcount + 10;
+               // console.log(data.gender,"gender")
             }
             if (data.name !== "") {
                 personalcount = personalcount + 10;
@@ -64,7 +66,7 @@ export default class UpdateProgress extends React.Component {
     };
     updateFamilyinfo = async () => {
         let data;
-        let personalcount = 0;
+        let famcount = 0;
         // const { title } = this.props;
         //console.log(title,"title")
         try {
@@ -72,25 +74,36 @@ export default class UpdateProgress extends React.Component {
                 "/student/application/familyInfo"
             );
             data = response.data;
-            if (data.relation !== null) {
-                personalcount = personalcount + 16.67;
+            if (data.relation !== "") {
+                famcount = famcount + 16.67;
+               // console.log(data.relation,"relation")
             }
-            if (data.name !== null) {
-                personalcount = personalcount + 16.67;
+            if (data.name !== undefined) {
+                famcount = famcount + 16.67;
+               // console.log(data.name,"name")
+
             }
-            if (data.cnic !== null) {
-                personalcount = personalcount + 16.67;
+            if (data.cnic !== "") {
+                famcount = famcount + 16.67;
+               // console.log(data.cnic,"cinc")
+
             }
-            if (data.phoneNumber !== null) {
-                personalcount = personalcount + 16.67;
+            if (data.phoneNumber !== "") {
+                famcount = famcount + 16.67;
+                //console.log(data.phoneNumber,"phno")
+
             }
-            if (data.email !== null) {
-                personalcount = personalcount + 16.67;
+            if (data.email !== "") {
+                famcount = famcount + 16.67;
+              //  console.log(data.email,"email")
+
             }
-            if (data.occupation !== null) {
-                personalcount = personalcount + 16.67;
+            if (data.occupation !== "") {
+                famcount = famcount + 16.67;
+               // console.log(data.occupation,"ouucpation")
+
             }
-            this.setState({ fcount: Math.ceil(personalcount) });
+            this.setState({ fcount: (famcount) });
         } catch (err) {
             console.log(err.response.data);
             this.setState({ loading: false, error: err });
@@ -106,22 +119,22 @@ export default class UpdateProgress extends React.Component {
                 "/student/application/academicInfo"
             );
             data1 = response.data;
-            if (data1.EducationType !== null) {
+            if (data1.EducationType !== "") {
                 personalcount = personalcount + 16.67;
             }
-            if (data1.Status !== null) {
+            if (data1.Status !== "") {
                 personalcount = personalcount + 16.67;
             }
-            if (data1.startDate !== null) {
+            if (data1.startDate !== "") {
                 personalcount = personalcount + 16.67;
             }
-            if (data1.endDate !== null) {
+            if (data1.endDate !== "") {
                 personalcount = personalcount + 16.67;
             }
-            if (data1.School !== null) {
+            if (data1.School !== "") {
                 personalcount = personalcount + 16.67;
             }
-            if (data1.OverallPercentage !== null) {
+            if (data1.OverallPercentage !== "") {
                 personalcount = personalcount + 16.67;
             }
 
