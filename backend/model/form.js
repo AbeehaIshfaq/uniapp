@@ -55,6 +55,11 @@ const personalInfoSchema = mongoose.Schema({
         trim: true,
         default: "",
     },
+    Progname: {
+        type: String,
+        trim: true,
+        default: "",
+    }
    
 });
 

@@ -31,7 +31,7 @@ export default class PersonalInfo extends React.Component {
         gender: { val: "", error: null, validators: [Required] },
         maritalStatus: { val: "", error: null, validators: [Required] },
         dateOfBirth: { val: "", error: null, validators: [Required] },
-        ProgNames: { val: "", error: null, validators: [Required] }
+        Progname: { val: "", error: null, validators: [Required] }
 
     };
 
@@ -130,11 +130,12 @@ export default class PersonalInfo extends React.Component {
                     className="required"
                 />
                  <Form.Input
-                    label="Name of programmes you want to appply"
+                    label="Name of programmes you want to appply in"
                     placeholder="Program Names (separated by a comma)"
-                    name="ProgNames"
-                    value={state.ProgNames.val}
-                    error={state.ProgNames.error}
+                    name="Progname"
+                    value={state.Progname.val}
+                    onChange={this.changeHandler}
+                    error={state.Progname.error}
                     className="required"
                     setvalue="" 
 
