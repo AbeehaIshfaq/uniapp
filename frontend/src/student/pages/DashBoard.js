@@ -2,7 +2,7 @@ import React from "react";
 import { Container, Card } from "semantic-ui-react";
 
 import NavBar from "../components/navbar/Navbar";
-import ProgressCard from "../components/dashboard/ProgressCard";
+import UpdateProgress from "../components/application/Updateprogress";
 // import DeadlineCard from "../components/dashboard/DeadlineCard";
 import UniListCard from "../components/dashboard/UnilistCard";
 import Calend from "../components/calendar/calend";
@@ -16,7 +16,7 @@ const StudentDash = (props) => {
             <main>
                 <Container style={{ margin: "2.5rem" }}>
                     <Card.Group itemsPerRow={2} stackable>
-                        <ProgressCard />
+                        <UpdateProgress />
                         <Calend />
                     </Card.Group>
                 </Container>

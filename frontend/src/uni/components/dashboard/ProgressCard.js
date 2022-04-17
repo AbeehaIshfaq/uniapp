@@ -9,10 +9,10 @@ const ProgressCard = () => {
         <Card>
 
 <div style={{display: 'flex',  justifyContent:'center', alignItems:'center', height: '30vh'}}>
-    <h1> No of Applications </h1>
+   <h1> UNIAPP </h1>
 </div>
             <Button as={Link} to="/uni/setdeadline" basic>
-            <Button color='blue'>Set Deadline</Button>
+            <Button color='blue'>Change Deadline</Button>
             </Button>
             <Button as={Link} to="/student/application" basic>
             <Button color='blue'>Download All Applications</Button>

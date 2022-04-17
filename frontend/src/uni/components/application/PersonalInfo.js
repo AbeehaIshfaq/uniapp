@@ -135,6 +135,16 @@ export default class PersonalInfo extends React.Component {
                     setvalue="" 
 
                 />
+                     <Form.Input
+                    label="Name of programmes you want to appply"
+                    placeholder="Program Names (separated by a comma)"
+                    name="ProgNames"
+                    value={state.permanentAddress.val}
+                    error={state.permanentAddress.error}
+                    className="required"
+                    setvalue="" 
+
+                />
                 <Form.Group grouped>
                     <Form.Field>
                         <label>Gender</label>
