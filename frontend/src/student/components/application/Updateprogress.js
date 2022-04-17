@@ -21,11 +21,11 @@ export default class UpdateProgress extends React.Component {
                 "/student/application/personalInfo"
             );
             data = response.data;
-          //  console.log(data.gender,"gender")
+            //  console.log(data.gender,"gender")
 
             if (data.gender !== "") {
                 personalcount = personalcount + 10;
-               // console.log(data.gender,"gender")
+                // console.log(data.gender,"gender")
             }
             if (data.name !== "") {
                 personalcount = personalcount + 10;
@@ -76,34 +76,29 @@ export default class UpdateProgress extends React.Component {
             data = response.data;
             if (data.relation !== "") {
                 famcount = famcount + 16.67;
-               // console.log(data.relation,"relation")
+                console.log(data.relation, "relation");
             }
             if (data.name !== undefined) {
                 famcount = famcount + 16.67;
-               // console.log(data.name,"name")
-
+                console.log(data.name, "name");
             }
             if (data.cnic !== "") {
                 famcount = famcount + 16.67;
-               // console.log(data.cnic,"cinc")
-
+                console.log(data.cnic, "cinc");
             }
             if (data.phoneNumber !== "") {
                 famcount = famcount + 16.67;
-                //console.log(data.phoneNumber,"phno")
-
+                console.log(data.phoneNumber, "phno");
             }
             if (data.email !== "") {
                 famcount = famcount + 16.67;
-              //  console.log(data.email,"email")
-
+                console.log(data.email, "email");
             }
             if (data.occupation !== "") {
                 famcount = famcount + 16.67;
-               // console.log(data.occupation,"ouucpation")
-
+                console.log(data.occupation, "ouucpation");
             }
-            this.setState({ fcount: (famcount) });
+            this.setState({ fcount: Math.ceil(famcount) });
         } catch (err) {
             console.log(err.response.data);
             this.setState({ loading: false, error: err });
