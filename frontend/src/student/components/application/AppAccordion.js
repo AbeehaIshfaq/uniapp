@@ -21,6 +21,7 @@ const items = [
         title: "Academic Information",
         children: <AppForm children={<AcademicInfo />} title="academicInfo" />,
     },
+    
 ];
 
 export default class AppAccordion extends React.Component {
