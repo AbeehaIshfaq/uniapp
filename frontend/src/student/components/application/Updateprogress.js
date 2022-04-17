@@ -26,7 +26,42 @@ export default class UpdateProgress extends React.Component {
             {
                 personalcount=personalcount+10;
             }
-            
+            if (data.name!="")
+            {
+                personalcount=personalcount+10;
+            }
+            if (data.email!="")
+            {
+                personalcount=personalcount+10;
+            }
+            if (data.phoneNumber!="")
+            {
+                personalcount=personalcount+10;
+            }
+            if (data.dateOfBirth!="")
+            {
+                personalcount=personalcount+10;
+            }
+            if (data.cnic!="")
+            {
+                personalcount=personalcount+10;
+            }
+            if (data.maritalStatus!="")
+            {
+                personalcount=personalcount+10;
+            }
+            if (data.currentAddress!="")
+            {
+                personalcount=personalcount+10;
+            }
+            if (data.permanentAddress!="")
+            {
+                personalcount=personalcount+10;
+            }
+            if (data.Progname!="")
+            {
+                personalcount=personalcount+10;
+            }
             //console.log(data.gender,"GENDER")
            // console.log(personalcount,"p count")
            this.setState({pcount: personalcount});
@@ -48,13 +83,29 @@ export default class UpdateProgress extends React.Component {
             data = response.data;
             if (data.relation!="")
             {
-                personalcount=personalcount+10;
+                personalcount=personalcount+16.67;
+            }
+            if (data.name!="")
+            {
+                personalcount=personalcount+16.67;
+            }
+            if (data.email!="")
+            {
+                personalcount=personalcount+16.67;
+            }
+            if (data.phoneNumber!="")
+            {
+                personalcount=personalcount+16.67;
+            }
+            if (data.email!="")
+            {
+                personalcount=personalcount+16.67;
             }
             //console.log(data.gender,"GENDER")
            // console.log(personalcount,"p count")
            if (data.occupation!="")
            {
-               personalcount=personalcount+10;
+               personalcount=personalcount+16.67;
            }
            this.setState({fcount: personalcount});
 
@@ -73,9 +124,29 @@ export default class UpdateProgress extends React.Component {
         try {
          const response = await server.get( "/student/application/academicInfo");
             data = response.data;
-            if (data.gender!="")
+            if (data.EducationType!="")
             {
-                personalcount=personalcount+10;
+                personalcount=personalcount+16.67;
+            }
+            if (data.Status!="")
+            {
+                personalcount=personalcount+16.67;
+            }
+            if (data.startDate!="")
+            {
+                personalcount=personalcount+16.67;
+            }
+            if (data.endDate!="")
+            {
+                personalcount=personalcount+16.67;
+            }
+            if (data.School!="")
+            {
+                personalcount=personalcount+16.67;
+            }
+            if (data.OverallPercentage!="")
+            {
+                personalcount=personalcount+16.67;
             }
            
             //console.log(data.gender,"GENDER")
