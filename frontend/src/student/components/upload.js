@@ -71,6 +71,7 @@ class Upload extends React.Component {
                             color="blue"
                             className="upload-button"
                             type="submit"
+                            
                         >
                             Upload
                         </Button>

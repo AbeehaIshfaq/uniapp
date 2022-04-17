@@ -15,14 +15,19 @@ import React, { useState } from "react";
 import Calendar from "react-calendar";
 import "react-calendar/dist/Calendar.css";
 import moment from "moment";
-
+import { Item, Button, Icon } from "semantic-ui-react";
+import { Link } from "react-router-dom";
 import { Card, Header } from "semantic-ui-react";
 
-export default function App() {
+export default function App() 
+{
     const [dateState, setDateState] = useState(new Date());
+ 
     const changeDate = (e) => {
         setDateState(e);
+  
     };
+    console.log( useState(new Date()))
     return (
         <Card fluid align="center">
             <Card.Content>
@@ -30,9 +35,8 @@ export default function App() {
                     This calendar will display the deadlines of universities
                 </Header>
             </Card.Content>
-
             <Card.Content>
-                <Calendar value={dateState} onChange={changeDate} />
+                <Calendar value={dateState} onChange={changeDate}  />
                 <br />
                 <Card.Meta>
                     Current selected date is{" "}

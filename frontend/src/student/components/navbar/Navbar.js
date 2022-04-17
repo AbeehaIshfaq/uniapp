@@ -18,11 +18,10 @@ class NavBar extends React.Component {
     render() {
         return (
             <Segment
-                inverted
+                inverted color='blue'
                 style={{
                     borderRadius: "0px",
-                    padding: "10px",
-                    backgroundColor: "darkblue",
+                    padding: "10px"
                 }}
             >
                 <Menu

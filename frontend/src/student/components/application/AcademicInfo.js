@@ -20,12 +20,12 @@ const StatusOptions = [
 
 export default class AcademicInfo extends React.Component {
     state = {
-        EducationType: { val: "", error: null, validators: [Required] },
-        Status: { val: "", error: null, validators: [Required] },
-        School: { val: "", error: null, validators: [Required] },
-        OverallPercentage: { val: "", error: null, validators: [Required] },
-        startDate: { val: "", error: null, validators: [Required] },
-        endDate: { val: "", error: null, validators: [Required] },
+        EducationType: { val: "", error: null, validators: [] },
+        Status: { val: "", error: null, validators: [] },
+        School: { val: "", error: null, validators: [] },
+        OverallPercentage: { val: "", error: null, validators: [] },
+        startDate: { val: "", error: null, validators: [] },
+        endDate: { val: "", error: null, validators: [] },
     };
 
     changeHandler = (e, { value, name }) => {
