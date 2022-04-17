@@ -38,6 +38,7 @@ const uniSchema = mongoose.Schema({
     },
     city: {
         type: String,
+        required: true,
     },
     programsOffered: [
         {
@@ -86,7 +87,7 @@ uniSchema.methods.generateAuthToken = async function () {
     const uni = this;
     const token = jwt.sign(
         { _id: uni._id.toString() },
-        "afterlife-avenged-sevenfold"
+       process.env.JWT_KEY
     );
     uni.tokens = uni.tokens.concat({ token });
     await uni.save();

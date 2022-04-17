@@ -53,7 +53,7 @@ studentSchema.methods.generateAuthToken = async function () {
     const student = this;
     const token = jwt.sign(
         { _id: student._id.toString() },
-        "afterlife-avenged-sevenfold"
+        process.env.JWT_KEY
     );
     student.tokens = student.tokens.concat({ token });
     await student.save();
