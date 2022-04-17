@@ -55,6 +55,7 @@ const personalInfoSchema = mongoose.Schema({
         trim: true,
         default: "",
     },
+   
 });
 
 personalInfoSchema.methods.toJSON = function () {

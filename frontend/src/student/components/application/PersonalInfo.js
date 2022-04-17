@@ -31,6 +31,8 @@ export default class PersonalInfo extends React.Component {
         gender: { val: "", error: null, validators: [Required] },
         maritalStatus: { val: "", error: null, validators: [Required] },
         dateOfBirth: { val: "", error: null, validators: [Required] },
+        ProgNames: { val: "", error: null, validators: [Required] }
+
     };
 
     changeHandler = (e, { value, name }) => {
@@ -126,6 +128,16 @@ export default class PersonalInfo extends React.Component {
                     onChange={this.changeHandler}
                     error={state.permanentAddress.error}
                     className="required"
+                />
+                 <Form.Input
+                    label="Name of programmes you want to appply"
+                    placeholder="Program Names (separated by a comma)"
+                    name="ProgNames"
+                    value={state.ProgNames.val}
+                    error={state.ProgNames.error}
+                    className="required"
+                    setvalue="" 
+
                 />
                 <Form.Group grouped>
                     <Form.Field>
