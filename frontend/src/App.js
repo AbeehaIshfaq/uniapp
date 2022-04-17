@@ -79,7 +79,10 @@ class App extends React.PureComponent {
                     <Route path="*" element={<Page404 />} />
                     <Route path="/" element={<Navigate to="/student" />} />
                     <Route path="/student" element={<StudentDash />} />
-                    <Route path="/student/viewuni" element={<Viewuni/>} />
+                    <Route
+                        path="/student/viewuni/:uniId"
+                        element={<Viewuni />}
+                    />
 
                     <Route
                         path="/student/auth"
