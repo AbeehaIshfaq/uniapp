@@ -5,21 +5,24 @@ import Uni from "../model/uni.js";
 export async function postSignup(req, res) {
   console.log("POST student/signup");
 
-  let student = new Student(req.body);
-  let form = new Form({
-    owner: student._id,
-    personalInfo: { name: student.name, email: student.email },
-  });
-  try {
-    await student.save();
-    await form.save();
+    let student = new Student(req.body);
+    let form = new Form({
+        owner: student._id,
+        personalInfo: { name: student.name, email: student.email },
+        academicInfo: {},
+        familyInfo: {}
+    });
+    try {
+        await student.save();
+        await form.save();
 
-    const token = await student.generateAuthToken();
-    student = student.toJSON();
-    res.send({ student, token });
-  } catch (err) {
-    res.status(400).send({ error: err });
-  }
+        const token = await student.generateAuthToken();
+        student = student.toJSON();
+        res.send({ student, token });
+    } catch (err) {
+        console.log(err);
+        res.status(400).send({ error: err });
+    }
 }
 
 export async function postLogin(req, res) {

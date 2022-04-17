@@ -11,17 +11,17 @@ import {
 
 export default class FamilyInfo extends React.Component {
     state = {
-        first: { val: "", error: null, validators: [Required] },
-        last: { val: "", error: null, validators: [Required] },
-        email: { val: "", error: null, validators: [Required, Email] },
+        first: { val: "", error: null, validators: [] },
+        last: { val: "", error: null, validators: [] },
+        email: { val: "", error: null, validators: [ Email] },
         phoneNumber: {
             val: "",
             error: null,
-            validators: [Required, PhoneNumber],
+            validators: [ PhoneNumber],
         },
-        cnic: { val: "", error: null, validators: [Required, CNIC] },
-        relation: { val: "", error: null, validators: [Required] },
-        occupation: { val: "", error: null, validators: [Required] },
+        cnic: { val: "", error: null, validators: [ CNIC] },
+        relation: { val: "", error: null, validators: [] },
+        occupation: { val: "", error: null, validators: [] },
     };
 
     changeHandler = (e, { value, name }) => {

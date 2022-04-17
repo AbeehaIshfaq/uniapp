@@ -1,6 +1,5 @@
 import React from "react";
 import { Form, Message } from "semantic-ui-react";
-
 import server from "../../../server/server";
 
 export default class AppForm extends React.Component {
@@ -14,7 +13,7 @@ export default class AppForm extends React.Component {
         e.preventDefault();
         const { title } = this.props;
         this.setState({ loading: true });
-        const child = this.formRef.current; // something is wrong here
+        const child = this.formRef.current;
 
         if (child.validator()) {
             this.setState({ loading: false });
@@ -37,11 +36,12 @@ export default class AppForm extends React.Component {
     getData = async () => {
         let data;
         const { title } = this.props;
-        console.log(title,"title")
+        //console.log(title,"title")
         try {
          const response = await server.get(`/student/application/${title}`);
 
             data = response.data;
+            console.log(data.gender)
 
             const child = this.formRef.current;
 
@@ -83,7 +83,8 @@ export default class AppForm extends React.Component {
                     header="An error has occured!"
                     content={error && error.toString()}
                 />
-                <Form.Button>Save</Form.Button>
+                <Form.Button color='blue' class="ui button"><i class="save icon"></i> Save</Form.Button>
+
             </Form>
         );
     }

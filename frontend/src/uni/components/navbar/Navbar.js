@@ -1,51 +1,49 @@
 import React, { Component } from "react";
-import { Menu } from "semantic-ui-react";
+import { Menu, Segment } from "semantic-ui-react";
 import { Link } from "react-router-dom";
 import { Image } from "semantic-ui-react";
+import withRouter from "../../../router/withRouter";
 
 import AuthContext from "../../../shared/context/AuthContext";
+import NavbarItem from "./NavbarItem";
 
-export default class MenuExampleInverted extends Component {
+class NavBar extends React.Component {
     static contextType = AuthContext;
 
     logoutHandler = () => {
         const auth = this.context;
         auth.logout();
+        this.props.navigate("/");
     };
 
-    state = { activeItem: "home" };
-
-    handleItemClick = (e, { name }) => this.setState({ activeItem: name });
-
     render() {
-        const { activeItem } = this.state;
-
         return (
-            <Menu color={"blue"} inverted position="left" widths={5}>
-                <Menu.Item
-                    as={Link}
-                    to="/uni"
-                    basic
-                    name="Dashboard"
-                    active={activeItem === "Dashboard"}
-                    onClick={this.handleItemClick}
-                />
-                <Menu.Item
-                    as={Link}
-                    to="/uni/application"
-                    basic
-                    name="Application"
-                    active={activeItem === "Application"}
-                    onClick={this.handleItemClick}
-                />
-                <Menu.Item
-                    position="right"
-                    basic
-                    name="Log Out"
-                    active={activeItem === "Log Out"}
-                    onClick={this.logoutHandler}
-                />
-            </Menu>
+            <Segment
+                inverted color='blue'
+                style={{
+                    borderRadius: "0px",
+                    padding: "10px"
+                }}
+            >
+                <Menu
+                    stackable
+                    secondary
+                    inverted
+                    style={{ borderRadius: "0" }}
+                >
+                    <Menu.Menu position="left">
+                        <NavbarItem to="/uni">Dashboard</NavbarItem>
+                        <NavbarItem to="/uni/application">Application</NavbarItem>
+                    </Menu.Menu>
+                    <Menu.Menu position="right">
+                        <Menu.Item onClick={this.logoutHandler}>
+                            Logout
+                        </Menu.Item>
+                    </Menu.Menu>
+                </Menu>
+            </Segment>
         );
     }
 }
+
+export default withRouter(NavBar);

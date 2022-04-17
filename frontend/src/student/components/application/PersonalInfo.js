@@ -16,21 +16,23 @@ const maritalStatusOptions = [
 
 export default class PersonalInfo extends React.Component {
     state = {
-        first: { val: "", error: null, validators: [Required] },
+        first: { val: "", error: null, validators: [] },
         middle: { val: "", error: null, validators: [] },
-        last: { val: "", error: null, validators: [Required] },
-        email: { val: "", error: null, validators: [Required, Email] },
+        last: { val: "", error: null, validators: [] },
+        email: { val: "", error: null, validators: [ Email] },
         phoneNumber: {
             val: "",
             error: null,
-            validators: [Required, PhoneNumber],
+            validators: [ PhoneNumber],
         },
-        cnic: { val: "", error: null, validators: [Required, CNIC] },
-        currentAddress: { val: "", error: null, validators: [Required] },
-        permanentAddress: { val: "", error: null, validators: [Required] },
-        gender: { val: "", error: null, validators: [Required] },
-        maritalStatus: { val: "", error: null, validators: [Required] },
-        dateOfBirth: { val: "", error: null, validators: [Required] },
+        cnic: { val: "", error: null, validators: [ CNIC] },
+        currentAddress: { val: "", error: null, validators: [] },
+        permanentAddress: { val: "", error: null, validators: [] },
+        gender: { val: "", error: null, validators: [] },
+        maritalStatus: { val: "", error: null, validators: [] },
+        dateOfBirth: { val: "", error: null, validators: [] },
+        Progname: { val: "", error: null, validators: [] }
+
     };
 
     changeHandler = (e, { value, name }) => {
@@ -126,6 +128,17 @@ export default class PersonalInfo extends React.Component {
                     onChange={this.changeHandler}
                     error={state.permanentAddress.error}
                     className="required"
+                />
+                 <Form.Input
+                    label="Name of programmes you want to appply"
+                    placeholder="Program Names (separated by a comma)"
+                    name="Progname"
+                    value={state.Progname.val}
+                    onChange={this.changeHandler}
+                    error={state.Progname.error}
+                    className="required"
+                    setvalue="" 
+
                 />
                 <Form.Group grouped>
                     <Form.Field>

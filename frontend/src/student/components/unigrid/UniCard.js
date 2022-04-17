@@ -61,7 +61,7 @@ class UniCard extends React.Component {
                     <Card.Content textAlign="center">
                         <Button
                             as={Link}
-                            to={`/viewUniversity/${uni._id}`}
+                            to={`/student/viewuni`}
                             primary
                             animated
                         >

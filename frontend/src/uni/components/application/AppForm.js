@@ -32,13 +32,7 @@ export default class AppForm extends React.Component {
             console.log(err);
             this.setState({ error: err, loading: false });
         }
-        try {
-            await server.patch("/student/application/FamilyInfo", data);
-            this.setState({ success: true, loading: false });
-        } catch (err) {
-            console.log(err);
-            this.setState({ error: err, loading: false });
-        }
+    
     };
 
     getData = async () => {
@@ -104,7 +98,8 @@ export default class AppForm extends React.Component {
                     header="An error has occured!"
                     content={error && error.toString()}
                 />
-                <Form.Button>Save</Form.Button>
+                <Form.Button color='blue' class="ui button"><i class="save icon"></i> Save</Form.Button>
+
             </Form>
         );
     }
