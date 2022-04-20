@@ -2,7 +2,7 @@ import React from "react";
 import { Container } from "semantic-ui-react";
 import Navbar from "../components/navbar/Navbar";
 
-const Viewuni = () => {
+const Viewuni = (props) => {
     return (
         <>
             <header>
