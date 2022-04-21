@@ -19,18 +19,25 @@ import { Item, Button, Icon } from "semantic-ui-react";
 import { Link } from "react-router-dom";
 import { Card, Header } from "semantic-ui-react";
 import './c.css';
-export default function App() 
-{
+import server from "../../../server/server";
+import UniCard from "../unigrid/UniCard";
+
+import UniGridCompact from "../unigrid/UniGridCompact";
+import NoUni from "../unigrid/NoUni";
+export default function Calend(props) 
+{        
+   //console.log(props.name,("calendar"))
+  //  console.log(uni,"uni")
     const [dateState, setDateState] = useState(new Date());
  
     const changeDate = (e) => {
         setDateState(e);
   
     };
-    console.log( useState(new Date()))
-    const mark = [
-        'April 1st 2022'
-    ]
+    console.log( props.name,"gygg")
+    const mark = props.name;
+    console.log(mark,"uni")
+
     return (
         <Card fluid align="center">
             <Card.Content>
@@ -45,11 +52,13 @@ export default function App()
                 onChange={changeDate}  
                 tileClassName={({ date, view }) => {
                     let newdate=moment(date).format("MMMM Do YYYY");
-                    console.log(newdate,"newdate");
-                    let compare=mark.find(x=>moment(x).format("MMMM Do YYYY"));
-                    console.log(compare,"compare");
-                    if(compare===newdate){
-                        console.log("MATCHED")
+                   console.log(newdate,"newdate");
+                 //  console.log(x=>moment(x).format("MMMM Do YYYY"),"MOMENT")
+                    let compare=mark.find(x=>x===newdate);
+                   console.log(mark.includes(newdate),"compare");
+                    if (mark.includes(newdate))
+                    {
+                      console.log("MATCHED")
                      return  'highlight'
                     }
                   }}
